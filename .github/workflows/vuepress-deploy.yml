@@ -15,6 +15,7 @@ jobs:
       - run: yarn install
       - run: yarn build
   publish:
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     needs: build
     steps:

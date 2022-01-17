@@ -15,10 +15,8 @@ jobs:
       - run: yarn install
       - run: yarn build
   publish:
-    on:
-      push:
-        branches:
-         - main
+    if: github.ref == 'refs/heads/main'
+    needs: build
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'

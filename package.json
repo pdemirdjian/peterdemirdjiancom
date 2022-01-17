@@ -1,0 +1,22 @@
+{
+  "name": "peterdemirdjiancom",
+  "version": "0.0.1",
+  "description": "Peter Demirdjian's Resume",
+  "main": "index.js",
+  "authors": {
+    "name": "Peter Demirdjian",
+    "email": "code@peterdemirdjian.com"
+  },
+  "repository": "github.com/pdemirdjian/peterdemirdjiancom",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "vuepress-theme-default-prefers-color-scheme": "^2.0.0"
+  }
+}

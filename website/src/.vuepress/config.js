@@ -1,5 +1,5 @@
 const { link } = require('fs')
-const { description } = require('../../package')
+const { description } = require('../../../package')
 
 module.exports = {
   /**
@@ -38,7 +38,7 @@ module.exports = {
     nav: [
       {
         text: 'Resume',
-        link: '/resume/',
+        link: '/resume/resume.md',
       },
       {
         text: 'LinkedIn',

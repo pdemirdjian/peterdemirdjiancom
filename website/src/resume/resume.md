@@ -12,7 +12,7 @@ title: Senior DevOps Engineer
   * pull list of GitHub Enterprise reviews by team
   * string search Terraform state within Consul
   * periodic cleaning of GCE VM images and failed Packer instances to save resources and Cloud Spend
-  * [Advent of Code 2021](github.com/pdemirdjian/adventofcode21)
+  * [Advent of Code 2021](https://github.com/pdemirdjian/adventofcode21)
   * [enable buildkite agent to run native powershell](https://github.com/buildkite/agent/pull/1122)
 * terraform
   * create modules for ease of use by Operations and Development Teams

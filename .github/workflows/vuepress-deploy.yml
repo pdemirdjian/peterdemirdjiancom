@@ -29,14 +29,13 @@ jobs:
         with:
           name: website
           path: website
-     steps:
-    - name: Setup - gcloud / gsutil
-      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-      with:
-        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-        project_id: peterdemirdjian-com
-        export_default_credentials: true
-    - name: Deploy
-      run: |-
-        gsutil -m rsync -r website gs://peterdemirdjian-com
+      - name: Setup - gcloud / gsutil
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: peterdemirdjian-com
+          export_default_credentials: true
+      - name: Deploy
+        run: |-
+          gsutil -m rsync -r website gs://peterdemirdjian-com
 

@@ -24,13 +24,13 @@ jobs:
     #if: github.ref == 'refs/heads/main'
     needs: build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
           name: website
           path: website
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Setup - gcloud / gsutil
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:

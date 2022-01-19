@@ -8,6 +8,7 @@ title: Senior DevOps Engineer
 | :---------------------: |:--------------:| :-------------:|
 
 ## Skills
+* [this website](https://github.com/pdemirdjian/peterdemirdjiancom)
 * golang
   * pull list of GitHub Enterprise reviews by team
   * string search Terraform state within Consul

@@ -21,6 +21,7 @@ jobs:
           path: website/src/.vuepress/dist
   publish:
     runs-on: ubuntu-latest
+    environment: prod
     if: github.ref == 'refs/heads/main'
     needs: build
     steps:

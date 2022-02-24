@@ -3,7 +3,7 @@ title: Senior DevOps Engineer
 ---
 
 # Peter Demirdjian
-## Senior DevOps Engineer
+## Contact Info
 | :email: [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com)| :phone: (857)895-2304  | :house: 455 Wood LN, North Andover, MA 01845 |
 | :---------------------: |:--------------:| :-------------:|
 

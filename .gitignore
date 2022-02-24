@@ -10,3 +10,5 @@ dist
 .basement
 config.local.js
 basement_dist
+website/src/.vuepress/.cache/
+website/src/.vuepress/.temp/

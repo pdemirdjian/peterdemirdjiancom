@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         text: 'LinkedIn',
-        link: 'https://www.linkedin.com/in/peter-demirdjian-8b878731/',
+        link: 'https://www.linkedin.com/in/peter-demirdjian/',
       },
       {
         text: 'Github',

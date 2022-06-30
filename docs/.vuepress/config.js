@@ -24,7 +24,6 @@ module.exports = {
         text: 'Email',
         link: 'mailto:code@peterdemirdjian.com'
       }
-    ],
-    repo: 'pdemirdjian/peterdemirdjiancom'
+    ]
   }),
 }

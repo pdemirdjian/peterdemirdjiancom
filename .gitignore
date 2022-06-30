@@ -12,3 +12,7 @@ config.local.js
 basement_dist
 docs/.vuepress/.cache/
 docs/.vuepress/.temp/
+.env
+.terraform
+.terraform.lock.hcl
+*.tfstate*

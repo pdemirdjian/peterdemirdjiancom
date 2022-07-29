@@ -1,7 +1,7 @@
 ---
 title: Senior DevOps Engineer
 ---
-# Contact Info
+## Contact Info
 | :email: [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com)| :phone: (857)895-2304  |
 | :---------------------: |:--------------:|
 

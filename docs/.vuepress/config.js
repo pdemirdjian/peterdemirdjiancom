@@ -6,6 +6,8 @@ module.exports = {
   description: 'Made by Pete Demirdjian with ❤️',
   head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
   theme: defaultTheme({
+    lastUpdated: false,
+    contributors: false,
     logo: 'images/favicon.ico',
     navbar: [
       {

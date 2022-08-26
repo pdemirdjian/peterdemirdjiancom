@@ -1,6 +1,6 @@
-const { defaultTheme } = require('@vuepress/theme-default')
+import { defaultTheme } from '@vuepress/theme-default'
 
-module.exports = {
+export default {
   lang: 'en-US',
   title: 'Pete Demirdjian',
   description: 'Made by Pete Demirdjian with ❤️',

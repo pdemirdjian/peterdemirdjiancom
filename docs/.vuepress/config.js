@@ -1,14 +1,15 @@
 import { defaultTheme } from '@vuepress/theme-default'
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 
 export default {
   lang: 'en-US',
   title: 'Pete Demirdjian',
   description: 'Made by Pete Demirdjian with ❤️',
-  head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: './images/favicon.ico' }]],
   theme: defaultTheme({
     lastUpdated: false,
     contributors: false,
-    logo: 'images/favicon.ico',
+    logo: './images/favicon.ico',
     navbar: [
       {
         text: 'Resume',
@@ -28,4 +29,9 @@ export default {
       }
     ]
   }),
+  plugins: [
+    googleAnalyticsPlugin({
+      id: 'G-8MJYD301PV',
+    })
+  ],
 }

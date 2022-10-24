@@ -13,7 +13,7 @@ export default {
     navbar: [
       {
         text: 'Resume',
-        link: 'resume.md'
+        link: 'resume.html'
       },
       {
         text: 'LinkedIn',

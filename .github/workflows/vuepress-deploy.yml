@@ -4,18 +4,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Generate Site
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: latest
       - run: npm -g install yarn
       - run: yarn install
       - run: yarn docs:build
-      - name: Archive site artifacts
-        uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: docs
           path: docs/.vuepress/dist
@@ -25,16 +21,13 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     steps:
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: docs
           path: docs
-      - name: Auth to S3
-        uses: aws-actions/configure-aws-credentials@v1
+      - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Deploy static site to S3 bucket
         run: aws s3 sync ./docs/ s3://peterdemirdjian-com-ue1 --delete

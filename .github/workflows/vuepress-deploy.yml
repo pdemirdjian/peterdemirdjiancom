@@ -8,9 +8,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: latest
-      - run: npm -g install yarn
-      - run: yarn install
-      - run: yarn docs:build
+      - run: "npm -g install yarn"
+      - run: "yarn install"
+      - run: "yarn docs:build"
       - uses: actions/upload-artifact@v3
         with:
           name: docs
@@ -30,4 +30,4 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-        run: aws s3 sync ./docs/ s3://peterdemirdjian-com-ue1 --delete
+      - run: aws s3 sync ./docs/ s3://peterdemirdjian-com-ue1 --delete

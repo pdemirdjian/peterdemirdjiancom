@@ -5,10 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: latest
-      - run: "npm -g install yarn"
+      - uses: volta-cli/action@v3
       - run: "yarn install"
       - run: "yarn docs:build"
       - uses: actions/upload-artifact@v3

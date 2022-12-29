@@ -587,7 +587,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vuepress/client@npm:2.0.0-beta.58, @vuepress/client@npm:next":
+"@vuepress/client@npm:2.0.0-beta.58":
   version: 2.0.0-beta.58
   resolution: "@vuepress/client@npm:2.0.0-beta.58"
   dependencies:
@@ -596,6 +596,18 @@ __metadata:
     vue: ^3.2.45
     vue-router: ^4.1.6
   checksum: 8b4688368294b2c30c814a7cc314907f20044b8a26ae5dc6e728f7ab41f18b121f503164acbd0dfb8646cbe9c53f9d1ccb6f6d20db3616d8eb4ba1fe9090d0ce
+  languageName: node
+  linkType: hard
+
+"@vuepress/client@npm:next":
+  version: 2.0.0-beta.60
+  resolution: "@vuepress/client@npm:2.0.0-beta.60"
+  dependencies:
+    "@vue/devtools-api": ^6.4.5
+    "@vuepress/shared": 2.0.0-beta.60
+    vue: ^3.2.45
+    vue-router: ^4.1.6
+  checksum: 39f6857e8c82750579a57317194973b5fe2024e3beda73a25537a4076a134cabc0b17b5816c9d8fb723c93e0b7c927d2e30d3780815a9cc3fe3bb82d05e0eaf2
   languageName: node
   linkType: hard
 
@@ -782,6 +794,16 @@ __metadata:
     "@mdit-vue/types": ^0.11.0
     "@vue/shared": ^3.2.45
   checksum: 0606b880582ab0c56d206a4e1920f1e1c0b0288adf8ecfaf658a8159a4f5c02e490a74c00320f912d2d6773bbc013f93e32d6b611107732973a8fd34e88e2e9e
+  languageName: node
+  linkType: hard
+
+"@vuepress/shared@npm:2.0.0-beta.60":
+  version: 2.0.0-beta.60
+  resolution: "@vuepress/shared@npm:2.0.0-beta.60"
+  dependencies:
+    "@mdit-vue/types": ^0.11.0
+    "@vue/shared": ^3.2.45
+  checksum: dfe6c360888db4be2c447b495ab148a55576b70ab3b94356449f34663850fa1272c11ed602f6509d5fb54b39e1a6423566d4be8868f1e309457f4ceab72b9081
   languageName: node
   linkType: hard
 

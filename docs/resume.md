@@ -19,9 +19,10 @@ title: Senior DevOps Engineer
   * [create custom image with built in healthcheck](https://github.com/pdemirdjian/infra/blob/main/images/itsademergency_com_nginx.pkr.hcl)
 * puppet
   * write windows and centos puppet configs to manage infrastructure
-
+## Cargurus, Inc
+### _Senior DevOps Engineer_ - January 2022 - PRESENT
 ## Wayfair LLC
-### _Senior Cloud Engineer_ - October 2020 - January 2021
+### _Senior Cloud Engineer_ - October 2020 - January 2022
 * Consultation with developer teams to drive cloud adoption and migration from our on premise datacenter.
 * Develop Terraform modules to enable and accelerate features available in Open Source Terraform and Terraform Enterprise.
 * Extend features and flexibility in our Google Cloud Engine Image pipeline to allow engineers to update their running instances without downtime and greater confidence.

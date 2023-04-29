@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: volta-cli/action@v3
-      - run: "volta install pnpm"
+      - run: "volta install node"
       - run: "pnpm install"
       - run: "pnpm docs:build"
       - uses: actions/upload-artifact@v3

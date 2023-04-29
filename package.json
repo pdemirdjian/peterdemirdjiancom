@@ -14,14 +14,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/client": "next",
-    "@vuepress/plugin-google-analytics": "2.0.0-beta.58",
-    "vue": "^3.2.45",
-    "vuepress": "2.0.0-beta.58"
+    "@vuepress/client": "2.0.0-beta.61",
+    "@vuepress/plugin-google-analytics": "2.0.0-beta.61",
+    "@vuepress/theme-default": "2.0.0-beta.61",
+    "vue": "^3.2.47",
+    "vuepress": "2.0.0-beta.61"
   },
-  "packageManager": "yarn@3.3.0",
   "volta": {
-    "node": "19.2.0",
-    "yarn": "3.3.0"
+    "node": "20.0.0"
   }
 }

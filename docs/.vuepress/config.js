@@ -21,10 +21,6 @@ export default defineUserConfig({
         link: 'https://www.linkedin.com/in/peter-demirdjian/'
       },
       {
-        text: 'Github',
-        link: 'https://github.com/pdemirdjian'
-      },
-      {
         text: 'Email',
         link: 'mailto:code@peterdemirdjian.com'
       }

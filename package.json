@@ -17,7 +17,7 @@
     "@vuepress/client": "2.0.0-beta.67",
     "@vuepress/plugin-google-analytics": "2.0.0-beta.67",
     "@vuepress/theme-default": "2.0.0-beta.67",
-    "browserslist": "^4.21.10",
+    "browserslist": "^4.22.1",
     "vue": "^3.3.4",
     "vuepress": "2.0.0-beta.67"
   },

@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.67",
-    "@vuepress/plugin-google-analytics": "2.0.0-beta.67",
+    "@vuepress/plugin-google-analytics": "2.0.0-beta.68",
     "@vuepress/theme-default": "2.0.0-beta.67",
     "browserslist": "^4.22.1",
     "vue": "^3.3.7",

@@ -1,6 +1,5 @@
 import { defineUserConfig } from 'vuepress'
-import { defaultTheme } from '@vuepress/theme-default'
-import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+import { defaultTheme } from 'vuepress'
 
 export default defineUserConfig({
   lang: 'en-US',
@@ -27,9 +26,4 @@ export default defineUserConfig({
     ],
     repo: 'pdemirdjian/peterdemirdjiancom'
   }),
-  plugins: [
-    googleAnalyticsPlugin({
-      id: 'G-8MJYD301PV',
-    }),
-  ],
 })

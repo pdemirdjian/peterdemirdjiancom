@@ -1,7 +1,9 @@
+import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
-import { defaultTheme } from 'vuepress'
+import { defaultTheme } from '@vuepress/theme-default'
 
 export default defineUserConfig({
+  bundler: viteBundler(),
   lang: 'en-US',
   title: 'Pete Demirdjian',
   description: 'Made by Pete Demirdjian with ❤️',

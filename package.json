@@ -16,12 +16,12 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.9",
     "@vuepress/client": "2.0.0-rc.2",
-    "@vuepress/theme-default": "2.0.0-rc.26",
+    "@vuepress/theme-default": "2.0.0-rc.27",
     "vue": "^3.4.26",
     "vuepress": "2.0.0-rc.9"
   },
   "volta": {
-    "node": "21.7.1",
-    "pnpm": "8.15.5"
+    "node": "22.1.0",
+    "pnpm": "9.1.0"
   }
 }

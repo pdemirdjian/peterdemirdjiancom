@@ -25,7 +25,9 @@ title: Senior DevOps Engineer
 
 ## Cargurus, Inc
 
-### _Principal DevOps Engineer_ - January 2022 - PRESENT
+### _Principal DevOps Engineer_ - October 2024 - PRESENT
+
+### _Senior DevOps Engineer_ - January 2022 - October 2024
 
 ## Wayfair LLC
 

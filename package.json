@@ -16,7 +16,7 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.19",
     "@vuepress/client": "2.0.0-rc.2",
-    "@vuepress/theme-default": "2.0.0-rc.76",
+    "@vuepress/theme-default": "2.0.0-rc.78",
     "sass-embedded": "^1.85.0",
     "vue": "^3.5.13",
     "vuepress": "2.0.0-rc.19"

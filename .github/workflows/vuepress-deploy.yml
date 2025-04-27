@@ -2,6 +2,8 @@ name: Build Vuepress
 on: push
 jobs:
   build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,6 +17,9 @@ jobs:
           name: docs
           path: docs/.vuepress/dist
   publish:
+    permissions:
+      contents: read
+      deployments: write
     runs-on: ubuntu-latest
     environment: prod
     if: github.ref == 'refs/heads/main'

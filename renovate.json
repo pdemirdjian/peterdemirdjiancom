@@ -1,29 +1,33 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "npm:unpublishSafe"],
   "assignees": ["@pdemirdjian"],
+  "extends": ["config:recommended", "npm:unpublishSafe"],
   "lockFileMaintenance": {
     "enabled": true,
+    "automerge": true,
     "recreateWhen": "always",
     "rebaseWhen": "behind-base-branch",
     "branchTopic": "lock-file-maintenance",
     "commitMessageAction": "Lock file maintenance",
+    "minimumReleaseAge": "3d",
     "prBodyDefinitions": {"Change": "All locks refreshed"}
   },
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    }
-  ],
   "major": {
     "automerge": false,
     "automergeType": "branch",
     "prBodyDefinitions": {"Change": "Major version update"}
   },
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "minimumReleaseAge": "3d"
+    }
+  ],
   "vulnerabilityAlerts": {
-    "labels": ["security"],
     "automerge": true,
-    "assignees": ["@pdemirdjian"]
+    "assignees": ["@pdemirdjian"],
+    "labels": ["security"],
+    "minimumReleaseAge": "1d"
   }
 }

@@ -1,7 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "assignees": ["@pdemirdjian"],
-  "extends": ["config:recommended", "npm:unpublishSafe", "helpers:pinGitHubActionDigestsToSemver"],
+  "extends": [
+    "config:recommended",
+    "npm:unpublishSafe",
+    "helpers:pinGitHubActionDigestsToSemver",
+    ":configMigration",
+    ":pinDevDependencies",
+    "abandonments:recommended",
+    ":pinAllExceptPeerDependencies"
+  ],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
@@ -18,6 +26,19 @@
     "prBodyDefinitions": {"Change": "Major version update"}
   },
   "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "minimumReleaseAge": "3d",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "vite",
+        "**vite-plugin**",
+        "@vitejs/**"
+      ]
+    },
     {
       "automerge": true,
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],

@@ -18,10 +18,10 @@ importers:
         specifier: 2.0.0-rc.112
         version: 2.0.0-rc.112(markdown-it@14.1.0)(sass-embedded@1.89.2)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.1.0)(sass-embedded@1.89.2))(vue@3.5.18))
       sass-embedded:
-        specifier: ^1.89.2
+        specifier: 1.89.2
         version: 1.89.2
       vue:
-        specifier: ^3.5.18
+        specifier: 3.5.18
         version: 3.5.18
       vuepress:
         specifier: 2.0.0-rc.24

@@ -15,7 +15,8 @@
     "security:fix": "pnpm audit --fix",
     "security:check": "pnpm audit --audit-level high"
   },
-  "license": "MIT",
+  "license": "CC-BY-NC-ND-4.0",
+  "private": true,
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/client": "2.0.0-rc.2",

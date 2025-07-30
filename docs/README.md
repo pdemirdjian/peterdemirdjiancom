@@ -13,7 +13,7 @@ I'm a Principal DevOps Engineer currently working at Cargurus building out a clo
 
 <div style="text-align: center; margin-top: 2rem; padding: 1rem 0; border-top: 1px solid #e2e8f0; font-size: 0.9rem; color: #6b7280;">
   <div style="margin-bottom: 0.5rem;">
-    © 2025 Peter Demirdjian. Licensed under 
+    © {{ new Date().getFullYear() }} Peter Demirdjian. Licensed under 
     <a href="/license.html" style="color: #3b82f6; text-decoration: none;">CC BY-NC-ND 4.0</a>.
   </div>
   <div>
@@ -23,3 +23,5 @@ I'm a Principal DevOps Engineer currently working at Cargurus building out a clo
     </a>
   </div>
 </div>
+
+

@@ -31,6 +31,6 @@ export default defineUserConfig({
       }
     ],
     repo: 'pdemirdjian/peterdemirdjiancom',
-    editLink: false
+    editLink: false,
   }),
 })

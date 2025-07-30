@@ -38,10 +38,10 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: pnpm/action-setup@v2 # v2.0.2
+      - uses: pnpm/action-setup@v4.1.0
         with:
           run_install: false
-      - uses: actions/setup-node@v3 # v3.5.0
+      - uses: actions/setup-node@v4.4.0
         with:
           cache: 'pnpm'
           node-version-file: '.nvmrc'

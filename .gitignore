@@ -24,6 +24,7 @@ docs/.vuepress/.temp/
 !.yarn/sdks
 !.yarn/versions
 .tmp.driveupload
+.tmp.drivedownload
 
 # Security sensitive files
 .env*

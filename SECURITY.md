@@ -52,7 +52,7 @@ This website implements several security measures:
 ## Security Best Practices
 
 1. Keep dependencies updated
-2. Run `volta run pnpm run security:audit` regularly
+2. Run `pnpm run security:audit` regularly
 3. Monitor for security alerts
 4. Review security headers periodically
 5. Follow secure coding practices

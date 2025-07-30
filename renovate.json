@@ -50,6 +50,12 @@
     "automerge": true,
     "assignees": ["@pdemirdjian"],
     "labels": ["security"],
-    "minimumReleaseAge": "1d"
+    "minimumReleaseAge": "0d"
+  },
+  "osvVulnerabilityAlerts": true,
+  "separateMajorMinor": true,
+  "separateMultipleMajor": true,
+  "npm": {
+    "minimumReleaseAge": "3d"
   }
 }

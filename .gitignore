@@ -24,3 +24,34 @@ docs/.vuepress/.temp/
 !.yarn/sdks
 !.yarn/versions
 .tmp.driveupload
+
+# Security sensitive files
+.env*
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+.aws/
+.ssh/
+secrets/
+secret.*
+*.secret
+credentials
+.credentials
+
+# IDE and OS files that might contain sensitive info
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig

@@ -10,7 +10,10 @@
   "repository": "github.com/pdemirdjian/peterdemirdjiancom",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "security:audit": "volta run pnpm audit --audit-level moderate",
+    "security:fix": "volta run pnpm audit --fix",
+    "security:check": "volta run pnpm audit --json --audit-level high | jq '.vulnerabilities | keys | length' | xargs -I {} test {} -eq 0"
   },
   "license": "MIT",
   "devDependencies": {

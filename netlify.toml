@@ -2,7 +2,7 @@
 
 [build]
   publish = "docs/.vuepress/dist"
-  command = "volta run pnpm docs:build"
+  command = "pnpm docs:build"
 
 [build.environment]
   NODE_VERSION = "24.4.1"

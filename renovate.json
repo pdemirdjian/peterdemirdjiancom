@@ -44,6 +44,20 @@
       "automerge": true,
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "minimumReleaseAge": "3d"
+    },
+    {
+      "description": "Auto-update Node.js version in .nvmrc",
+      "matchManagers": ["nvm"],
+      "matchPackageNames": ["node"],
+      "automerge": true,
+      "minimumReleaseAge": "7d"
+    },
+    {
+      "description": "Auto-update pnpm version in package.json",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["pnpm"],
+      "automerge": true,
+      "minimumReleaseAge": "7d"
     }
   ],
   "vulnerabilityAlerts": {

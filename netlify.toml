@@ -4,9 +4,8 @@
   publish = "docs/.vuepress/dist"
   command = "pnpm docs:build"
 
-[build.environment]
-  NODE_VERSION = "24.4.1"
-  PNPM_VERSION = "10.13.1"
+# Netlify will automatically detect Node.js version from .nvmrc
+# and pnpm version from package.json packageManager field
 
 # Security Headers
 [[headers]]

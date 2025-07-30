@@ -13,7 +13,7 @@
     "docs:build": "vuepress build docs",
     "security:audit": "pnpm audit --audit-level moderate",
     "security:fix": "pnpm audit --fix",
-    "security:check": "pnpm audit --json --audit-level high | jq '.vulnerabilities | keys | length' | xargs -I {} test {} -eq 0"
+    "security:check": "pnpm audit --audit-level high"
   },
   "license": "MIT",
   "devDependencies": {

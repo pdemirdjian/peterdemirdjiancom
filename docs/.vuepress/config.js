@@ -18,6 +18,10 @@ export default defineUserConfig({
         link: 'resume.html'
       },
       {
+        text: 'License',
+        link: 'license.html'
+      },
+      {
         text: 'LinkedIn',
         link: 'https://www.linkedin.com/in/peter-demirdjian/'
       },
@@ -26,6 +30,7 @@ export default defineUserConfig({
         link: 'mailto:code@peterdemirdjian.com'
       }
     ],
-    repo: 'pdemirdjian/peterdemirdjiancom'
+    repo: 'pdemirdjian/peterdemirdjiancom',
+    editLink: false,
   }),
 })

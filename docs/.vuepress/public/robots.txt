@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Disallow common admin/sensitive paths (just in case)
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /pnpm-lock.yaml
+
+# Sitemap
+Sitemap: https://peterdemirdjian.com/sitemap.xml

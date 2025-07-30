@@ -10,7 +10,10 @@
   "repository": "github.com/pdemirdjian/peterdemirdjiancom",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "security:audit": "pnpm audit --audit-level moderate",
+    "security:fix": "pnpm audit --fix",
+    "security:check": "pnpm audit --audit-level high"
   },
   "license": "MIT",
   "devDependencies": {
@@ -21,8 +24,9 @@
     "vue": "3.5.18",
     "vuepress": "2.0.0-rc.24"
   },
-  "volta": {
-    "node": "24.4.1",
-    "pnpm": "10.13.1"
-  }
+  "engines": {
+    "node": "24.3.0",
+    "pnpm": "10.13.0"
+  },
+  "packageManager": "pnpm@10.13.0"
 }

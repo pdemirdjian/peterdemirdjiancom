@@ -1,0 +1,8 @@
+node_modules/
+dist/
+docs/.vuepress/dist/
+*.min.js
+*.d.ts
+pnpm-lock.yaml
+*.log
+.env*

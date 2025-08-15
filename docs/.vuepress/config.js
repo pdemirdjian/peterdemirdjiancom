@@ -15,20 +15,20 @@ export default defineUserConfig({
     navbar: [
       {
         text: 'Resume',
-        link: 'resume.html'
+        link: 'resume.html',
       },
       {
         text: 'License',
-        link: 'license.html'
+        link: 'license.html',
       },
       {
         text: 'LinkedIn',
-        link: 'https://www.linkedin.com/in/peter-demirdjian/'
+        link: 'https://www.linkedin.com/in/peter-demirdjian/',
       },
       {
         text: 'Email',
-        link: 'mailto:code@peterdemirdjian.com'
-      }
+        link: 'mailto:code@peterdemirdjian.com',
+      },
     ],
     repo: 'pdemirdjian/peterdemirdjiancom',
     editLink: false,

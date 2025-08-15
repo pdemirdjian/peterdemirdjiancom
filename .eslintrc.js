@@ -1,43 +1,61 @@
 module.exports = {
-  // Specifies the environments where your code will run
+  root: true,
   env: {
-    browser: true, // Browser global variables
-    es2021: true,  // Adds all ECMAScript 2021 globals and automatically sets ecmaVersion to 12
-    node: true,    // Node.js global variables and scoping
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  // A set of recommended rules to extend from
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
-    'plugin:react-hooks/recommended', // Enforces rules of Hooks
+    '@vue/eslint-config-typescript/recommended',
+    'plugin:vue/vue3-recommended',
   ],
-  // The parser that allows ESLint to understand TypeScript syntax
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
-    },
-    ecmaVersion: 'latest', // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  // Plugins that provide additional rules
   plugins: [
-    'react',
+    'vue',
     '@typescript-eslint',
   ],
-  // Custom rules can be added here
   rules: {
-    // Suppress errors for missing 'import React' in files for React 17+
-    'react/react-in-jsx-scope': 'off',
-    // Allow JSX in .tsx files
-    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
-    // Add any other custom rules here
+    // Vue.js specific rules
+    'vue/multi-word-component-names': 'off',
+    'vue/no-v-html': 'warn',
+    
+    // TypeScript rules
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    
+    // General JavaScript/ES6 rules
+    'no-console': 'warn',
+    'no-debugger': 'error',
+    'prefer-const': 'error',
+    'no-var': 'error',
+    
+    // Code style rules
+    'indent': ['error', 2],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'never'],
+    'comma-dangle': ['error', 'always-multiline'],
   },
-  settings: {
-    react: {
-      // Tells eslint-plugin-react to automatically detect the version of React to use
-      version: 'detect',
+  overrides: [
+    {
+      files: ['*.vue'],
+      rules: {
+        'indent': 'off',
+        '@typescript-eslint/indent': 'off',
+      },
     },
-  },
-};
+    {
+      files: ['docs/.vuepress/config.js'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
+}

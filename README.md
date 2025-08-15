@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2880dcbd-41ef-4bba-bbf5-bd7b51008b7e/deploy-status)](https://app.netlify.com/projects/willowy-peony-b2b133/deploys)
 # Peter Demirdjian's Personal Website
 
 This is the source code for my personal website and portfolio.

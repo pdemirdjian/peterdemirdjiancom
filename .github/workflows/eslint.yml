@@ -47,17 +47,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install SARIF formatter
-        run: pnpm add -D @microsoft/eslint-formatter-sarif
-
       - name: Run ESLint
-        env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
-        run: pnpm exec eslint . --ext .js,.ts,.vue --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+        run: pnpm exec eslint . --ext .js,.ts,.vue
         continue-on-error: true
-
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@df559355d593797519d70b90fc8edd5db049e7a2 # v3.29.9
-        with:
-          sarif_file: eslint-results.sarif
-          wait-for-processing: true

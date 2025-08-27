@@ -85,6 +85,23 @@
       ],
       "automerge": true,
       "minimumReleaseAge": "3d"
+    },
+    {
+      "description": "Group VuePress dependencies",
+      "matchPackagePatterns": [
+        "^@vuepress/",
+        "^vuepress$"
+      ],
+      "groupName": "VuePress",
+      "automerge": true,
+      "minimumReleaseAge": "3d",
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ]
     }
   ],
   "vulnerabilityAlerts": {

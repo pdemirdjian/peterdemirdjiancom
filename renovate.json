@@ -45,11 +45,9 @@
         "pin",
         "digest"
       ],
-      "matchPackagePatterns": [
-        "^@vuepress\/"
-      ],
       "matchPackageNames": [
-        "vuepress"
+        "vuepress",
+        "/^@vuepress//"
       ]
     },
     {
@@ -112,13 +110,11 @@
       "matchUpdateTypes": [
         "major"
       ],
-      "matchPackagePatterns": [
-        "^@vuepress\/",
-        "^vuepress$"
-      ],
       "matchPackageNames": [
         "vue",
-        "vue-router"
+        "vue-router",
+        "/^@vuepress//",
+        "/^vuepress$/"
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "deps",

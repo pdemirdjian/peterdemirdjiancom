@@ -4,14 +4,18 @@
     "@pdemirdjian"
   ],
   "extends": [
-    "config:recommended",
+    "config:best-practices",
     "npm:unpublishSafe",
     "helpers:pinGitHubActionDigestsToSemver",
     ":configMigration",
     ":pinDevDependencies",
     "abandonments:recommended",
     ":pinAllExceptPeerDependencies",
-    "workarounds:typesNodeVersioning"
+    "workarounds:typesNodeVersioning",
+    "group:vuepressMonorepo",
+    "group:nodeJs",
+    "group:vite",
+    "security:openssf-scorecard"
   ],
   "lockFileMaintenance": {
     "enabled": true,
@@ -35,40 +39,6 @@
   },
   "packageRules": [
     {
-      "description": "Auto-resolve VuePress peer dependency mismatches",
-      "groupName": "VuePress",
-      "automerge": true,
-      "minimumReleaseAge": "3d",
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "matchPackageNames": [
-        "vuepress",
-        "/^@vuepress//"
-      ]
-    },
-    {
-      "automerge": true,
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "minimumReleaseAge": "3d",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "vite",
-        "**vite-plugin**",
-        "@vitejs/**"
-      ]
-    },
-    {
       "automerge": true,
       "matchUpdateTypes": [
         "minor",
@@ -77,19 +47,6 @@
         "digest"
       ],
       "minimumReleaseAge": "3d"
-    },
-    {
-      "description": "Auto-update Node.js version in .nvmrc and package.json",
-      "matchPackageNames": [
-        "node"
-      ],
-      "automerge": true,
-      "minimumReleaseAge": "3d",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "groupName": "Node.js"
     },
     {
       "description": "Auto-update pnpm version in package.json",
@@ -101,28 +58,6 @@
       ],
       "automerge": true,
       "minimumReleaseAge": "3d"
-    },
-    {
-      "description": "Group VuePress dependencies for major updates",
-      "groupName": "VuePress Major",
-      "automerge": false,
-      "minimumReleaseAge": "7d",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "matchPackageNames": [
-        "vue",
-        "vue-router",
-        "/^@vuepress//",
-        "/^vuepress$/"
-      ],
-      "semanticCommitType": "feat",
-      "semanticCommitScope": "deps",
-      "commitMessageTopic": "VuePress major update",
-      "labels": [
-        "vuepress",
-        "major-update"
-      ]
     }
   ],
   "vulnerabilityAlerts": {

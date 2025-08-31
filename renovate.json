@@ -35,6 +35,29 @@
   },
   "packageRules": [
     {
+      "description": "Auto-resolve VuePress peer dependency mismatches",
+      "groupName": "VuePress",
+      "automerge": true,
+      "minimumReleaseAge": "3d",
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "matchPackagePatterns": [
+        "^@vuepress\/"
+      ],
+      "matchPackageNames": [
+        "vuepress"
+      ],
+      "rangeStrategy": "bump",
+      "updateInternalDependents": true,
+      "prBodyDefinitions": {
+        "Change": "VuePress ecosystem update - run `pnpm install` to resolve any peer dependency warnings"
+      }
+    },
+    {
       "automerge": true,
       "matchUpdateTypes": [
         "minor",
@@ -87,20 +110,28 @@
       "minimumReleaseAge": "3d"
     },
     {
-      "description": "Group VuePress dependencies",
-      "groupName": "VuePress",
-      "automerge": true,
-      "minimumReleaseAge": "3d",
+      "description": "Group VuePress dependencies for major updates",
+      "groupName": "VuePress Major",
+      "automerge": false,
+      "minimumReleaseAge": "7d",
       "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
-        "pin",
-        "digest"
+        "major"
+      ],
+      "matchPackagePatterns": [
+        "^@vuepress\/",
+        "^vuepress$"
       ],
       "matchPackageNames": [
-        "/^@vuepress//",
-        "/^vuepress$/"
+        "vue",
+        "vue-router"
+      ],
+      "rangeStrategy": "bump",
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "deps",
+      "commitMessageTopic": "VuePress major update",
+      "labels": [
+        "vuepress",
+        "major-update"
       ]
     }
   ],
@@ -120,5 +151,10 @@
   "minimumReleaseAge": "3d",
   "npm": {
     "minimumReleaseAge": "3d"
-  }
+  },
+  "peerDependencies": {
+    "updateInternalDependents": true
+  },
+  "rangeStrategy": "bump",
+  "updateInternalDependents": true
 }

@@ -50,12 +50,7 @@
       ],
       "matchPackageNames": [
         "vuepress"
-      ],
-      "rangeStrategy": "bump",
-      "updateInternalDependents": true,
-      "prBodyDefinitions": {
-        "Change": "VuePress ecosystem update - run `pnpm install` to resolve any peer dependency warnings"
-      }
+      ]
     },
     {
       "automerge": true,
@@ -125,7 +120,6 @@
         "vue",
         "vue-router"
       ],
-      "rangeStrategy": "bump",
       "semanticCommitType": "feat",
       "semanticCommitScope": "deps",
       "commitMessageTopic": "VuePress major update",
@@ -151,10 +145,5 @@
   "minimumReleaseAge": "3d",
   "npm": {
     "minimumReleaseAge": "3d"
-  },
-  "peerDependencies": {
-    "updateInternalDependents": true
-  },
-  "rangeStrategy": "bump",
-  "updateInternalDependents": true
+  }
 }

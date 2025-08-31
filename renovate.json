@@ -51,16 +51,10 @@
       "matchPackageNames": [
         "vuepress"
       ],
-      "postUpgradeTasks": {
-        "commands": [
-          "pnpm install --fix-peer-deps",
-          "pnpm dedupe"
-        ],
-        "fileFilters": [
-          "package.json",
-          "pnpm-lock.yaml"
-        ],
-        "executionMode": "update"
+      "rangeStrategy": "bump",
+      "updateInternalDependents": true,
+      "prBodyDefinitions": {
+        "Change": "VuePress ecosystem update - run `pnpm install` to resolve any peer dependency warnings"
       }
     },
     {
@@ -139,28 +133,6 @@
         "vuepress",
         "major-update"
       ]
-    },
-    {
-      "description": "Force VuePress ecosystem to stay in sync to avoid peer dependency conflicts",
-      "groupName": "VuePress Ecosystem",
-      "automerge": false,
-      "minimumReleaseAge": "5d",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "matchPackagePatterns": [
-        "^@vuepress\/"
-      ],
-      "matchPackageNames": [
-        "vuepress"
-      ],
-      "prBodyDefinitions": {
-        "Change": "VuePress ecosystem update - check for peer dependency compatibility"
-      },
-      "labels": [
-        "vuepress",
-        "peer-dependencies"
-      ]
     }
   ],
   "vulnerabilityAlerts": {
@@ -183,5 +155,6 @@
   "peerDependencies": {
     "updateInternalDependents": true
   },
-  "rangeStrategy": "bump"
+  "rangeStrategy": "bump",
+  "updateInternalDependents": true
 }

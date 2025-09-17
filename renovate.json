@@ -49,6 +49,16 @@
       "minimumReleaseAge": "3d"
     },
     {
+      "description": "Keep VuePress packages in sync to avoid peer dependency issues",
+      "matchPackagePatterns": [
+        "^vuepress$",
+        "^@vuepress/"
+      ],
+      "groupName": "VuePress",
+      "automerge": false,
+      "minimumReleaseAge": "7d"
+    },
+    {
       "description": "Auto-update pnpm version in package.json",
       "matchManagers": [
         "npm"

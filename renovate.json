@@ -50,13 +50,13 @@
     },
     {
       "description": "Keep VuePress packages in sync to avoid peer dependency issues",
-      "matchPackagePatterns": [
-        "^vuepress$",
-        "^@vuepress/"
-      ],
       "groupName": "VuePress",
       "automerge": false,
-      "minimumReleaseAge": "7d"
+      "minimumReleaseAge": "7d",
+      "matchPackageNames": [
+        "/^vuepress$/",
+        "/^@vuepress//"
+      ]
     },
     {
       "description": "Auto-update pnpm version in package.json",

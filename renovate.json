@@ -4,18 +4,19 @@
     "@pdemirdjian"
   ],
   "extends": [
-    "config:best-practices",
-    "npm:unpublishSafe",
-    "helpers:pinGitHubActionDigestsToSemver",
     ":configMigration",
+    ":enablePreCommit",
+    ":pinAllExceptPeerDependencies",
     ":pinDevDependencies",
     "abandonments:recommended",
-    ":pinAllExceptPeerDependencies",
-    "workarounds:typesNodeVersioning",
-    "group:vuepressMonorepo",
+    "config:best-practices",
     "group:nodeJs",
     "group:vite",
-    "security:openssf-scorecard"
+    "group:vuepressMonorepo",
+    "helpers:pinGitHubActionDigestsToSemver",
+    "npm:unpublishSafe",
+    "security:openssf-scorecard",
+    "workarounds:typesNodeVersioning"
   ],
   "lockFileMaintenance": {
     "enabled": true,

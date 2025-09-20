@@ -1,0 +1,19 @@
+# Trivy ignore file
+# Add vulnerability IDs (CVE, GHSA, etc.) that you want to ignore
+# Each line should contain one vulnerability ID
+# Use comments to explain why a vulnerability is ignored
+
+# Example of ignoring a specific CVE:
+# CVE-2022-1234
+
+# Example of ignoring a GHSA:
+# GHSA-xxxx-xxxx-xxxx
+
+# You can also ignore vulnerabilities for specific files:
+# CVE-2022-1234 package.json
+
+# Ignore development dependencies vulnerabilities that don't affect production
+# (uncomment and adjust as needed)
+
+# Note: Be very careful when ignoring vulnerabilities
+# Always document the reason and ensure it's safe to ignore

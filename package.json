@@ -15,7 +15,10 @@
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
     "security:audit": "pnpm audit --audit-level moderate",
     "security:fix": "pnpm audit --fix",
-    "security:check": "pnpm audit --audit-level high"
+    "security:check": "pnpm audit --audit-level high",
+    "security:trivy": "trivy fs .",
+    "security:trivy:config": "trivy config .",
+    "security:trivy:secrets": "trivy fs --scanners secret ."
   },
   "license": "CC-BY-NC-ND-4.0",
   "private": true,

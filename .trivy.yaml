@@ -1,0 +1,107 @@
+# Trivy configuration file
+# This file allows you to customize Trivy's behavior
+
+# Specify severity levels to scan for
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+
+# Vulnerability database settings
+db:
+  # Skip database update for faster scanning (useful in CI)
+  # skip-update: false
+  
+  # Custom repository for vulnerability database
+  # repository: ghcr.io/aquasecurity/trivy-db
+
+# Scanner settings
+scan:
+  # Skip files and directories
+  skip-dirs:
+    - node_modules
+    - .git
+    - .github
+    - dist
+    - build
+    - coverage
+    - .vuepress/dist
+    - docs/.vuepress/dist
+  
+  # Skip specific files
+  skip-files:
+    - "*.log"
+    - "*.tmp"
+    - "**/test/**"
+    - "**/tests/**"
+
+# Vulnerability scanning settings
+vulnerability:
+  # Ignore unfixed vulnerabilities
+  ignore-unfixed: false
+  
+  # Vulnerability types to detect
+  type:
+    - os
+    - library
+
+# Secret scanning settings
+secret:
+  # Skip secret scanning for specific paths
+  skip-dirs:
+    - .git
+    - node_modules
+    - dist
+    - build
+    - coverage
+
+# Misconfiguration scanning settings
+misconfiguration:
+  # Skip specific check IDs
+  # Example: skip-checks:
+  #   - AVD-AWS-0001
+  #   - AVD-GCP-0001
+  
+  # Include non-security checks
+  include-non-failures: false
+  
+  # Severity levels for misconfigurations
+  severity:
+    - MEDIUM
+    - HIGH
+    - CRITICAL
+
+# Output settings
+format: table
+
+# Exit code settings
+# 0: Success (default)
+# 1: Vulnerabilities found
+# 2: Misconfiguration found
+exit-code: 0
+
+# Reporting settings
+report:
+  # Summary format
+  format: table
+  
+  # Include summary in report
+  summary: true
+
+# Cache settings
+cache:
+  # Cache directory
+  dir: .trivyignore-cache
+
+# Ignore specific vulnerabilities (CVE IDs)
+# Add CVE IDs here if you need to ignore specific vulnerabilities
+# ignore:
+#   - CVE-2022-1234
+#   - CVE-2023-5678
+
+# Policy settings for custom checks
+# policy:
+#   - policy/kubernetes.rego
+#   - policy/dockerfile.rego

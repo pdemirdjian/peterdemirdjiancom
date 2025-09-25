@@ -25,8 +25,8 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "9.36.0",
-    "@typescript-eslint/eslint-plugin": "8.44.0",
-    "@typescript-eslint/parser": "8.44.0",
+    "@typescript-eslint/eslint-plugin": "8.44.1",
+    "@typescript-eslint/parser": "8.44.1",
     "@vue/eslint-config-typescript": "14.6.0",
     "@vuepress/bundler-vite": "2.0.0-rc.25",
     "@vuepress/client": "2.0.0-rc.25",

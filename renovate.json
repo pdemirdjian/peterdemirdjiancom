@@ -14,7 +14,7 @@
     "group:vite",
     "group:vuepressMonorepo",
     "helpers:pinGitHubActionDigestsToSemver",
-    "npm:unpublishSafe",
+    "security:minimumReleaseAgeNpm",
     "security:openssf-scorecard",
     "workarounds:typesNodeVersioning"
   ],

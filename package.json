@@ -38,7 +38,7 @@
     "vuepress": "2.0.0-rc.26"
   },
   "engines": {
-    "node": "24.11.0",
+    "node": "24.11.1",
     "pnpm": "10.21.0"
   },
   "packageManager": "pnpm@10.21.0"

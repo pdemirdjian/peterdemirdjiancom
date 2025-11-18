@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  eslint@8.x: 9.39.1
+  eslint: 9.39.1
 
 importers:
 

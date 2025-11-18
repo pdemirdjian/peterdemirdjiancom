@@ -26,8 +26,8 @@
   "devDependencies": {
     "@eslint/js": "9.39.1",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
-    "@typescript-eslint/eslint-plugin": "8.46.4",
-    "@typescript-eslint/parser": "8.46.4",
+    "@typescript-eslint/eslint-plugin": "8.47.0",
+    "@typescript-eslint/parser": "8.47.0",
     "@vue/eslint-config-typescript": "14.6.0",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/client": "2.0.0-rc.26",
@@ -40,7 +40,7 @@
   },
   "engines": {
     "node": "24.11.1",
-    "pnpm": "10.21.0"
+    "pnpm": "10.22.0"
   },
-  "packageManager": "pnpm@10.21.0"
+  "packageManager": "pnpm@10.22.0"
 }

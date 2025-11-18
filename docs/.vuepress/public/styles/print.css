@@ -1,0 +1,110 @@
+/* Print styles for resume PDF export */
+@media print {
+  /* Hide navigation and non-essential elements */
+  .navbar,
+  .sidebar,
+  .sidebar-mask,
+  .theme-container .sidebar,
+  .vp-sidebar,
+  aside,
+  nav,
+  .page-meta,
+  .edit-link,
+  .last-updated,
+  .footer,
+  .page-nav,
+  .navbar-items,
+  #download-pdf-button,
+  .download-pdf-container,
+  .toggle-sidebar-button {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Nuclear option - reset everything */
+  @page {
+    margin: 0.5cm;
+    size: letter;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Remove all layout containers' spacing */
+  #app,
+  .theme-container,
+  .theme-container.no-sidebar,
+  main.page,
+  .page {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Content area with equal padding */
+  .theme-default-content,
+  .theme-default-content:not(.custom) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure proper page breaks */
+  h2 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep sections together when possible */
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Optimize tables for print */
+  table {
+    page-break-inside: avoid;
+    width: 100%;
+  }
+
+  /* Remove background colors for better printing */
+  * {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ensure links are visible in print */
+  a {
+    text-decoration: none;
+    color: black !important;
+  }
+
+  /* Show URLs for important links */
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+  }
+
+  /* Optimize spacing */
+  p, ul, ol {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Remove box shadows and borders that don't print well */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

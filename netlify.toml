@@ -2,7 +2,7 @@
 
 [build]
   publish = "docs/.vuepress/dist"
-  command = "pnpm docs:build"
+  command = "pnpm docs:build:full"
 
 # Netlify will automatically detect Node.js version from .nvmrc
 # and pnpm version from package.json packageManager field

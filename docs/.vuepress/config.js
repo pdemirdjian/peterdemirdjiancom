@@ -7,7 +7,10 @@ export default defineUserConfig({
   lang: 'en-US',
   title: 'Pete Demirdjian',
   description: 'Made by Pete Demirdjian with ❤️',
-  head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/images/favicon.ico' }],
+    ['link', { rel: 'stylesheet', href: '/styles/print.css' }],
+  ],
   theme: defaultTheme({
     lastUpdated: false,
     contributors: false,

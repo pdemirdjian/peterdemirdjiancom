@@ -45,7 +45,7 @@
   "packageManager": "pnpm@10.22.0",
   "pnpm": {
     "overrides": {
-      "eslint@8.57.1": "9.39.1"
+      "eslint@8.x": "9.39.1"
     }
   }
 }

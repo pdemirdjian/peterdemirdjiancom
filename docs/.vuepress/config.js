@@ -38,7 +38,6 @@ export default defineUserConfig({
         link: 'mailto:code@peterdemirdjian.com',
       },
     ],
-    repo: 'pdemirdjian/peterdemirdjiancom',
     editLink: false,
   }),
 })

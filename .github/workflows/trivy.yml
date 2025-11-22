@@ -32,6 +32,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      
+      - name: List files to be scanned
+        run: |
+          echo "=== Repository structure to be scanned ==="
+          ls -la
+          echo "=== Lock files found ==="
+          find . -name "pnpm-lock.yaml" -o -name "package-lock.json" -o -name "yarn.lock"
 
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
@@ -42,6 +49,14 @@ jobs:
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH,MEDIUM'
           exit-code: '0'  # Don't fail the build on vulnerabilities
+          
+      - name: Print scan summary
+        run: |
+          echo "Trivy scan completed. Checking for findings..."
+          if [ -f trivy-results.sarif ]; then
+            echo "SARIF file size: $(stat -f%z trivy-results.sarif 2>/dev/null || stat -c%s trivy-results.sarif)"
+            echo "SARIF results count: $(jq '.runs[0].results | length' trivy-results.sarif)"
+          fi
           
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v4.31.4
@@ -125,6 +140,16 @@ jobs:
           output: 'trivy-results.txt'
           severity: 'CRITICAL,HIGH'
           exit-code: '0'
+          
+      - name: Display scan results in logs
+        if: always()
+        run: |
+          echo "=== Trivy Scan Results ==="
+          if [ -f trivy-results.txt ]; then
+            cat trivy-results.txt
+          else
+            echo "No results file found"
+          fi
 
       - name: Comment PR with Trivy results
         if: github.event_name == 'pull_request'

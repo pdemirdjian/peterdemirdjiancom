@@ -1,7 +1,11 @@
 import { defineClientConfig } from '@vuepress/client'
 
 export default defineClientConfig({
-  enhance({ app: _app, router, siteData: _siteData }) {
+  enhance({ app, router, siteData }) {
+    // Mark unused parameters explicitly
+    void app
+    void siteData
+
     if (typeof window !== 'undefined') {
       // Use router to update years when page changes
       router.afterEach(() => {

@@ -15,6 +15,7 @@ export default defineUserConfig({
     ['meta', { property: 'og:title', content: 'Pete Demirdjian - Principal DevOps Engineer' }],
     ['meta', { property: 'og:description', content: 'Personal website and resume of Pete Demirdjian, Principal DevOps Engineer' }],
     ['meta', { property: 'og:url', content: 'https://peterdemirdjian.com' }],
+    ['link', { rel: 'canonical', href: 'https://peterdemirdjian.com' }],
   ],
   theme: defaultTheme({
     lastUpdated: false,

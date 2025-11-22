@@ -49,7 +49,6 @@ credentials
 *.swp
 *.swo
 *~
-.DS_Store
 Thumbs.db
 
 # Backup files

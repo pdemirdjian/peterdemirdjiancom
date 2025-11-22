@@ -17,17 +17,23 @@ on:
     - cron: '30 2 * * *'
   workflow_dispatch:
 
+# Cancel in-progress runs for the same workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
-  trivy-repo-scan:
-    name: Trivy Repository Scan
+  trivy-scan:
+    name: Trivy Security Scan
     runs-on: ubuntu-latest
     permissions:
       contents: read
       security-events: write
       actions: read
+      pull-requests: write
     
     steps:
       - name: Checkout code
@@ -40,7 +46,8 @@ jobs:
           echo "=== Lock files found ==="
           find . -name "pnpm-lock.yaml" -o -name "package-lock.json" -o -name "yarn.lock"
 
-      - name: Run Trivy vulnerability scanner in repo mode
+      # Vulnerability scan
+      - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
           scan-type: 'fs'
@@ -48,34 +55,24 @@ jobs:
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH,MEDIUM'
-          exit-code: '0'  # Don't fail the build on vulnerabilities
+          exit-code: '0'
           
-      - name: Print scan summary
+      - name: Print vulnerability scan summary
         run: |
-          echo "Trivy scan completed. Checking for findings..."
+          echo "Trivy vulnerability scan completed. Checking for findings..."
           if [ -f trivy-results.sarif ]; then
-            echo "SARIF file size: $(stat -f%z trivy-results.sarif 2>/dev/null || stat -c%s trivy-results.sarif)"
-            echo "SARIF results count: $(jq '.runs[0].results | length' trivy-results.sarif)"
+            echo "SARIF file size: $(stat -c%s trivy-results.sarif)"
+            echo "Vulnerability results count: $(jq '.runs[0].results | length' trivy-results.sarif)"
           fi
           
-      - name: Upload Trivy scan results to GitHub Security tab
+      - name: Upload vulnerability scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v4.31.4
         if: always()
         with:
           sarif_file: 'trivy-results.sarif'
+          category: 'trivy-vulnerabilities'
 
-  trivy-config-scan:
-    name: Trivy Configuration Scan
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-
+      # Configuration scan
       - name: Run Trivy misconfiguration scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
@@ -83,26 +80,16 @@ jobs:
           scan-ref: '.'
           format: 'sarif'
           output: 'trivy-config-results.sarif'
-          exit-code: '0'  # Don't fail the build on misconfigurations
+          exit-code: '0'
           
-      - name: Upload Trivy config scan results to GitHub Security tab
+      - name: Upload config scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v4.31.4
         if: always()
         with:
           sarif_file: 'trivy-config-results.sarif'
+          category: 'trivy-misconfig'
 
-  trivy-secret-scan:
-    name: Trivy Secret Scan
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-
+      # Secret scan
       - name: Run Trivy secret scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
@@ -111,27 +98,18 @@ jobs:
           format: 'sarif'
           output: 'trivy-secret-results.sarif'
           scanners: 'secret'
-          exit-code: '0'  # Don't fail the build on secrets
+          exit-code: '0'
           
-      - name: Upload Trivy secret scan results to GitHub Security tab
+      - name: Upload secret scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v4.31.4
         if: always()
         with:
           sarif_file: 'trivy-secret-results.sarif'
+          category: 'trivy-secrets'
 
-  trivy-pr-comment:
-    name: Trivy PR Comment
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    permissions:
-      contents: read
-      pull-requests: write
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-
+      # PR comment (only on pull requests)
       - name: Run Trivy scanner for PR comment
+        if: github.event_name == 'pull_request'
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
           scan-type: 'fs'
@@ -142,7 +120,7 @@ jobs:
           exit-code: '0'
           
       - name: Display scan results in logs
-        if: always()
+        if: github.event_name == 'pull_request'
         run: |
           echo "=== Trivy Scan Results ==="
           if [ -f trivy-results.txt ]; then

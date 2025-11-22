@@ -60,6 +60,16 @@
       ]
     },
     {
+      "description": "Keep TypeScript ESLint packages in sync",
+      "groupName": "TypeScript ESLint",
+      "automerge": true,
+      "minimumReleaseAge": "3d",
+      "matchPackageNames": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser"
+      ]
+    },
+    {
       "description": "Auto-update pnpm version in package.json",
       "matchManagers": [
         "npm"
@@ -69,6 +79,17 @@
       ],
       "automerge": true,
       "minimumReleaseAge": "3d"
+    },
+    {
+      "description": "Update Node.js version in .nvmrc and .node-version",
+      "matchFiles": [
+        ".nvmrc",
+        ".node-version"
+      ],
+      "matchPackageNames": [
+        "node"
+      ],
+      "enabled": true
     }
   ],
   "vulnerabilityAlerts": {

@@ -1,0 +1,10 @@
+// Hide page meta footer elements and any VuePress default footer content
+.page-meta,
+.page-nav,
+.edit-link,
+.vp-page-meta,
+.page-meta-content,
+footer.vp-footer,
+.theme-default-content footer:not(.custom-footer) {
+  display: none !important;
+}

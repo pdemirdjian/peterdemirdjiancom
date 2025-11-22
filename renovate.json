@@ -82,7 +82,7 @@
     },
     {
       "description": "Update Node.js version in .nvmrc and .node-version",
-      "matchFiles": [
+      "matchFileNames": [
         ".nvmrc",
         ".node-version"
       ],

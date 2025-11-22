@@ -39,5 +39,8 @@ export default defineUserConfig({
       },
     ],
     editLink: false,
+    docsRepo: false,
+    docsDir: false,
+    docsBranch: false,
   }),
 })

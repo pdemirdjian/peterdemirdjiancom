@@ -13,7 +13,7 @@ severity:
 db:
   # Skip database update for faster scanning (useful in CI)
   # skip-update: false
-  
+
   # Custom repository for vulnerability database
   # repository: ghcr.io/aquasecurity/trivy-db
 
@@ -29,7 +29,7 @@ scan:
     - coverage
     - .vuepress/dist
     - docs/.vuepress/dist
-  
+
   # Skip specific files
   skip-files:
     - "*.log"
@@ -41,7 +41,7 @@ scan:
 vulnerability:
   # Ignore unfixed vulnerabilities
   ignore-unfixed: false
-  
+
   # Vulnerability types to detect
   type:
     - os
@@ -63,10 +63,10 @@ misconfiguration:
   # Example: skip-checks:
   #   - AVD-AWS-0001
   #   - AVD-GCP-0001
-  
+
   # Include non-security checks
   include-non-failures: false
-  
+
   # Severity levels for misconfigurations
   severity:
     - MEDIUM
@@ -86,7 +86,7 @@ exit-code: 0
 report:
   # Summary format
   format: table
-  
+
   # Include summary in report
   summary: true
 

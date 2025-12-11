@@ -47,12 +47,12 @@ jobs:
         with:
           node-version: "24.11.1"
           cache: "pnpm"
-          
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-        
+
       - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         name: Setup pnpm cache
         with:

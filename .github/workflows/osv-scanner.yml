@@ -33,7 +33,7 @@ jobs:
   scan-scheduled:
     permissions:
       # Require writing security events to upload SARIF file to security tab
-      security-events: write      
+      security-events: write
       # Read commit contents
       contents: read
       actions: read

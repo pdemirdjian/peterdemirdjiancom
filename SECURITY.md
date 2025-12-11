@@ -47,7 +47,7 @@ This repository uses [Trivy](https://trivy.dev/) for comprehensive security scan
 The Trivy scanning is automated through GitHub Actions (`.github/workflows/trivy.yml`) and runs:
 
 - **On every push** to the main branch
-- **On every pull request** to the main branch  
+- **On every pull request** to the main branch
 - **Daily at 2:30 AM UTC** (scheduled scan)
 - **Manually** via workflow dispatch
 

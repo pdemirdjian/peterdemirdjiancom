@@ -47,7 +47,7 @@ If you share or reference content from this website, please include:
 
 For questions about usage rights or permission requests beyond this license, please contact:
 
-**Peter Demirdjian**  
+**Peter Demirdjian**
 📧 [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com)
 
 ## Full License Text

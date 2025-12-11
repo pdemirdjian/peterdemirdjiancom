@@ -34,11 +34,11 @@ jobs:
       security-events: write
       actions: read
       pull-requests: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      
+
       - name: List files to be scanned
         run: |
           echo "=== Repository structure to be scanned ==="
@@ -56,7 +56,7 @@ jobs:
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH,MEDIUM'
           exit-code: '0'
-          
+
       - name: Print vulnerability scan summary
         run: |
           echo "Trivy vulnerability scan completed. Checking for findings..."
@@ -64,7 +64,7 @@ jobs:
             echo "SARIF file size: $(stat -c%s trivy-results.sarif)"
             echo "Vulnerability results count: $(jq '.runs[0].results | length' trivy-results.sarif)"
           fi
-          
+
       - name: Upload vulnerability scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
         if: always()
@@ -81,7 +81,7 @@ jobs:
           format: 'sarif'
           output: 'trivy-config-results.sarif'
           exit-code: '0'
-          
+
       - name: Upload config scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
         if: always()
@@ -99,7 +99,7 @@ jobs:
           output: 'trivy-secret-results.sarif'
           scanners: 'secret'
           exit-code: '0'
-          
+
       - name: Upload secret scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
         if: always()
@@ -118,7 +118,7 @@ jobs:
           output: 'trivy-results.txt'
           severity: 'CRITICAL,HIGH'
           exit-code: '0'
-          
+
       - name: Display scan results in logs
         if: github.event_name == 'pull_request'
         run: |
@@ -135,7 +135,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            
+
             let trivyResults = '';
             try {
               trivyResults = fs.readFileSync('trivy-results.txt', 'utf8');
@@ -143,28 +143,28 @@ jobs:
               console.log('No Trivy results file found');
               return;
             }
-            
+
             // Only comment if there are actual vulnerabilities
             if (trivyResults.includes('Total: 0')) {
               console.log('No vulnerabilities found, skipping comment');
               return;
             }
-            
+
             const body = `## 🔍 Trivy Security Scan Results
-            
+
             <details>
             <summary>Click to view detailed results</summary>
-            
+
             \`\`\`
             ${trivyResults}
             \`\`\`
-            
+
             </details>
-            
-            > **Note**: This scan shows CRITICAL and HIGH severity vulnerabilities only. 
+
+            > **Note**: This scan shows CRITICAL and HIGH severity vulnerabilities only.
             > Full results are available in the [Security tab](https://github.com/${context.repo.owner}/${context.repo.repo}/security/code-scanning).
             `;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

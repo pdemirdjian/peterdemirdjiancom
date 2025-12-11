@@ -19,7 +19,7 @@ repos:
   hooks:
   - id: eslint
     name: eslint
-    entry: pnpm run lint:fix
+    entry: pnpm run lint
     language: system
     types: [javascript, jsx, ts, tsx, vue]
     pass_filenames: false

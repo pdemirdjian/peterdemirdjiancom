@@ -2,6 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
+import { seoPlugin } from '@vuepress/plugin-seo'
 
 export default defineUserConfig({
   bundler: viteBundler(),
@@ -48,6 +49,11 @@ export default defineUserConfig({
     editLink: false,
   }),
   plugins: [
+    seoPlugin({
+      hostname: 'https://peterdemirdjian.com',
+      author: 'Peter Demirdjian',
+      twitterID: '@pdemirdjian',
+    }),
     sitemapPlugin({
       hostname: 'https://peterdemirdjian.com',
       changefreq: 'monthly',

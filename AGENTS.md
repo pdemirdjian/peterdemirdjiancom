@@ -4,12 +4,12 @@ This document provides guidance for AI coding assistants working with Peter Demi
 
 ## Project Overview
 
-**Type**: Personal Portfolio & Resume Website  
-**Framework**: VuePress 2.0 (Vue.js-based static site generator)  
-**Language**: JavaScript (ES modules), TypeScript configuration  
-**Package Manager**: pnpm (see `package.json` for current version)  
-**Node Version**: See `package.json` engines field  
-**Deployment**: Netlify (automatic from main branch)  
+**Type**: Personal Portfolio & Resume Website
+**Framework**: VuePress 2.0 (Vue.js-based static site generator)
+**Language**: JavaScript (ES modules), TypeScript configuration
+**Package Manager**: pnpm (see `package.json` for current version)
+**Node Version**: See `package.json` engines field
+**Deployment**: Netlify (automatic from main branch)
 **License**: CC-BY-NC-ND-4.0
 
 ## Project Structure
@@ -152,9 +152,9 @@ pnpm run security:trivy:config
 
 ### Before Deploying
 
-✅ Run linting: `pnpm run lint:fix`  
-✅ Test build locally: `pnpm run docs:build`  
-✅ Security audit: `pnpm run security:check`  
+✅ Run linting: `pnpm run lint:fix`
+✅ Test build locally: `pnpm run docs:build`
+✅ Security audit: `pnpm run security:check`
 ✅ Verify content renders correctly in dev mode
 
 ## Important Constraints

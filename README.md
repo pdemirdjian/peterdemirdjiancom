@@ -13,12 +13,27 @@ Personal website built with VuePress, showcasing my work and resume as a Princip
 # Install dependencies
 pnpm install
 
+# Install pre-commit hooks (required for development)
+pre-commit install
+
 # Start development server
 pnpm run docs:dev
 
 # Build for production
 pnpm run docs:build
 ```
+
+### Pre-commit Hooks
+
+This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. The hooks will automatically run before each commit to:
+
+- Check for secrets and sensitive data (Gitleaks)
+- Validate YAML and JSON files
+- Fix trailing whitespace and file endings
+- Run ESLint on staged files
+- Detect merge conflicts and large files
+
+**Installation required:** Run `pre-commit install` after cloning the repository.
 
 ## Security
 

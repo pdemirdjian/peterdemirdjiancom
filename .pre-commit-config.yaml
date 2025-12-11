@@ -8,3 +8,18 @@ repos:
   hooks:
   - id: end-of-file-fixer
   - id: trailing-whitespace
+  - id: check-yaml
+  - id: check-json
+  - id: check-merge-conflict
+  - id: check-added-large-files
+    args: ['--maxkb=1000']
+  - id: mixed-line-ending
+  - id: detect-private-key
+- repo: local
+  hooks:
+  - id: eslint
+    name: eslint
+    entry: pnpm run lint:fix
+    language: system
+    types: [javascript, jsx, ts, tsx, vue]
+    pass_filenames: false

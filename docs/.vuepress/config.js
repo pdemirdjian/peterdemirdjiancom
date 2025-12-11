@@ -57,7 +57,7 @@ export default defineUserConfig({
     sitemapPlugin({
       hostname: 'https://peterdemirdjian.com',
       changefreq: 'monthly',
-      modifyTimeGetter: (page) => page.data.git?.updatedTime || new Date().toISOString(),
+      modifyTimeGetter: (page) => page.data.git?.updatedTime,
     }),
   ],
 })

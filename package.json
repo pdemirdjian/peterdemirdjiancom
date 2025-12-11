@@ -32,6 +32,8 @@
     "@vue/eslint-config-typescript": "14.6.0",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/client": "2.0.0-rc.26",
+    "@vuepress/plugin-seo": "2.0.0-rc.120",
+    "@vuepress/plugin-sitemap": "2.0.0-rc.120",
     "@vuepress/theme-default": "2.0.0-rc.120",
     "eslint": "9.39.1",
     "eslint-plugin-vue": "10.6.2",

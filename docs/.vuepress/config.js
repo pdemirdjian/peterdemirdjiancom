@@ -1,12 +1,15 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
+import { sitemapPlugin } from '@vuepress/plugin-sitemap'
+import { seoPlugin } from '@vuepress/plugin-seo'
 
 export default defineUserConfig({
   bundler: viteBundler(),
   lang: 'en-US',
   title: 'Pete Demirdjian',
   description: 'Made by Pete Demirdjian with ❤️',
+  base: '/',
   head: [
     ['link', { rel: 'icon', href: '/images/favicon.ico' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -45,4 +48,16 @@ export default defineUserConfig({
     ],
     editLink: false,
   }),
+  plugins: [
+    seoPlugin({
+      hostname: 'https://peterdemirdjian.com',
+      author: 'Peter Demirdjian',
+      twitterID: '@pdemirdjian',
+    }),
+    sitemapPlugin({
+      hostname: 'https://peterdemirdjian.com',
+      changefreq: 'monthly',
+      modifyTimeGetter: (page) => page.data.git?.updatedTime,
+    }),
+  ],
 })

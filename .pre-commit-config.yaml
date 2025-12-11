@@ -19,7 +19,7 @@ repos:
   hooks:
   - id: eslint
     name: eslint
-    entry: pnpm exec eslint --fix
+    entry: pnpm exec eslint
     language: system
     types: [javascript, jsx, ts, tsx, vue]
     pass_filenames: true

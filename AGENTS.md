@@ -35,10 +35,18 @@ This document provides guidance for AI coding assistants working with Peter Demi
 ### JavaScript/TypeScript
 
 - **Module System**: ES modules (`import`/`export`) only
+- **JavaScript Version**: Use modern JavaScript features (ES2020+)
 - **Variables**: Use `const` and `let`, never `var`
 - **Async**: Prefer `async`/`await` over callbacks or raw promises
 - **Type Safety**: Use TypeScript where applicable
 - **Linting**: Follow ESLint configuration with Vue.js and TypeScript support
+
+### File Organization
+
+- Main site content in `docs/` directory
+- VuePress configuration in `docs/.vuepress/config.js`
+- Static assets in `docs/.vuepress/public/`
+- Component customizations in `docs/.vuepress/`
 
 ### Vue.js
 
@@ -53,6 +61,42 @@ This document provides guidance for AI coding assistants working with Peter Demi
 - Keep content professional and focused on portfolio/resume
 - Follow semantic heading hierarchy (h1 → h2 → h3)
 - Test local rendering before committing
+
+## Architecture Guidelines
+
+### VuePress Configuration
+
+- Keep configuration in `docs/.vuepress/config.js`
+- Use ES module syntax
+- Configure navbar, theme options, and site metadata
+- Maintain clean separation between content and configuration
+
+### Content Structure
+
+- Use Markdown for content pages
+- Follow VuePress conventions for frontmatter
+- Keep content focused on professional portfolio/resume
+
+### Security Best Practices
+
+- Follow security headers configuration in `netlify.toml`
+- Use Content Security Policy appropriately
+- Regular security auditing with included scripts
+- Use Trivy for container/filesystem security scanning
+
+## Dependencies
+
+### Core Dependencies
+
+- VuePress 2.0 with Vite bundler
+- Vue 3.x
+- Default VuePress theme
+
+### Development Tools
+
+- ESLint with Vue and TypeScript support
+- Sass for styling
+- Security auditing tools
 
 ## Development Workflow
 
@@ -108,6 +152,8 @@ pnpm run security:trivy:secrets
 # Scan configuration files
 pnpm run security:trivy:config
 ```
+
+**Note**: See `SECURITY.md` for comprehensive security policies, scanning procedures, and vulnerability reporting guidelines.
 
 ## Common Tasks
 
@@ -207,11 +253,16 @@ pnpm run security:trivy:config
 | File | Purpose |
 |------|---------|
 | `docs/.vuepress/config.js` | VuePress site configuration, navbar, theme options |
+| `docs/.vuepress/client.ts` | Client-side configuration (dynamic year updates) |
 | `docs/README.md` | Home page content |
 | `docs/resume.md` | Resume/CV content |
 | `netlify.toml` | Netlify deployment and security headers |
 | `package.json` | Dependencies, scripts, Node/pnpm versions |
 | `eslint.config.js` | Linting rules and configuration |
+| `.vscode/settings.json` | VS Code workspace settings (ESLint, formatting) |
+| `renovate.json` | Renovate bot configuration for dependency updates |
+| `.github/workflows/` | GitHub Actions for CI/CD, security scanning |
+| `SECURITY.md` | Security policies, vulnerability reporting, Trivy scanning |
 
 ## Getting Help
 
@@ -227,6 +278,7 @@ When encountering issues:
 
 ✅ **DO**:
 
+- **Prefer MCP (Model Context Protocol) servers** when available for accessing documentation, APIs, and external resources
 - Test all changes locally with `pnpm run docs:dev`
 - Run linting before committing: `pnpm run lint:fix`
 - Preserve existing code style and patterns
@@ -234,6 +286,8 @@ When encountering issues:
 - Run security audits after dependency updates
 - Use semantic versioning awareness
 - Consider VuePress 2.0 RC constraints
+- Respect VS Code workspace settings (ESLint, formatting)
+- Be aware of GitHub Actions workflows for CI/CD
 
 ❌ **DON'T**:
 
@@ -244,6 +298,7 @@ When encountering issues:
 - Update dependencies without checking compatibility
 - Ignore security audit results
 - Remove or weaken security configurations
+- Bypass MCP servers when they provide better context
 
 ## Version Management
 

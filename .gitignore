@@ -13,6 +13,12 @@ config.local.js
 basement_dist
 docs/.vuepress/.cache/
 docs/.vuepress/.temp/
+
+# Playwright Test Results
+test-results/
+playwright-report/
+playwright/.cache/
+
 .env
 .terraform
 .terraform.lock.hcl

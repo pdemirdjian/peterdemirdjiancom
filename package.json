@@ -13,6 +13,11 @@
     "docs:build": "vuepress build docs",
     "lint": "eslint . --ext .js,.ts,.vue",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
     "security:audit": "pnpm audit --audit-level moderate",
     "security:fix": "pnpm audit --fix",
     "security:check": "pnpm audit --audit-level high",
@@ -26,6 +31,7 @@
   "devDependencies": {
     "@eslint/js": "9.39.2",
     "@microsoft/eslint-formatter-sarif": "3.1.0",
+    "@playwright/test": "^1.49.1",
     "@types/node": "25.0.2",
     "@typescript-eslint/eslint-plugin": "8.49.0",
     "@typescript-eslint/parser": "8.49.0",
@@ -38,6 +44,7 @@
     "eslint": "9.39.2",
     "eslint-plugin-vue": "10.6.2",
     "sass-embedded": "1.96.0",
+    "serve": "^14.2.4",
     "vue": "3.5.25",
     "vuepress": "2.0.0-rc.26"
   },

@@ -9,6 +9,8 @@ export default [
       'docs/.vuepress/dist/**',
       'docs/.vuepress/.cache/**',
       'docs/.vuepress/.temp/**',
+      'test-results/**',
+      'playwright-report/**',
       '**/*.min.js',
       '**/*.d.ts',
       'pnpm-lock.yaml',

@@ -55,10 +55,19 @@ jobs:
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
+      # Install Trivy once and cache the binary
+      - name: Setup Trivy
+        uses: aquasecurity/setup-trivy@e6c2c5e321ed9123bda567646e2f96565e34abe1 # v0.2.4
+        with:
+          # renovate: datasource=github-releases depName=aquasecurity/trivy
+          version: v0.67.0
+          cache: true
+
       # Vulnerability scan
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
+          skip-setup-trivy: true
           scan-type: 'fs'
           scan-ref: '.'
           format: 'sarif'
@@ -77,6 +86,7 @@ jobs:
       - name: Run Trivy misconfiguration scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
+          skip-setup-trivy: true
           scan-type: 'config'
           scan-ref: '.'
           format: 'sarif'
@@ -94,6 +104,7 @@ jobs:
       - name: Run Trivy secret scanner
         uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
+          skip-setup-trivy: true
           scan-type: 'fs'
           scan-ref: '.'
           format: 'sarif'

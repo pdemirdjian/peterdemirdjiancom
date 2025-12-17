@@ -26,7 +26,7 @@
         "^\\.github/workflows/[^/]+\\.ya?ml$"
       ],
       "matchStrings": [
-        "# renovate: datasource=github-releases depName=aquasecurity/trivy\\n\\s+version:\\s*['\"]?(?<currentValue>v?[\\d.]+)['\"]?"
+        "#\\s*renovate:\\s*datasource=github-releases\\s+depName=aquasecurity/trivy\\n\\s*version:\\s*['\"]?(?<currentValue>v?[\\d.]+)['\"]?"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "aquasecurity/trivy"

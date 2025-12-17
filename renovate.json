@@ -18,6 +18,20 @@
     "security:openssf-scorecard",
     "workarounds:typesNodeVersioning"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update Trivy version in GitHub Actions workflows",
+      "fileMatch": [
+        "^\\.github/workflows/[^/]+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "#\\s*renovate:\\s*datasource=github-releases\\s+depName=aquasecurity/trivy\\n\\s*version:\\s*['\"]?(?<currentValue>v?[\\d.]+)['\"]?"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "aquasecurity/trivy"
+    }
+  ],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,

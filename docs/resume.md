@@ -19,7 +19,7 @@ title: Senior DevOps Engineer
 - terraform
   - create modules for ease of use by Operations and Development Teams
 - packer
-  - create custom image with built in healthcheck
+  - create custom image with built-in healthcheck
 - puppet
   - write windows and centos puppet configs to manage infrastructure
 

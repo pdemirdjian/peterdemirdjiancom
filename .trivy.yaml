@@ -32,10 +32,10 @@ scan:
 
   # Skip specific files
   skip-files:
-    - "*.log"
-    - "*.tmp"
-    - "**/test/**"
-    - "**/tests/**"
+    - '*.log'
+    - '*.tmp'
+    - '**/test/**'
+    - '**/tests/**'
 
 # Vulnerability scanning settings
 vulnerability:

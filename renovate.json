@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": [
-    "@pdemirdjian"
-  ],
+  "assignees": ["@pdemirdjian"],
   "extends": [
     ":configMigration",
     ":enablePreCommit",
@@ -22,9 +20,7 @@
     {
       "customType": "regex",
       "description": "Update Trivy version in GitHub Actions workflows",
-      "managerFilePatterns": [
-        "/^\\.github/workflows/[^/]+\\.ya?ml$/"
-      ],
+      "managerFilePatterns": ["/^\\.github/workflows/[^/]+\\.ya?ml$/"],
       "matchStrings": [
         "#\\s*renovate:\\s*datasource=github-releases\\s+depName=aquasecurity/trivy\\n\\s*version:\\s*['\"]?(?<currentValue>v?[\\d.]+)['\"]?"
       ],
@@ -55,12 +51,7 @@
   "packageRules": [
     {
       "automerge": true,
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "minimumReleaseAge": "3d"
     },
     {
@@ -68,52 +59,33 @@
       "groupName": "VuePress",
       "automerge": false,
       "minimumReleaseAge": "7d",
-      "matchPackageNames": [
-        "/^vuepress$/",
-        "/^@vuepress//"
-      ]
+      "matchPackageNames": ["/^vuepress$/", "/^@vuepress//"]
     },
     {
       "description": "Keep TypeScript ESLint packages in sync",
       "groupName": "TypeScript ESLint",
       "automerge": true,
       "minimumReleaseAge": "3d",
-      "matchPackageNames": [
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser"
-      ]
+      "matchPackageNames": ["@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]
     },
     {
       "description": "Auto-update pnpm version in package.json",
-      "matchManagers": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "pnpm"
-      ],
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["pnpm"],
       "automerge": true,
       "minimumReleaseAge": "3d"
     },
     {
       "description": "Update Node.js version in .nvmrc and .node-version",
-      "matchFileNames": [
-        ".nvmrc",
-        ".node-version"
-      ],
-      "matchPackageNames": [
-        "node"
-      ],
+      "matchFileNames": [".nvmrc", ".node-version"],
+      "matchPackageNames": ["node"],
       "enabled": true
     }
   ],
   "vulnerabilityAlerts": {
     "automerge": true,
-    "assignees": [
-      "@pdemirdjian"
-    ],
-    "labels": [
-      "security"
-    ],
+    "assignees": ["@pdemirdjian"],
+    "labels": ["security"],
     "minimumReleaseAge": "0d"
   },
   "osvVulnerabilityAlerts": true,

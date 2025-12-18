@@ -1,0 +1,25 @@
+name: Links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1' # Run weekly on Mondays
+  workflow_dispatch:
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.3
+        with:
+          # Check all markdown and html files
+          args: --verbose --no-progress './**/*.md' './**/*.html'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

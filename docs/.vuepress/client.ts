@@ -8,7 +8,7 @@ export default defineClientConfig({
         setTimeout(() => {
           const currentYear = new Date().getFullYear()
           const yearElements = document.querySelectorAll('.dynamic-year')
-          yearElements.forEach(element => {
+          yearElements.forEach((element) => {
             element.textContent = currentYear.toString()
           })
         }, 100)

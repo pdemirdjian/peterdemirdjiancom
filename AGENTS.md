@@ -250,19 +250,19 @@ pnpm run security:trivy:config
 
 ## Key Files Reference
 
-| File | Purpose |
-|------|---------|
-| `docs/.vuepress/config.js` | VuePress site configuration, navbar, theme options |
-| `docs/.vuepress/client.ts` | Client-side configuration (dynamic year updates) |
-| `docs/README.md` | Home page content |
-| `docs/resume.md` | Resume/CV content |
-| `netlify.toml` | Netlify deployment and security headers |
-| `package.json` | Dependencies, scripts, Node/pnpm versions |
-| `eslint.config.js` | Linting rules and configuration |
-| `.vscode/settings.json` | VS Code workspace settings (ESLint, formatting) |
-| `renovate.json` | Renovate bot configuration for dependency updates |
-| `.github/workflows/` | GitHub Actions for CI/CD, security scanning |
-| `SECURITY.md` | Security policies, vulnerability reporting, Trivy scanning |
+| File                       | Purpose                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| `docs/.vuepress/config.js` | VuePress site configuration, navbar, theme options         |
+| `docs/.vuepress/client.ts` | Client-side configuration (dynamic year updates)           |
+| `docs/README.md`           | Home page content                                          |
+| `docs/resume.md`           | Resume/CV content                                          |
+| `netlify.toml`             | Netlify deployment and security headers                    |
+| `package.json`             | Dependencies, scripts, Node/pnpm versions                  |
+| `eslint.config.js`         | Linting rules and configuration                            |
+| `.vscode/settings.json`    | VS Code workspace settings (ESLint, formatting)            |
+| `renovate.json`            | Renovate bot configuration for dependency updates          |
+| `.github/workflows/`       | GitHub Actions for CI/CD, security scanning                |
+| `SECURITY.md`              | Security policies, vulnerability reporting, Trivy scanning |
 
 ## Getting Help
 

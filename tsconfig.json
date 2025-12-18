@@ -22,11 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "jsx": "preserve"
   },
-  "include": [
-    "docs/.vuepress/**/*.ts",
-    "docs/.vuepress/**/*.vue",
-    "*.ts"
-  ],
+  "include": ["docs/.vuepress/**/*.ts", "docs/.vuepress/**/*.vue", "*.ts"],
   "exclude": [
     "node_modules",
     "docs/.vuepress/dist",

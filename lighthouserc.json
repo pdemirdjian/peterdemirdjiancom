@@ -1,0 +1,25 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./docs/.vuepress/dist",
+      "url": ["http://localhost/index.html", "http://localhost/resume.html"]
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "offscreen-images": "off",
+        "uses-webp-images": "off",
+        "csp-xss": "off",
+        "service-worker": "off",
+        "maskable-icon": "off",
+        "apple-touch-icon": "off",
+        "installable-manifest": "off",
+        "splash-screen": "off",
+        "themed-omnibox": "off"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

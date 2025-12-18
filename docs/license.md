@@ -15,15 +15,18 @@ This website and its content are licensed under the **Creative Commons Attributi
 ## What this means
 
 ### ✅ You are free to:
+
 - **Share** — copy and redistribute the material in any medium or format
 - The licensor cannot revoke these freedoms as long as you follow the license terms
 
 ### ⚠️ Under the following terms:
+
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 - **NonCommercial** — You may not use the material for commercial purposes.
 - **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
 
 ### ❌ No additional restrictions
+
 You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
 ## Source Code vs. Content
@@ -41,6 +44,7 @@ If you share or reference content from this website, please include:
 4. **No Changes**: Indicate that no changes were made to the original content
 
 ### Example Attribution:
+
 > "This content by Peter Demirdjian is licensed under CC BY-NC-ND 4.0. Original source: https://peterdemirdjian.com"
 
 ## Contact

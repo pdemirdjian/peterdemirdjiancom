@@ -13,6 +13,7 @@
     "docs:build": "vuepress build docs",
     "lint": "eslint . --ext .js,.ts,.vue",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
@@ -29,6 +30,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@eslint/js": "9.39.2",
     "@microsoft/eslint-formatter-sarif": "3.1.0",
     "@playwright/test": "1.57.0",
@@ -43,6 +45,7 @@
     "@vuepress/theme-default": "2.0.0-rc.121",
     "eslint": "9.39.2",
     "eslint-plugin-vue": "10.6.2",
+    "prettier": "^3.7.4",
     "sass-embedded": "1.97.0",
     "serve": "14.2.5",
     "vue": "3.5.25",

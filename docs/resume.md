@@ -28,7 +28,7 @@ title: Principal DevOps Engineer
 * [HCL: Packer Custom Image](https://github.com/pdemirdjian/infra/blob/main/images/itsademergency_com_nginx.pkr.hcl) - Custom image with built-in healthchecks.
 * [Advent of Code](https://github.com/pdemirdjian/adventofcode21) - Algorithmic problem solving in Golang.
 
-## Cargurus, Inc
+## CarGurus, Inc
 
 ### _Principal DevOps Engineer_ - October 2024 - PRESENT
 

@@ -1,5 +1,5 @@
 ---
-title: Senior DevOps Engineer
+title: Principal DevOps Engineer
 ---
 
 ## Contact Info
@@ -7,27 +7,53 @@ title: Senior DevOps Engineer
 | :email: [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com)| :phone: (857) 895-2304  |
 | :---------------------: |:--------------:|
 
+## Education
+
+### Northeastern University
+**Boston, MA**
+* Bachelor of Science, Business Administration, Computer Science (Minor) (Aug 2018)
+
 ## Skills
 
-* [this website](https://github.com/pdemirdjian/peterdemirdjiancom)
-* golang
-  * pull list of GitHub Enterprise reviews by team
-  * string search Terraform state within Consul
-  * periodic cleaning of GCE VM images and failed Packer instances to save resources and Cloud Spend
-  * [Advent of Code 2021](https://github.com/pdemirdjian/adventofcode21)
-  * [enable buildkite agent to run native powershell](https://github.com/buildkite/agent/pull/1122)
-* terraform
-  * create modules for ease of use by Operations and Development Teams
-* packer
-  * [create custom image with built in healthcheck](https://github.com/pdemirdjian/infra/blob/main/images/itsademergency_com_nginx.pkr.hcl)
-* puppet
-  * write windows and centos puppet configs to manage infrastructure
+* **Cloud & Orchestration:** AWS (EC2, S3, Redis, IAM), GCP, Kubernetes (EKS), Nomad
+* **Infrastructure as Code:** **Self-Service Infrastructure Platform Design**, HCP Terraform, Terraform, Sentinel (Policy as Code), Puppet, Packer, Consul
+* **CI/CD & DevEx:** **AI-Assisted Infrastructure Development**, Concourse CI/CD, Jenkins, GitHub Actions, Artifactory, Buildkite, Octopus Deploy
+* **Networking & Security:** HAProxy (Canary LBs, Traffic Mirroring), Cyera (Data Discovery), Sentinel, SSL/TLS Management
+* **Programming & Automation:** Golang, Python, PowerShell, PHP, Ruby, SQL
+* **Leadership & Strategy:** Cloud Enablement, Agile/Scrum (Scrum Leader), RFC/ADR Authoring, Mentorship & Coaching, Cost Optimization, Vendor Management
 
-## Cargurus, Inc
+### Notable Open Source & Projects
+* [peterdemirdjian.com](https://github.com/pdemirdjian/peterdemirdjiancom) - Full-stack website with automated CI/CD and visual testing.
+* [Golang: Buildkite Agent PR](https://github.com/buildkite/agent/pull/1122) - Enabled native PowerShell support.
+* [HCL: Packer Custom Image](https://github.com/pdemirdjian/infra/blob/main/images/itsademergency_com_nginx.pkr.hcl) - Custom image with built-in healthchecks.
+* [Advent of Code](https://github.com/pdemirdjian/adventofcode21) - Algorithmic problem solving in Golang.
+
+## CarGurus, Inc
 
 ### _Principal DevOps Engineer_ - October 2024 - PRESENT
 
+* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
+* Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
+* Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2024 roadmap.
+* Architected and executed the complete decommissioning of RabbitMQ from the environment.
+* Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.
+* Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
+* Rapidly re-architected site-homepage redirects to resolve critical time-sensitive dependencies for Product Engineering.
+* Volunteered as Scrum Leader for the Kubernetes team to bootstrap agile processes, unblocking sprint goals and facilitating organizational success.
+* Stepped up as interim lead during team transitions, ensuring critical Q2 objectives were met despite resourcing challenges.
+* Acted as a technical mentor and "Coach" for the team, fostering a culture of knowledge sharing and elevating engineering standards.
+* Contributed to organizational growth by serving on interview panels for partner companies (e.g., CarOffer).
+* Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
+
 ### _Senior DevOps Engineer_ - January 2022 - October 2024
+
+* Stabilized and optimized Concourse CI/CD by architecting a graceful node retirement process and implementing autoscaling with spot instances, saving ~$30k/month.
+* Implemented S3 Lifecycle policies for Snowplow and Static assets, resulting in combined savings of over $28k/month.
+* Overhauled HAProxy stack by removing legacy Ruby templating, adding canary load balancers, and enabling traffic mirroring.
+* Migrated Jenkins from on-premise data centers to AWS, auditing and retiring legacy jobs.
+* Took initiative on the unplanned, high-priority Cyera data discovery project, leading the effort across teams and managing vendor relations to completion under tight timelines.
+* Championed a collaborative culture by actively onboarding and mentoring new hires, significantly accelerating their ramp-up time on complex systems.
+* Drove architectural consensus by authoring RFCs and documentation (e.g., Concourse improvement plan), ensuring knowledge transfer and democratizing decisions.
 
 ## Wayfair LLC
 

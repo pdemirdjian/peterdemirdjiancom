@@ -11,7 +11,7 @@ title: Principal DevOps Engineer
 
 ### Northeastern University
 **Boston, MA**
-* Bachelor of Science Business Administration, Computer Science (Minor) (Aug 2018)
+* Bachelor of Science, Business Administration, Computer Science (Minor) (Aug 2018)
 
 ## Skills
 

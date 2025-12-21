@@ -34,7 +34,7 @@ title: Principal DevOps Engineer
 
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
-* Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2024 roadmap.
+* Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2025 roadmap.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.

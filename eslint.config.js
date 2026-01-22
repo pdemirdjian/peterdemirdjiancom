@@ -121,6 +121,10 @@ export default [
         process: 'readonly',
         window: 'readonly',
         document: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
       },
     },
     plugins: {

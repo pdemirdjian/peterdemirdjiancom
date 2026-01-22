@@ -1,4 +1,8 @@
 import js from '@eslint/js'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
+import vuePlugin from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser'
 
 export default [
   // Global ignores - must be the first item
@@ -59,6 +63,11 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
       globals: {
         console: 'readonly',
         process: 'readonly',
@@ -77,17 +86,65 @@ export default [
         clearInterval: 'readonly',
       },
     },
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
     rules: {
       ...js.configs.recommended.rules,
       'no-console': 'warn',
       'no-debugger': 'error',
       'prefer-const': 'error',
       'no-var': 'error',
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      // Use TypeScript-specific no-unused-vars
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
       'indent': ['error', 2],
       'quotes': ['error', 'single'],
       'semi': ['error', 'never'],
       'comma-dangle': ['error', 'always-multiline'],
+    },
+  },
+
+  // Vue files
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsparser,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+      },
+    },
+    plugins: {
+      vue: vuePlugin,
+      '@typescript-eslint': tseslint,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...vuePlugin.configs['flat/recommended'].rules,
+      'no-console': 'warn',
+      'no-debugger': 'error',
+      'prefer-const': 'error',
+      'no-var': 'error',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'indent': ['error', 2],
+      'quotes': ['error', 'single'],
+      'semi': ['error', 'never'],
+      'comma-dangle': ['error', 'always-multiline'],
+      // Vue-specific rules
+      'vue/multi-word-component-names': 'off',
+      'vue/no-v-html': 'warn',
+      'vue/html-indent': ['error', 2],
+      'vue/max-attributes-per-line': ['warn', { singleline: 3, multiline: 1 }],
     },
   },
 

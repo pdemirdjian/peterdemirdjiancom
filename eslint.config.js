@@ -64,10 +64,6 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser: tsparser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
       globals: {
         console: 'readonly',
         process: 'readonly',

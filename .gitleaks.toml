@@ -1,0 +1,21 @@
+# Gitleaks configuration
+# https://github.com/gitleaks/gitleaks
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+  '''pnpm-lock\.yaml''',
+  '''\.github/workflows/.*\.yml''',
+  '''test-results/.*''',
+  '''playwright-report/.*''',
+]
+
+# Example entries (unused example URLs, placeholder values)
+regexes = [
+  '''example\.com''',
+  '''placeholder''',
+  '''EXAMPLE_.*''',
+]

@@ -60,7 +60,7 @@ importers:
         specifier: 3.5.26
         version: 3.5.26(typescript@5.9.3)
       vue-eslint-parser:
-        specifier: ^10.2.0
+        specifier: 10.2.0
         version: 10.2.0(eslint@9.39.2)
       vuepress:
         specifier: 2.0.0-rc.26

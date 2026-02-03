@@ -59,6 +59,8 @@
   },
   "packageManager": "pnpm@10.28.2",
   "pnpm": {
-    "overrides": {}
+    "overrides": {
+      "@microsoft/eslint-formatter-sarif>eslint": "$eslint"
+    }
   }
 }

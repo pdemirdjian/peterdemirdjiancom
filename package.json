@@ -45,7 +45,7 @@
     "@vuepress/plugin-seo": "2.0.0-rc.123",
     "@vuepress/plugin-sitemap": "2.0.0-rc.123",
     "@vuepress/theme-default": "2.0.0-rc.123",
-    "eslint": "10.0.0",
+    "eslint": "10.0.1",
     "eslint-plugin-vue": "10.8.0",
     "sass-embedded": "1.97.3",
     "serve": "14.2.5",

@@ -58,7 +58,7 @@ importers:
         specifier: 1.97.3
         version: 1.97.3
       sirv-cli:
-        specifier: ^3.0.1
+        specifier: 3.0.1
         version: 3.0.1
       vue:
         specifier: 3.5.28

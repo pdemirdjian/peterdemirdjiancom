@@ -57,6 +57,12 @@ credentials
 *~
 Thumbs.db
 
+# Claude Code local settings
+.claude/settings.local.json
+
+# Trivy cache
+.trivyignore-cache/
+
 # Backup files
 *.bak
 *.backup

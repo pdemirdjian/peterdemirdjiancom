@@ -46,7 +46,6 @@
   },
   "major": {
     "automerge": false,
-    "automergeType": "branch",
     "prBodyDefinitions": {
       "Change": "Major version update"
     },

@@ -22,8 +22,3 @@
 *.ico binary
 *.woff binary
 *.woff2 binary
-
-# Mark symlinks explicitly
-CLAUDE.md symlink
-.cursorrules symlink
-.windsurfrules symlink

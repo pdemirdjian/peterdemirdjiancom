@@ -69,3 +69,6 @@ Thumbs.db
 *.old
 *.orig
 *.sarif
+
+# Git worktrees
+.worktrees/

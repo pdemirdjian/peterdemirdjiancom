@@ -58,7 +58,7 @@ importers:
         specifier: 1.98.0
         version: 1.98.0
       serve:
-        specifier: ^14.2.6
+        specifier: 14.2.6
         version: 14.2.6
       vue:
         specifier: 3.5.30

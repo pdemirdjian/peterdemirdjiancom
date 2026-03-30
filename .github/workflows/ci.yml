@@ -44,7 +44,7 @@ jobs:
         run: pnpm exec eslint . --ext .js,.ts,.vue --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
 
       - name: Upload ESLint results to GitHub Security
-        uses: github/codeql-action/upload-sarif@38697555549f1db7851b81482ff19f1fa5c4fedc # v4.34.1
+        uses: github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13 # v4.35.1
         if: always()
         with:
           sarif_file: eslint-results.sarif

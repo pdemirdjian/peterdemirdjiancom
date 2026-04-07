@@ -139,16 +139,16 @@ pnpm run typecheck
 
 ```bash
 # Run Playwright e2e tests (headless)
-pnpm test
+pnpm run test
 
 # Interactive test UI
-pnpm test:ui
+pnpm run test:ui
 
 # Run tests with browser visible
-pnpm test:headed
+pnpm run test:headed
 
 # Debug mode
-pnpm test:debug
+pnpm run test:debug
 ```
 
 ### Security Auditing

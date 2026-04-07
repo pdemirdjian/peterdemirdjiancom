@@ -116,7 +116,6 @@
     "minimumReleaseAge": "0d"
   },
   "osvVulnerabilityAlerts": true,
-  "dependencyDashboardApproval": true,
   "separateMajorMinor": true,
   "separateMultipleMajor": true,
   "minimumReleaseAge": "3d",

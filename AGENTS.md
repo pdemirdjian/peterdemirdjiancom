@@ -20,6 +20,7 @@ This document provides guidance for AI coding assistants working with Peter Demi
 │   ├── .vuepress/
 │   │   ├── config.js         # VuePress configuration
 │   │   ├── public/           # Static assets
+│   │   ├── styles/           # VuePress user styles entry point (index.scss)
 │   │   └── client.ts         # Client-side configuration
 │   ├── README.md             # Home page
 │   ├── resume.md             # Resume/CV page
@@ -129,6 +130,25 @@ pnpm run lint
 
 # Auto-fix linting issues
 pnpm run lint:fix
+
+# Type check without emitting compiled output
+pnpm run typecheck
+```
+
+### Testing
+
+```bash
+# Run Playwright e2e tests (headless)
+pnpm run test
+
+# Interactive test UI
+pnpm run test:ui
+
+# Run tests with browser visible
+pnpm run test:headed
+
+# Step through tests with Playwright Inspector
+pnpm run test:debug
 ```
 
 ### Security Auditing

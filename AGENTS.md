@@ -29,4 +29,5 @@ Personal portfolio/resume website. VuePress 2.0, Vue 3, pnpm, deployed to Netlif
 | `docs/resume.md` | Resume/CV |
 | `netlify.toml` | Deployment + security headers |
 | `eslint.config.js` | Linting rules |
+| `package.json` | Dependencies, scripts, Node/pnpm version constraints |
 | `renovate.json` | Automated dependency updates |

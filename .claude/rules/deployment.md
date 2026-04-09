@@ -2,7 +2,7 @@
 
 ## Netlify
 
-- **Build command**: `pnpm docs:build`
+- **Build command**: `pnpm run docs:build`
 - **Publish directory**: `docs/.vuepress/dist`
 - **Auto-deploy**: push to main branch
 - **Security headers**: configured in `netlify.toml`

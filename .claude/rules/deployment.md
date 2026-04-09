@@ -20,4 +20,4 @@
 - Major: manual review required (7 day wait)
 - VuePress packages: grouped to avoid peer dependency issues
 - Security fixes: auto-merged immediately
-- Lock file: weekly automated updates
+- Lock file: automated updates

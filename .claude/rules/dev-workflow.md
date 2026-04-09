@@ -38,9 +38,9 @@ pnpm run security:trivy:config   # scan config files
 **Build fails**:
 1. Check Node version matches `package.json` engines field
 2. Clear cache: `rm -rf docs/.vuepress/.cache docs/.vuepress/.temp`
-3. Reinstall: `rm -rf node_modules pnpm-lock.yaml && pnpm install`
+3. Reinstall: `rm -rf node_modules && pnpm install` (only delete `pnpm-lock.yaml` if it's actually corrupted)
 4. Check lint errors: `pnpm run lint`
 
 **Dev server issues**: Kill port 8080, clear VuePress cache dirs, restart
 
-**Netlify failures**: Check build logs → verify build command/publish dir → ensure build deps are in `dependencies` not `devDependencies` → test build locally
+**Netlify failures**: Check build logs → verify build command/publish dir → confirm Netlify is installing `devDependencies` (it does by default; only an issue if install flags explicitly skip them) → test build locally

@@ -10,7 +10,7 @@
 ## Pre-deploy Checklist
 
 - `pnpm run lint:fix`
-- `pnpm run docs:build` (local)
+- `pnpm docs:build` (local)
 - `pnpm run security:check`
 - Verify content renders correctly in dev mode
 

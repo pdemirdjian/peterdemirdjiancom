@@ -17,7 +17,9 @@
     "docs:build": "vuepress build docs",
     "lint": "eslint . --ext .js,.ts,.vue",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "lint:sarif": "eslint . --ext .js,.ts,.vue --format ./scripts/sarif-formatter.js --output-file eslint-results.sarif",
     "typecheck": "tsc --noEmit",
+    "test:unit": "node --test scripts/sarif-formatter.test.js",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
@@ -34,7 +36,6 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@microsoft/eslint-formatter-sarif": "3.1.0",
     "@playwright/test": "1.60.0",
     "@types/node": "25.9.2",
     "@typescript-eslint/eslint-plugin": "8.60.1",
@@ -47,6 +48,7 @@
     "@vuepress/theme-default": "2.0.0-rc.130",
     "eslint": "10.4.1",
     "eslint-plugin-vue": "10.9.2",
+    "node-sarif-builder": "4.1.0",
     "sass-embedded": "1.100.0",
     "serve": "14.2.6",
     "vue": "3.5.35",
@@ -57,11 +59,5 @@
     "node": "24.16.0",
     "pnpm": "11.5.2"
   },
-  "packageManager": "pnpm@11.5.2+sha512.71c631e382066efc25625d5cf029075de07b61b37f6e27350fbd84b1bda5864c8c1967adc280776b45c30a715c0359a3be08fef42d5bb09e2b99029979692916",
-  "pnpm": {
-    "overrides": {
-      "@microsoft/eslint-formatter-sarif>eslint": "$eslint",
-      "minimatch@>=10.0.0 <10.2.3": "10.2.5"
-    }
-  }
+  "packageManager": "pnpm@11.5.2+sha512.71c631e382066efc25625d5cf029075de07b61b37f6e27350fbd84b1bda5864c8c1967adc280776b45c30a715c0359a3be08fef42d5bb09e2b99029979692916"
 }

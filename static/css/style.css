@@ -83,6 +83,31 @@ li { margin: 0.25rem 0; }
 
 img { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
 
+.home-hero {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  border-bottom: 1px solid #eaecef;
+  margin-bottom: 2rem;
+}
+
+.home-hero h1 {
+  font-size: 2.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.5rem;
+}
+
+.home-tagline {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.home-hero + * img[alt="picture-of-me"],
+img[alt="picture-of-me"] {
+  max-width: 360px;
+}
+
 hr { border: none; border-top: 1px solid #eaecef; margin: 2rem 0; }
 
 footer {

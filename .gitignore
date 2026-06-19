@@ -5,6 +5,7 @@ npm-debug.log
 coverage/
 run
 dist
+public/
 docs/.vuepress/dist/
 .DS_Store
 .nyc_output

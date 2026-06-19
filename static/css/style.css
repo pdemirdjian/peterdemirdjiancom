@@ -1,0 +1,103 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2c3e50;
+  background: #fff;
+}
+
+header {
+  border-bottom: 1px solid #eaecef;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+nav ul a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+nav ul a:hover { color: #3eaf7c; }
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 2rem; border-bottom: 1px solid #eaecef; padding-bottom: 0.5rem; }
+h2 { font-size: 1.5rem; border-bottom: 1px solid #eaecef; padding-bottom: 0.3rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: #3eaf7c; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #eaecef; padding: 0.5rem 1rem; text-align: left; }
+th { background: #f6f8fa; }
+
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.25rem 0; }
+
+img { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
+
+hr { border: none; border-top: 1px solid #eaecef; margin: 2rem 0; }
+
+footer {
+  border-top: 1px solid #eaecef;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+footer a { color: #3b82f6; }
+
+@media (max-width: 640px) {
+  nav ul { gap: 0.75rem; }
+  nav { flex-wrap: wrap; height: auto; padding: 0.75rem 0; }
+  header { height: auto; }
+  h1 { font-size: 1.5rem; }
+}

@@ -103,9 +103,9 @@ img { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
   margin: 0;
 }
 
-.home-hero + * img[alt="picture-of-me"],
 img[alt="picture-of-me"] {
-  max-width: 360px;
+  max-width: 300px;
+  width: 100%;
 }
 
 hr { border: none; border-top: 1px solid #eaecef; margin: 2rem 0; }

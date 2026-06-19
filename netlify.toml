@@ -1,11 +1,11 @@
 # Netlify Build Configuration
 
 [build]
-  publish = "docs/.vuepress/dist"
-  command = "pnpm docs:build"
+  publish = "public"
+  command = "hugo"
 
-# Netlify will automatically detect Node.js version from .nvmrc
-# and pnpm version from package.json packageManager field
+[build.environment]
+  HUGO_VERSION = "0.163.3"
 
 # Security Headers
 [[headers]]
@@ -90,19 +90,22 @@
   status = 301
   force = true
 
+# Redirect old VuePress-style URLs to Hugo clean URLs
+[[redirects]]
+  from = "/resume.html"
+  to = "/resume/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/license.html"
+  to = "/license/"
+  status = 301
+  force = true
+
 # Security redirects - block access to sensitive files
 [[redirects]]
   from = "/.env*"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/package.json"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/pnpm-lock.yaml"
   to = "/404"
   status = 404
 

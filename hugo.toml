@@ -12,6 +12,9 @@ enableRobotsTXT = true
 [sitemap]
   changeFreq = "monthly"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [[menus.main]]
   name = "Resume"
   url = "/resume/"

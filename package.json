@@ -40,7 +40,7 @@
     "@types/node": "25.9.4",
     "@typescript-eslint/eslint-plugin": "8.61.1",
     "@typescript-eslint/parser": "8.61.1",
-    "@vue/eslint-config-typescript": "14.8.0",
+    "@vue/eslint-config-typescript": "14.9.0",
     "@vuepress/bundler-vite": "2.0.0-rc.30",
     "@vuepress/client": "2.0.0-rc.30",
     "@vuepress/plugin-seo": "2.0.0-rc.130",

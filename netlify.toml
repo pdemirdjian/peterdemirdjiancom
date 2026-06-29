@@ -20,38 +20,52 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 # Cache Control for static assets
-# Hugo outputs CSS to /css/, images to /images/ — root-only globs (/*.css) would miss these
 [[headers]]
-  for = "/css/*.css"
+  for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*.png"
+  for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*.jpg"
+  for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*.jpeg"
+  for = "/*.png"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*.svg"
+  for = "/*.jpg"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*.webp"
+  for = "/*.jpeg"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=31536000, immutable"
 
-# HTML files - short cache so deploys propagate quickly
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML files - shorter cache for dynamic content updates
 [[headers]]
   for = "/*.html"
   [headers.values]

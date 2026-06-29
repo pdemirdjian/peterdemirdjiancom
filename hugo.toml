@@ -2,6 +2,7 @@ baseURL = "https://peterdemirdjian.com"
 languageCode = "en-US"
 title = "Pete Demirdjian"
 enableRobotsTXT = true
+enableEmoji = true
 
 [params]
   description = "Personal website and resume of Pete Demirdjian, Principal DevOps Engineer"

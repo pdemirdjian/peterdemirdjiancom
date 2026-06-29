@@ -21,6 +21,14 @@
 
   <link rel="icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored === 'dark' || (!stored && prefersDark);
+      document.documentElement.classList.add(isDark ? 'dark' : 'light');
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -32,9 +40,29 @@
           <a href="{{ .URL }}"{{ if hasPrefix .URL "http" }} rel="noopener" target="_blank"{{ end }}>{{ .Name }}</a>
         </li>
         {{ end }}
+        <li>
+          <button id="theme-toggle" aria-label="Toggle dark mode">☀</button>
+        </li>
       </ul>
     </nav>
   </header>
+  <script>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      var html = document.documentElement;
+      function applyTheme(dark) {
+        html.classList.toggle('dark', dark);
+        html.classList.toggle('light', !dark);
+        btn.textContent = dark ? '☀' : '☾';
+      }
+      applyTheme(html.classList.contains('dark'));
+      btn.addEventListener('click', function () {
+        var nowDark = !html.classList.contains('dark');
+        localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+        applyTheme(nowDark);
+      });
+    })();
+  </script>
   <main>
     {{ block "main" . }}{{ end }}
   </main>

@@ -14,8 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build
+  lint-and-build:
+    name: Lint and Build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -38,12 +38,41 @@ jobs:
       - name: Build website
         run: hugo
 
-      - name: Verify build output
+      - name: Verify required output structure
         run: |
-          test -f public/index.html || { echo "Build failed: public/index.html not found"; exit 1; }
-          test -f public/resume/index.html || { echo "Build failed: resume page not found"; exit 1; }
-          test -f public/sitemap.xml || { echo "Build failed: sitemap.xml not found"; exit 1; }
-          echo "Build successful!"
+          test -f public/index.html || { echo "MISSING: public/index.html"; exit 1; }
+          test -f public/resume/index.html || { echo "MISSING: public/resume/index.html"; exit 1; }
+          test -f public/license/index.html || { echo "MISSING: public/license/index.html"; exit 1; }
+          test -f public/sitemap.xml || { echo "MISSING: public/sitemap.xml"; exit 1; }
+          test -f public/robots.txt || { echo "MISSING: public/robots.txt"; exit 1; }
+          test -f public/404.html || { echo "MISSING: public/404.html"; exit 1; }
+          echo "All required output files present."
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "24.17.0"
+
+      - name: HTML validation with htmlhint
+        run: npx --yes htmlhint@1 "public/**/*.html" --config .htmlhintrc
+
+      - name: Check for broken internal links
+        run: |
+          grep -rh 'href="/' public/*.html public/**/*.html 2>/dev/null | \
+            grep -oP 'href="\K[^"]+' | \
+            sort -u | \
+            while read path; do
+              clean=$(echo "$path" | cut -d'?' -f1 | cut -d'#' -f1)
+              [ -z "$clean" ] && continue
+              if [ ! -f "public${clean}" ] && [ ! -f "public${clean}index.html" ]; then
+                echo "BROKEN: $clean"
+              fi
+            done | tee /tmp/broken-links.txt
+          if [ -s /tmp/broken-links.txt ]; then
+            echo "Broken internal links found:"
+            cat /tmp/broken-links.txt
+            exit 1
+          fi
+          echo "All internal links resolve."
 
       - name: Cache build for integration tests
         uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
@@ -60,7 +89,7 @@ jobs:
 
   integration-tests:
     name: Integration Tests (${{ matrix.browser }})
-    needs: build
+    needs: lint-and-build
     runs-on: ubuntu-latest
     permissions:
       contents: read

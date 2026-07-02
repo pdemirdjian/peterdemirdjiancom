@@ -1,63 +1,20 @@
 {
   "name": "peterdemirdjiancom",
   "version": "0.0.1",
-  "description": "Peter Demirdjian's Resume",
-  "main": "index.js",
-  "authors": {
-    "name": "Peter Demirdjian",
-    "email": "code@peterdemirdjian.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pdemirdjian/peterdemirdjiancom.git"
-  },
-  "homepage": "https://peterdemirdjian.com",
-  "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "lint": "eslint . --ext .js,.ts,.vue",
-    "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
-    "lint:sarif": "eslint . --ext .js,.ts,.vue --format ./scripts/sarif-formatter.js --output-file eslint-results.sarif",
-    "typecheck": "tsc --noEmit",
-    "test:unit": "node --test scripts/sarif-formatter.test.js",
-    "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
-    "security:audit": "pnpm audit --audit-level moderate",
-    "security:fix": "pnpm audit --fix",
-    "security:check": "pnpm audit --audit-level high",
-    "security:trivy": "trivy fs .",
-    "security:trivy:config": "trivy config .",
-    "security:trivy:secrets": "trivy fs --scanners secret ."
-  },
-  "license": "CC-BY-NC-ND-4.0",
   "private": true,
-  "type": "module",
-  "devDependencies": {
-    "@eslint/js": "10.0.1",
-    "@playwright/test": "1.61.0",
-    "@types/node": "25.9.4",
-    "@typescript-eslint/eslint-plugin": "8.61.1",
-    "@typescript-eslint/parser": "8.61.1",
-    "@vue/eslint-config-typescript": "14.8.0",
-    "@vuepress/bundler-vite": "2.0.0-rc.30",
-    "@vuepress/client": "2.0.0-rc.30",
-    "@vuepress/plugin-seo": "2.0.0-rc.130",
-    "@vuepress/plugin-sitemap": "2.0.0-rc.130",
-    "@vuepress/theme-default": "2.0.0-rc.130",
-    "eslint": "10.5.0",
-    "eslint-plugin-vue": "10.9.2",
-    "node-sarif-builder": "4.1.0",
-    "sass-embedded": "1.100.0",
-    "serve": "14.2.6",
-    "vue": "3.5.38",
-    "vue-eslint-parser": "10.4.1",
-    "vuepress": "2.0.0-rc.30"
-  },
+  "packageManager": "pnpm@11.8.0+sha512.c1f5e7c4cb241c8f174b743851d82f42b802324afc8b0f116b96adb15aa06664948dde36960a3ba1079ba5b4b29dd0140135b94b5b5f5263592249d68e555f26",
   "engines": {
     "node": "24.17.0",
     "pnpm": "11.8.0"
   },
-  "packageManager": "pnpm@11.8.0+sha512.c1f5e7c4cb241c8f174b743851d82f42b802324afc8b0f116b96adb15aa06664948dde36960a3ba1079ba5b4b29dd0140135b94b5b5f5263592249d68e555f26"
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.0",
+    "serve": "14.2.6"
+  }
 }

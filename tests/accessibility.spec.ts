@@ -4,9 +4,8 @@ test.describe('Accessibility', () => {
   test('should have proper heading hierarchy', async ({ page }) => {
     await page.goto('/')
     
-    // Check h1 exists - VuePress may have multiple h1s (main title + content heading)
     const h1 = await page.locator('h1')
-    await expect(h1).toHaveCount(2) // One for site title, one for page heading
+    await expect(h1).toHaveCount(1)
   })
 
   test('should have accessible links', async ({ page }) => {

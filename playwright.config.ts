@@ -53,9 +53,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm docs:build && pnpm exec serve docs/.vuepress/dist --listen 8080',
+    command: process.env.CI
+      ? 'pnpm exec serve public --listen 8080'
+      : 'hugo && pnpm exec serve public --listen 8080',
     port: 8080,
     reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    timeout: 60000,
   },
 })

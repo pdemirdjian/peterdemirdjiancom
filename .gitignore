@@ -5,6 +5,8 @@ npm-debug.log
 coverage/
 run
 dist
+public/
+.hugo_build.lock
 docs/.vuepress/dist/
 .DS_Store
 .nyc_output
@@ -72,3 +74,4 @@ Thumbs.db
 
 # Git worktrees
 .worktrees/
+.hugo_build.lock

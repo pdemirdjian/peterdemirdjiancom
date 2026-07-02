@@ -1,5 +1,5 @@
 ---
-sidebar: false
+title: "License"
 ---
 
 # License
@@ -55,5 +55,3 @@ For questions about usage rights or permission requests beyond this license, ple
 For the complete legal text, visit: [https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
 
 ---
-
-© {{ new Date().getFullYear() }} Peter Demirdjian. All rights reserved.

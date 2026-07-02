@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Resume Page', () => {
   test('should load resume page', async ({ page }) => {
-    await page.goto('/resume.html')
+    await page.goto('/resume/')
     
     // Check title
     await expect(page).toHaveTitle(/Pete Demirdjian/)
@@ -13,7 +13,7 @@ test.describe('Resume Page', () => {
   })
 
   test('should have contact information', async ({ page }) => {
-    await page.goto('/resume.html')
+    await page.goto('/resume/')
     
     // Check for email or LinkedIn (common resume elements)
     const hasContactInfo = await page.locator('body').textContent()
@@ -27,7 +27,7 @@ test.describe('Resume Page', () => {
     await expect(page.getByRole('link', { name: 'Resume' }).first()).toBeVisible()
     
     // Navigate to resume page
-    await page.goto('/resume.html')
+    await page.goto('/resume/')
     
     // Verify we're on the resume page
     await expect(page).toHaveURL(/.*resume/)

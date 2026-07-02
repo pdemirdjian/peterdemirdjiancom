@@ -1,0 +1,42 @@
+baseURL = "https://peterdemirdjian.com"
+languageCode = "en-US"
+title = "Pete Demirdjian"
+enableRobotsTXT = true
+enableEmoji = true
+
+[params]
+  description = "Personal website and resume of Pete Demirdjian, Principal DevOps Engineer"
+  author = "Peter Demirdjian"
+  ogImage = "/images/home.png"
+  twitterID = "@pdemirdjian"
+
+[sitemap]
+  changeFreq = "monthly"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[menus.main]]
+  name = "Resume"
+  url = "/resume/"
+  weight = 1
+
+[[menus.main]]
+  name = "License"
+  url = "/license/"
+  weight = 2
+
+[[menus.main]]
+  name = "LinkedIn"
+  url = "https://www.linkedin.com/in/peter-demirdjian/"
+  weight = 3
+
+[[menus.main]]
+  name = "GitHub"
+  url = "https://github.com/pdemirdjian/peterdemirdjiancom"
+  weight = 4
+
+[[menus.main]]
+  name = "Email"
+  url = "mailto:code@peterdemirdjian.com"
+  weight = 5

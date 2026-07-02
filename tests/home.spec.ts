@@ -7,8 +7,8 @@ test.describe('Home Page', () => {
     // Check title
     await expect(page).toHaveTitle(/Pete Demirdjian/)
     
-    // Check main content exists - use specific h1
-    await expect(page.locator('h1#about-me')).toContainText('About Me')
+    // Check main content exists - use specific h2
+    await expect(page.locator('h2#about-me')).toContainText('About Me')
   })
 
   test('should have working navigation', async ({ page }) => {

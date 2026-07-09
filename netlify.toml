@@ -5,7 +5,7 @@
   command = "hugo"
 
 [build.environment]
-  HUGO_VERSION = "0.163.3"
+  HUGO_VERSION = "0.164.0"
 
 # Security Headers
 [[headers]]

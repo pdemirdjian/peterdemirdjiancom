@@ -3,44 +3,38 @@
 ## Commands
 
 ```bash
-pnpm install               # install dependencies
-pnpm run docs:dev          # dev server at http://localhost:8080
-pnpm run docs:build        # build static site → docs/.vuepress/dist
-pnpm run lint              # lint
-pnpm run lint:fix          # lint + auto-fix
-pnpm run typecheck         # type check (no emit)
-pnpm run test              # Playwright e2e (headless)
+hugo server                # dev server at http://localhost:1313 (live reload)
+hugo                       # build static site → public/
+pnpm install               # install Playwright test dependencies
+pnpm test                  # Playwright e2e (builds site, serves public/ on :8080)
 pnpm run test:ui           # interactive test UI
 pnpm run test:headed       # tests with browser visible
 pnpm run test:debug        # step through with Playwright Inspector
-pnpm run security:audit    # dependency audit (moderate)
-pnpm run security:check    # high-severity only
-pnpm run security:fix      # attempt auto-fix
-pnpm run security:trivy    # Trivy filesystem scan
-pnpm run security:trivy:secrets  # scan for exposed secrets
-pnpm run security:trivy:config   # scan config files
 ```
+
+Local Hugo should match the `HUGO_VERSION` pin in `netlify.toml`.
 
 ## Common Tasks
 
-**Add/update content**: Edit `docs/*.md` → test with `docs:dev` → commit (Netlify auto-deploys)
+**Add/update content**: Edit `content/*.md` → check with `hugo server` → commit (Netlify auto-deploys)
 
-**Modify config**: Edit `docs/.vuepress/config.js` → restart dev server → test build
+**Modify site config or nav**: Edit `hugo.toml` → `hugo server` picks it up on reload
 
-**Add static assets**: Place in `docs/.vuepress/public/` → reference as `/filename.ext` in Markdown
+**Change templates**: Edit `layouts/` (`index.html`, `404.html`, `_default/single.html`, `_default/baseof.html`)
 
-**Update dependencies**: `pnpm update` → `pnpm install` → test locally → `security:check`
+**Styling**: Edit `static/css/style.css`
 
-**Styling**: Edit via VuePress theme config or `docs/.vuepress/styles/`
+**Add static assets**: Place in `static/` → referenced from the site root (e.g. `static/images/foo.png` → `/images/foo.png`)
+
+**Update dependencies**: Renovate handles this, including the Hugo pin in `netlify.toml` — only intervene for majors or failures
 
 ## Troubleshooting
 
 **Build fails**:
-1. Check Node version matches `package.json` engines field
-2. Clear cache: `rm -rf docs/.vuepress/.cache docs/.vuepress/.temp`
-3. Reinstall: `rm -rf node_modules && pnpm install` (only delete `pnpm-lock.yaml` if it's actually corrupted)
-4. Check lint errors: `pnpm run lint`
+1. Check local Hugo version against `HUGO_VERSION` in `netlify.toml`
+2. Run `hugo` locally and read the error — template errors name the offending layout file
+3. For test failures: `rm -rf node_modules && pnpm install` (only delete `pnpm-lock.yaml` if it's actually corrupted)
 
-**Dev server issues**: Kill port 8080, clear VuePress cache dirs, restart
+**Dev server issues**: Kill port 1313 and restart `hugo server`; Playwright's test server uses port 8080
 
-**Netlify failures**: Check build logs → verify build command/publish dir → confirm Netlify is installing `devDependencies` (it does by default; only an issue if install flags explicitly skip them) → test build locally
+**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → confirm `HUGO_VERSION` in `netlify.toml` is valid → reproduce with the same Hugo version locally

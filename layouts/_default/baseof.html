@@ -19,6 +19,10 @@
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="twitter:image" content="{{ .Site.Params.ogImage | absURL }}">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap">
+
   <link rel="icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
   <script>
@@ -29,6 +33,23 @@
       document.documentElement.classList.add(isDark ? 'dark' : 'light');
     })();
   </script>
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Peter Demirdjian",
+    "alternateName": "Pete Demirdjian",
+    "jobTitle": "Principal DevOps Engineer",
+    "worksFor": { "@type": "Organization", "name": "CarGurus" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Northeastern University" },
+    "url": "{{ .Site.BaseURL }}",
+    "image": "{{ .Site.Params.ogImage | absURL }}",
+    "email": "mailto:code@peterdemirdjian.com",
+    "sameAs": ["https://www.linkedin.com/in/peter-demirdjian/"]
+  }
+  </script>
+  {{ end }}
 </head>
 <body>
   <header>
@@ -67,16 +88,10 @@
     {{ block "main" . }}{{ end }}
   </main>
   <footer>
-    <div style="margin-bottom: 0.5rem;">
-      © {{ now.Format "2006" }} Peter Demirdjian. Licensed under
-      <a href="/license/" style="color: #3b82f6; text-decoration: none;">CC BY-NC-ND 4.0</a>.
-    </div>
-    <div>
-      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
-        <img alt="Creative Commons License" style="border-width:0; height: 20px; border-radius: 0; margin: 0.5rem auto 0;"
-             src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
-      </a>
-    </div>
+    <p>
+      © {{ now.Format "2006" }} Peter Demirdjian · Licensed under
+      <a rel="license" href="/license/">CC BY-NC-ND 4.0</a>
+    </p>
   </footer>
 </body>
 </html>

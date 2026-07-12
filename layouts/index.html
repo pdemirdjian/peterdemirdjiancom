@@ -1,7 +1,13 @@
 {{ define "main" }}
-<div class="home-hero">
-  <h1>{{ .Site.Title }}</h1>
-  <p class="home-tagline">Made by Pete Demirdjian with ❤️</p>
-</div>
+<section class="hero">
+  <p class="eyebrow">Principal DevOps Engineer</p>
+  <h1>Pete Demirdjian</h1>
+  <p class="lede">I build self-service infrastructure platforms — paved roads that let engineering teams ship to the cloud quickly and safely.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="/resume/">View resume</a>
+    <a class="btn" href="https://www.linkedin.com/in/peter-demirdjian/" rel="noopener" target="_blank">LinkedIn</a>
+    <a class="btn" href="mailto:code@peterdemirdjian.com">Email me</a>
+  </div>
+</section>
 {{ .Content }}
 {{ end }}

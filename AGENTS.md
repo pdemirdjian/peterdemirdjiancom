@@ -1,33 +1,35 @@
 # peterdemirdjiancom
 
-Personal portfolio/resume website. VuePress 2.0, Vue 3, pnpm, deployed to Netlify.
+Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/pnpm is used only for Playwright e2e tests.
 
 ## Constraints
 
 - **License**: CC-BY-NC-ND-4.0 — never modify content for redistribution or commercial use
-- **VuePress RC**: On 2.0.0-rc.x — verify compatibility before any major changes
+- **Hugo version**: Pinned via `HUGO_VERSION` in `netlify.toml` — keep local Hugo in sync; major bumps require manual review and testing
 - **Professional tone**: Never add casual or unprofessional content
 - **Security**: Never remove or weaken security headers in `netlify.toml`
-- **Dependencies**: Renovate handles routine updates — don't manually bump versions unless necessary; major version bumps require testing
+- **Dependencies**: Renovate handles routine updates (including the Hugo pin) — don't manually bump versions unless necessary
 
 ## Conventions
 
-- ES modules only (`import`/`export`) — never `var`, never CommonJS
-- Vue 3 Composition API for any new components
-- pnpm only — never npm or yarn
-- Run `pnpm run lint:fix` before committing
-- Run `pnpm run security:check` after dependency changes
-- Test locally with `pnpm run docs:dev` before suggesting changes
+- Content is Markdown in `content/`; templates are Hugo layouts in `layouts/`
+- Styling lives in `static/css/style.css` — no CSS framework, no preprocessor
+- pnpm only — never npm or yarn (Playwright is the only Node dependency)
+- Test locally with `hugo server` before suggesting changes
+- Run `pnpm test` (Playwright e2e) before committing site changes
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `docs/.vuepress/config.js` | VuePress config, navbar, theme |
-| `docs/.vuepress/client.ts` | Client-side config (dynamic year) |
-| `docs/README.md` | Home page |
-| `docs/resume.md` | Resume/CV |
-| `netlify.toml` | Deployment + security headers |
-| `eslint.config.js` | Linting rules |
-| `package.json` | Dependencies, scripts, Node/pnpm version constraints |
+| `hugo.toml` | Site config, params, nav menus |
+| `content/_index.md` | Home page |
+| `content/resume.md` | Resume/CV |
+| `content/license.md` | License page |
+| `layouts/` | Hugo templates (`index.html`, `404.html`, `_default/`) |
+| `static/css/style.css` | Site styles |
+| `static/images/` | Static assets, served at `/images/` |
+| `netlify.toml` | Build command, `HUGO_VERSION` pin, security headers, redirects |
+| `tests/` + `playwright.config.ts` | Playwright e2e tests |
+| `package.json` | Playwright deps, Node/pnpm version constraints |
 | `renovate.json` | Automated dependency updates |

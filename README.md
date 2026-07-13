@@ -80,6 +80,10 @@ The website's source code (build scripts, configuration files, etc.) may be refe
 
 For questions about usage rights, please contact [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com).
 
+## Site operations
+
+Routine maintenance of this repository is orchestrated by kandev running on a home Mac mini. Agent-generated changes are never pushed directly — every change lands through a pull request and is reviewed by a human before merge.
+
 ---
 
 © 2025 Peter Demirdjian. Licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).

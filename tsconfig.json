@@ -3,13 +3,13 @@
     "target": "ES2020",
     "module": "ESNext",
     "lib": ["ES2020", "DOM"],
+    "types": ["node"],
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"],
     "noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
@@ -23,15 +23,11 @@
     "jsx": "preserve"
   },
   "include": [
-    "docs/.vuepress/**/*.ts",
-    "docs/.vuepress/**/*.vue",
-    "*.ts"
+    "*.ts",
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "docs/.vuepress/dist",
-    "docs/.vuepress/.cache",
-    "docs/.vuepress/.temp",
     "test-results",
     "playwright-report"
   ]

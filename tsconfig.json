@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"],
     "noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
@@ -23,9 +22,8 @@
     "jsx": "preserve"
   },
   "include": [
-    "docs/.vuepress/**/*.ts",
-    "docs/.vuepress/**/*.vue",
-    "*.ts"
+    "*.ts",
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",

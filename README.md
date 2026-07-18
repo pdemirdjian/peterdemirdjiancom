@@ -32,8 +32,9 @@ pnpm test
 This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. The hooks run automatically before each commit to:
 
 - Detect secrets and sensitive data (Gitleaks)
+- Detect private keys accidentally staged (detect-private-key)
 - Validate YAML and JSON files
-- Fix trailing whitespace and file endings
+- Fix trailing whitespace, file endings, and mixed line endings
 - Detect merge conflicts and large files
 
 **Installation required:** Run `pre-commit install` after cloning the repository.

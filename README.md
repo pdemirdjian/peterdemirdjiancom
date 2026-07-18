@@ -6,55 +6,46 @@ This is the source code for my personal website and portfolio.
 
 ## About
 
-Personal website built with VuePress, showcasing my work and resume as a Principal DevOps Engineer.
+Personal website built with Hugo, showcasing my work and resume as a Principal DevOps Engineer.
 
 ## Development
 
 ```bash
-# Install dependencies
+# Install dependencies (Playwright/test tooling only)
 pnpm install
 
 # Install pre-commit hooks (required for development)
 pre-commit install
 
 # Start development server
-pnpm run docs:dev
+hugo server
 
 # Build for production
-pnpm run docs:build
+hugo
+
+# Run end-to-end tests
+pnpm test
 ```
 
 ### Pre-commit Hooks
 
-This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. The hooks will automatically run before each commit to:
+This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. The hooks run automatically before each commit to:
 
-- Check for secrets and sensitive data (Gitleaks)
+- Detect secrets and sensitive data (Gitleaks)
+- Detect private keys accidentally staged (detect-private-key)
 - Validate YAML and JSON files
-- Fix trailing whitespace and file endings
-- Run ESLint on staged files
+- Fix trailing whitespace, file endings, and mixed line endings
 - Detect merge conflicts and large files
 
 **Installation required:** Run `pre-commit install` after cloning the repository.
 
 ## Security
 
-This project includes automated security auditing:
+Security scanning runs in CI on every push and pull request:
 
-```bash
-# Run dependency security audit
-pnpm run security:audit
-
-# Fix security issues
-pnpm run security:fix
-
-# Check for high-severity issues
-pnpm run security:check
-
-# Run Trivy security scans
-pnpm run security:trivy           # Vulnerability scan
-pnpm run security:trivy:config    # Configuration scan
-pnpm run security:trivy:secrets   # Secret detection
-```
+- **Dependency audit** — `pnpm audit` (moderate and high severity)
+- **Trivy** — vulnerability, misconfiguration, and secret scans (results uploaded to GitHub Security tab)
+- **OSV Scanner** — cross-referenced against the Open Source Vulnerabilities database
 
 See [SECURITY.md](SECURITY.md) for comprehensive security policies and scanning procedures.
 
@@ -79,6 +70,10 @@ This website and its content are licensed under the [Creative Commons Attributio
 The website's source code (build scripts, configuration files, etc.) may be referenced for educational purposes, but the content and design remain under the above license.
 
 For questions about usage rights, please contact [code@peterdemirdjian.com](mailto:code@peterdemirdjian.com).
+
+## Site operations
+
+Routine maintenance of this repository is orchestrated by kandev running on a home Mac mini. Agent-generated changes are never pushed directly — every change lands through a pull request and is reviewed by a human before merge.
 
 ---
 

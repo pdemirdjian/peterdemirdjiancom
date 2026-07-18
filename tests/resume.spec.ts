@@ -14,10 +14,10 @@ test.describe('Resume Page', () => {
 
   test('should have contact information', async ({ page }) => {
     await page.goto('/resume/')
-    
-    // Check for email or LinkedIn (common resume elements)
-    const hasContactInfo = await page.locator('body').textContent()
-    expect(hasContactInfo).toBeTruthy()
+
+    const bodyText = await page.locator('body').textContent()
+    expect(bodyText).toContain('code@peterdemirdjian.com')
+    expect(bodyText).toContain('(857) 895-2304')
   })
 
   test('should navigate from home to resume', async ({ page }) => {

@@ -60,7 +60,7 @@ The Trivy scanning is automated through GitHub Actions (`.github/workflows/secur
 
 #### Local Usage
 
-Install Trivy locally:
+Install Trivy locally for ad-hoc scanning:
 
 ```bash
 # macOS
@@ -70,17 +70,17 @@ brew install trivy
 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 ```
 
-Use the npm scripts provided:
+Run scans directly:
 
 ```bash
-# Run vulnerability scan
-pnpm run security:trivy
+# Vulnerability scan
+trivy fs .
 
-# Run configuration scan
-pnpm run security:trivy:config
+# Misconfiguration scan
+trivy config .
 
-# Run secret scan
-pnpm run security:trivy:secrets
+# Secret scan
+trivy fs --scanners secret .
 ```
 
 #### Configuration
@@ -109,15 +109,14 @@ Scan results are automatically uploaded to the **Security tab** → Code scannin
 ## Security Best Practices
 
 1. Keep dependencies updated
-2. Run `pnpm run security:audit` regularly
-3. Run `pnpm run security:trivy` before committing changes
-4. Monitor for security alerts in GitHub Security tab
-5. Review security headers periodically
-6. Follow secure coding practices
-7. Monitor Netlify security logs and analytics
-8. Keep domain and DNS settings secure
-9. Review and document any ignored Trivy vulnerabilities in `.trivyignore`
-10. Address Critical/High severity findings immediately
+2. Monitor GitHub Security tab for CI scan results (Trivy, OSV, pnpm audit)
+3. Run `trivy fs .` locally before committing changes that touch dependencies or config
+4. Review security headers periodically
+5. Follow secure coding practices
+6. Monitor Netlify security logs and analytics
+7. Keep domain and DNS settings secure
+8. Review and document any ignored Trivy vulnerabilities in `.trivyignore`
+9. Address Critical/High severity findings immediately
 
 ## Contact
 

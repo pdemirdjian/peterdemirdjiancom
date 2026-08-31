@@ -118,6 +118,22 @@ function sendFile(res: ServerResponse, file: string, status: number, urlPath: st
   res.end(body)
 }
 
+// Every redirect this server issues targets a same-site path; refuse anything
+// that a browser would read as an absolute or protocol-relative URL.
+function sendRedirect(res: ServerResponse, status: number, location: string): void {
+  if (!location.startsWith('/') || location.startsWith('//')) {
+    sendBadRequest(res)
+    return
+  }
+  res.writeHead(status, { Location: location })
+  res.end()
+}
+
+function sendBadRequest(res: ServerResponse): void {
+  res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' })
+  res.end('Bad Request')
+}
+
 function sendNotFound(res: ServerResponse, urlPath: string): void {
   const notFoundPage = join(root, '404.html')
   if (existsSync(notFoundPage)) {
@@ -133,9 +149,16 @@ const server = createServer((req, res) => {
   // sequences are not decoded first (Hugo's output paths are all ASCII), so
   // /css%2Fstyle.css is a 404 in production, not the stylesheet.
   const urlPath = (req.url ?? '/').split('?')[0]
-  if (!urlPath.startsWith('/')) {
-    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' })
-    res.end('Bad Request')
+  // Reject degenerate request targets outright: anything not in origin-form,
+  // traversal segments, duplicate slashes (which would make a derived Location
+  // protocol-relative), and backslashes. None of these reach content on Netlify.
+  if (
+    !urlPath.startsWith('/') ||
+    urlPath.includes('..') ||
+    urlPath.includes('//') ||
+    urlPath.includes('\\')
+  ) {
+    sendBadRequest(res)
     return
   }
 
@@ -145,8 +168,7 @@ const server = createServer((req, res) => {
     // A non-forced rule is shadowed by existing content; later rules still apply.
     if (!rule.force && resolveContent(urlPath)) continue
     if (rule.status >= 300 && rule.status < 400) {
-      res.writeHead(rule.status, { Location: rule.to.replace(':splat', match.splat) })
-      res.end()
+      sendRedirect(res, rule.status, rule.to.replace(':splat', match.splat))
     } else {
       // Rewrite (e.g. status 404): serve the target's content with the rule's status.
       const target = resolveContent(rule.to.replace(':splat', match.splat))
@@ -158,12 +180,8 @@ const server = createServer((req, res) => {
 
   const resolved = resolveContent(urlPath)
   if (!resolved) sendNotFound(res, urlPath)
-  else if (resolved.kind === 'redirect') {
-    res.writeHead(301, { Location: resolved.location })
-    res.end()
-  } else {
-    sendFile(res, resolved.file, 200, urlPath)
-  }
+  else if (resolved.kind === 'redirect') sendRedirect(res, 301, resolved.location)
+  else sendFile(res, resolved.file, 200, urlPath)
 })
 
 server.listen(port, () => {

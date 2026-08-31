@@ -9,12 +9,15 @@
   },
   "scripts": {
     "test": "playwright test",
+    "typecheck": "tsc --noEmit",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",
-    "serve": "14.2.6"
+    "@types/node": "26.4.0",
+    "smol-toml": "1.8.0",
+    "typescript": "7.0.2"
   }
 }

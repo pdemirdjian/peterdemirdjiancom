@@ -54,8 +54,8 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: process.env.CI
-      ? 'pnpm exec serve public --listen 8080'
-      : 'hugo && pnpm exec serve public --listen 8080',
+      ? 'node tests/support/netlify-static-server.mts'
+      : 'hugo && node tests/support/netlify-static-server.mts',
     port: 8080,
     reuseExistingServer: !process.env.CI,
     timeout: 60000,

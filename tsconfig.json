@@ -25,6 +25,8 @@
   "include": [
     "docs/.vuepress/**/*.ts",
     "docs/.vuepress/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.mts",
     "*.ts"
   ],
   "exclude": [

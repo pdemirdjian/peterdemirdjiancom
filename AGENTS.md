@@ -33,3 +33,17 @@ Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/p
 | `tests/` + `playwright.config.ts` | Playwright e2e tests |
 | `package.json` | Playwright deps, Node/pnpm version constraints |
 | `renovate.json` | Automated dependency updates |
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked in Linear (workspace `pdemirdjian`, team `pdemirdjian`), via the Linear MCP tools. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default label vocabulary — the five canonical role names, verbatim. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` at the repo root, ADRs in `docs/adr/`. See `docs/agents/domain.md`.

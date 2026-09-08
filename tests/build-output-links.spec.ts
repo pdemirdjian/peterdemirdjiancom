@@ -178,6 +178,62 @@ test.describe('findBrokenLinks', () => {
     ])
   })
 
+  test('a character reference in a path is decoded before resolving', () => {
+    const files = new Map([
+      ['/index.html', page('<a href="/a&amp;b/?x=1&amp;y=2">a</a>')],
+      ['/a&b/index.html', page('a')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a character reference in an id satisfies the same reference in a fragment', () => {
+    const files = new Map([
+      ['/index.html', page('<a href="#x&amp;y">x</a><h2 id="x&amp;y">x</h2>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a numeric character reference in a path is decoded', () => {
+    const files = new Map([
+      ['/index.html', page('<a href="/resume&#47;">r</a><a href="/license&#x2F;">l</a>')],
+      ['/resume/index.html', page('r')],
+      ['/license/index.html', page('l')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a character reference in an unresolved target is reported as written', () => {
+    const files = new Map([['/index.html', page('<a href="/a&amp;b/">a</a>')]])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '/a&amp;b/', reason: 'missing' },
+    ])
+  })
+
+  test('a data URL in a srcset is skipped, commas in its payload and all', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="data:image/png;base64,AAAA,BBBB 1x">')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('srcset candidates separated by comma and space both resolve', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="/a.png 1x, /b.png 2x">')],
+      ['/a.png', ''],
+      ['/b.png', ''],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('srcset candidates separated by a bare comma both resolve', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="/a.png,/b.png">')],
+      ['/a.png', ''],
+      ['/b.png', ''],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
   test('each broken target is reported once per page', () => {
     const files = new Map([
       ['/index.html', page('<a href="/nope/">a</a><a href="/nope/">b</a>')],

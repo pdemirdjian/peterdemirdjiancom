@@ -58,11 +58,37 @@ function markupOf(html: string): string {
   return html.replace(COMMENT, '').replace(RAW_TEXT_ELEMENT, '$1')
 }
 
+/** A character reference: named (the five HTML markup ones) or numeric. */
+const CHAR_REF = /&(#x[0-9a-f]+|#[0-9]+|[a-z][a-z0-9]*);/gi
+
+const NAMED_CHAR_REFS: Record<string, string> = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+}
+
+/**
+ * Attribute text as the document means it: Hugo writes `&amp;` into any href
+ * carrying a query string, so the reference is `&`, not `&amp;`. A named
+ * reference this does not know is left as written.
+ */
+function decodeCharacterReferences(value: string): string {
+  return value.replace(CHAR_REF, (reference, body: string) => {
+    if (!body.startsWith('#')) return NAMED_CHAR_REFS[body.toLowerCase()] ?? reference
+    const code = body[1] === 'x' || body[1] === 'X' ? parseInt(body.slice(2), 16) : Number(body.slice(1))
+    return Number.isSafeInteger(code) && code > 0 && code <= 0x10ffff
+      ? String.fromCodePoint(code)
+      : reference
+  })
+}
+
 /**
  * Percent-decoded, so an encoded reference matches the id or the file name it
  * points at. A malformed escape sequence is left as written.
  */
-function decode(value: string): string {
+function percentDecode(value: string): string {
   try {
     return decodeURIComponent(value)
   } catch {
@@ -80,12 +106,32 @@ function attributesOf(html: string): Array<[string, string]> {
   return attrs
 }
 
-/** Every candidate URL in a srcset value, dropping the descriptors. */
+const SPACE = /\s/
+
+/**
+ * Every candidate URL in a srcset value, dropping the descriptors. A URL never
+ * contains whitespace, so whitespace ends one; a comma also ends one, except
+ * inside a data URL, whose base64 payload is full of commas.
+ */
 function srcsetUrls(value: string): string[] {
-  return value
-    .split(',')
-    .map((candidate) => candidate.trim().split(/\s+/)[0])
-    .filter((url) => url.length > 0)
+  const urls: string[] = []
+  let at = 0
+  while (at < value.length) {
+    while (at < value.length && (SPACE.test(value[at]) || value[at] === ',')) at++
+    if (at >= value.length) break
+
+    const start = at
+    const commaEndsUrl = !value.startsWith('data:', start)
+    while (at < value.length && !SPACE.test(value[at]) && !(commaEndsUrl && value[at] === ',')) at++
+    const url = value.slice(start, at).replace(/,+$/, '')
+    if (url !== '') urls.push(url)
+
+    // The URL ended at whitespace, so descriptors run up to the next comma.
+    if (at < value.length && SPACE.test(value[at])) {
+      while (at < value.length && value[at] !== ',') at++
+    }
+  }
+  return urls
 }
 
 /** Same-site references on a page, in document order, deduplicated. */
@@ -100,16 +146,20 @@ function referencesOf(html: string): Reference[] {
   const references: Reference[] = []
   for (const raw of raws) {
     const trimmed = raw.trim()
-    if (trimmed === '' || trimmed === '#' || OFF_SITE.test(trimmed)) continue
     if (seen.has(trimmed)) continue
     seen.add(trimmed)
 
-    const hash = trimmed.indexOf('#')
-    const beforeHash = hash === -1 ? trimmed : trimmed.slice(0, hash)
+    // Character references first: only then does '#' mean a fragment, and only
+    // then is '&' the '&' the document meant.
+    const text = decodeCharacterReferences(trimmed)
+    if (text === '' || text === '#' || OFF_SITE.test(text)) continue
+
+    const hash = text.indexOf('#')
+    const beforeHash = hash === -1 ? text : text.slice(0, hash)
     references.push({
       raw: trimmed,
-      path: decode(beforeHash.split('?')[0]),
-      fragment: hash === -1 ? '' : decode(trimmed.slice(hash + 1)),
+      path: percentDecode(beforeHash.split('?')[0]),
+      fragment: hash === -1 ? '' : percentDecode(text.slice(hash + 1)),
     })
   }
   return references
@@ -119,7 +169,8 @@ function referencesOf(html: string): Reference[] {
 function idsOf(html: string): Set<string> {
   const ids = new Set<string>()
   for (const [name, value] of attributesOf(html)) {
-    if (name === 'id' && value !== '') ids.add(value)
+    // Only character references: an id is literal text, never percent-encoded.
+    if (name === 'id' && value !== '') ids.add(decodeCharacterReferences(value))
   }
   return ids
 }

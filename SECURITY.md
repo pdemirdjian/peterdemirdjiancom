@@ -70,17 +70,12 @@ brew install trivy
 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 ```
 
-Use the npm scripts provided:
+Then run the scans directly (see [`.github/workflows/security.yml`](.github/workflows/security.yml) for the source of truth on scan types and flags):
 
 ```bash
-# Run vulnerability scan
-pnpm run security:trivy
-
-# Run configuration scan
-pnpm run security:trivy:config
-
-# Run secret scan
-pnpm run security:trivy:secrets
+trivy fs .
+trivy config .
+trivy fs --scanners secret .
 ```
 
 #### Configuration
@@ -109,8 +104,8 @@ Scan results are automatically uploaded to the **Security tab** → Code scannin
 ## Security Best Practices
 
 1. Keep dependencies updated
-2. Run `pnpm run security:audit` regularly
-3. Run `pnpm run security:trivy` before committing changes
+2. Run `pnpm audit` regularly
+3. See [`.github/workflows/security.yml`](.github/workflows/security.yml) for the automated scans that run on every push and pull request
 4. Monitor for security alerts in GitHub Security tab
 5. Review security headers periodically
 6. Follow secure coding practices

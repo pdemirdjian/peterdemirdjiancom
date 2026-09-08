@@ -7,14 +7,11 @@ run
 dist
 public/
 .hugo_build.lock
-docs/.vuepress/dist/
 .DS_Store
 .nyc_output
 .basement
 config.local.js
 basement_dist
-docs/.vuepress/.cache/
-docs/.vuepress/.temp/
 
 # Playwright Test Results
 test-results/

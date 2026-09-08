@@ -20,17 +20,6 @@
           }
         ]
       }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o '\"file_path\":\"[^\"]*\"' | head -1 | sed 's/\"file_path\":\"//;s/\"//'); REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd); case \"$FILE\" in *.js|*.ts|*.vue) cd \"$REPO_ROOT\" && pnpm exec eslint --fix \"$FILE\" 2>/dev/null || true;; esac"
-          }
-        ]
-      }
     ]
   }
 }

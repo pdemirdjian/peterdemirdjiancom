@@ -83,7 +83,7 @@
   status = 301
   force = true
 
-# Redirect old VuePress-style URLs to Hugo clean URLs
+# Redirect legacy .html URLs to Hugo clean URLs
 [[redirects]]
   from = "/resume.html"
   to = "/resume/"

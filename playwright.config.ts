@@ -10,6 +10,15 @@ import { TEST_BASE_URL, TEST_PORT } from './tests/support/config.mts'
  * are ignored by every browser project. */
 const deploySpecs = ['**/deploy-config.spec.ts', '**/netlify-site.spec.ts']
 
+/* Build-output specs read the publish directory from disk and need no browser,
+ * so they run once in the `build` project and are ignored by every browser
+ * project. */
+const buildSpecs = ['**/build-output.spec.ts', '**/build-output-links.spec.ts']
+
+/* Everything a browser project must not pick up: each browserless spec runs
+ * exactly once, in its own project. */
+const browserlessSpecs = [...deploySpecs, ...buildSpecs]
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -38,32 +47,37 @@ export default defineConfig({
     },
 
     {
+      name: 'build',
+      testMatch: buildSpecs,
+    },
+
+    {
       name: 'chromium',
-      testIgnore: deploySpecs,
+      testIgnore: browserlessSpecs,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      testIgnore: deploySpecs,
+      testIgnore: browserlessSpecs,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      testIgnore: deploySpecs,
+      testIgnore: browserlessSpecs,
       use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
     {
       name: 'Mobile Chrome',
-      testIgnore: deploySpecs,
+      testIgnore: browserlessSpecs,
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Mobile Safari',
-      testIgnore: deploySpecs,
+      testIgnore: browserlessSpecs,
       use: { ...devices['iPhone 12'] },
     },
   ],

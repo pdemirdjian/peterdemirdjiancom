@@ -21,3 +21,9 @@ Avoid: "deploy config", "netlify settings", "the toml".
 The module that serves the built site under the deploy contract during tests, so the contract can be exercised without deploying.
 
 Avoid: "static server", "mock Netlify", "test server".
+
+### Build output
+
+The files Hugo writes to the publish directory, which the deploy contract is applied to.
+
+Avoid: "dist", "artifacts", "public folder".

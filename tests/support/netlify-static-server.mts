@@ -118,14 +118,25 @@ function sendFile(res: ServerResponse, file: string, status: number, urlPath: st
   res.end(body)
 }
 
-// Every redirect this server issues targets a same-site path; refuse anything
-// that a browser would read as an absolute or protocol-relative URL.
+// Every redirect this server issues targets a same-site path. Parse the
+// candidate against a fixed origin and require that origin to survive: an
+// absolute or protocol-relative target resolves elsewhere and is refused, and
+// only the parsed path (never the raw input) reaches the Location header.
+const siteOrigin = 'http://localhost'
+
 function sendRedirect(res: ServerResponse, status: number, location: string): void {
-  if (!location.startsWith('/') || location.startsWith('//')) {
+  let target: URL
+  try {
+    target = new URL(location, siteOrigin)
+  } catch {
     sendBadRequest(res)
     return
   }
-  res.writeHead(status, { Location: location })
+  if (target.origin !== siteOrigin) {
+    sendBadRequest(res)
+    return
+  }
+  res.writeHead(status, { Location: target.pathname + target.search })
   res.end()
 }
 

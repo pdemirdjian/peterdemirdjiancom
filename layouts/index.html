@@ -1,12 +1,13 @@
 {{ define "main" }}
+{{ $person := .Site.Params.person }}
 <section class="hero">
-  <p class="eyebrow">Principal DevOps Engineer</p>
-  <h1>Pete Demirdjian</h1>
+  <p class="eyebrow">{{ $person.jobTitle }}</p>
+  <h1>{{ $person.shortName }}</h1>
   <p class="lede">I build self-service infrastructure platforms — paved roads that let engineering teams ship to the cloud quickly and safely.</p>
   <div class="hero-actions">
     <a class="btn btn-primary" href="/resume/">View resume</a>
-    <a class="btn" href="https://www.linkedin.com/in/peter-demirdjian/" rel="noopener" target="_blank">LinkedIn</a>
-    <a class="btn" href="mailto:code@peterdemirdjian.com">Email me</a>
+    <a class="btn" href="{{ $person.linkedin }}" rel="noopener" target="_blank">LinkedIn</a>
+    <a class="btn" href="mailto:{{ $person.email }}">Email me</a>
   </div>
 </section>
 {{ .Content }}

@@ -1,0 +1,7 @@
+{{- $person := .Site.Params.person -}}
+{{- $linkedinText := $person.linkedin | replaceRE `^https?://(?:www\.)?` "" | strings.TrimSuffix "/" -}}
+<p class="contact-row">
+  <a href="mailto:{{ $person.email }}">{{ $person.email }}</a>
+  <span>{{ $person.phone }}</span>
+  <a href="{{ $person.linkedin }}" rel="noopener" target="_blank">{{ $linkedinText }}</a>
+</p>

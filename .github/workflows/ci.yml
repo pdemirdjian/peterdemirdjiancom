@@ -96,7 +96,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chromium, firefox, webkit]
+        # `deploy` is not a browser: it is the browserless project that
+        # exercises the deploy contract against the Netlify emulator.
+        browser: [chromium, firefox, webkit, deploy]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -125,16 +127,18 @@ jobs:
 
       - name: Cache Playwright browsers
         id: playwright-cache
+        if: matrix.browser != 'deploy'
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ matrix.browser }}-${{ steps.playwright-version.outputs.version }}
 
       - name: Install Playwright browser
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        if: matrix.browser != 'deploy' && steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install ${{ matrix.browser }}
 
       - name: Install Playwright system dependencies
+        if: matrix.browser != 'deploy'
         run: pnpm exec playwright install-deps ${{ matrix.browser }}
 
       - name: Run Playwright tests

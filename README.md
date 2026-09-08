@@ -6,7 +6,7 @@ This is the source code for my personal website and portfolio.
 
 ## About
 
-Personal website built with VuePress, showcasing my work and resume as a Principal DevOps Engineer.
+Personal website built with Hugo, showcasing my work and resume as a Principal DevOps Engineer.
 
 ## Development
 
@@ -18,10 +18,10 @@ pnpm install
 pre-commit install
 
 # Start development server
-pnpm run docs:dev
+hugo server
 
 # Build for production
-pnpm run docs:build
+hugo
 ```
 
 ### Pre-commit Hooks
@@ -31,30 +31,14 @@ This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. 
 - Check for secrets and sensitive data (Gitleaks)
 - Validate YAML and JSON files
 - Fix trailing whitespace and file endings
-- Run ESLint on staged files
 - Detect merge conflicts and large files
+- Detect private keys
 
 **Installation required:** Run `pre-commit install` after cloning the repository.
 
 ## Security
 
-This project includes automated security auditing:
-
-```bash
-# Run dependency security audit
-pnpm run security:audit
-
-# Fix security issues
-pnpm run security:fix
-
-# Check for high-severity issues
-pnpm run security:check
-
-# Run Trivy security scans
-pnpm run security:trivy           # Vulnerability scan
-pnpm run security:trivy:config    # Configuration scan
-pnpm run security:trivy:secrets   # Secret detection
-```
+This project runs automated dependency and configuration scanning in CI. See [`.github/workflows/security.yml`](.github/workflows/security.yml) for the source of truth on what runs and when.
 
 See [SECURITY.md](SECURITY.md) for comprehensive security policies and scanning procedures.
 
@@ -82,7 +66,7 @@ For questions about usage rights, please contact [code@peterdemirdjian.com](mail
 
 ## Site operations
 
-Routine maintenance of this repository is orchestrated by kandev running on a home Mac mini. Agent-generated changes are never pushed directly — every change lands through a pull request and is reviewed by a human before merge.
+Every change to this repository, including agent-generated changes, lands through a pull request and is reviewed by a human before merge.
 
 ---
 

@@ -23,17 +23,12 @@
     "jsx": "preserve"
   },
   "include": [
-    "docs/.vuepress/**/*.ts",
-    "docs/.vuepress/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.mts",
     "*.ts"
   ],
   "exclude": [
     "node_modules",
-    "docs/.vuepress/dist",
-    "docs/.vuepress/.cache",
-    "docs/.vuepress/.temp",
     "test-results",
     "playwright-report"
   ]

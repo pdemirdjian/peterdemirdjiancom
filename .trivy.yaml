@@ -27,8 +27,6 @@ scan:
     - dist
     - build
     - coverage
-    - .vuepress/dist
-    - docs/.vuepress/dist
 
   # Skip specific files
   skip-files:

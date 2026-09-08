@@ -234,6 +234,26 @@ test.describe('findBrokenLinks', () => {
     expect(findBrokenLinks(files)).toEqual([])
   })
 
+  test('an encoded separator does not resolve, because the site would 404', () => {
+    const files = new Map([
+      ['/index.html', page('<link rel="stylesheet" href="/css%2Fstyle.css">')],
+      ['/css/style.css', ''],
+    ])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '/css%2Fstyle.css', reason: 'missing' },
+    ])
+  })
+
+  test('an encoded separator in a relative path does not resolve either', () => {
+    const files = new Map([
+      ['/resume/index.html', page('<a href="..%2Flicense/">l</a>')],
+      ['/license/index.html', page('l')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/resume/index.html', target: '..%2Flicense/', reason: 'missing' },
+    ])
+  })
+
   test('each broken target is reported once per page', () => {
     const files = new Map([
       ['/index.html', page('<a href="/nope/">a</a><a href="/nope/">b</a>')],

@@ -96,6 +96,21 @@ function percentDecode(value: string): string {
   }
 }
 
+/**
+ * A path decoded segment by segment, so an encoded separator stays encoded: the
+ * site serves `/css%2Fstyle.css` as a 404, not as `/css/style.css`, and the
+ * link checker must agree with it.
+ */
+function percentDecodePath(path: string): string {
+  return path
+    .split('/')
+    .map((segment) => {
+      const decoded = percentDecode(segment)
+      return decoded.includes('/') ? segment : decoded
+    })
+    .join('/')
+}
+
 function attributesOf(html: string): Array<[string, string]> {
   const attrs: Array<[string, string]> = []
   for (const tag of markupOf(html).matchAll(TAG)) {
@@ -158,7 +173,7 @@ function referencesOf(html: string): Reference[] {
     const beforeHash = hash === -1 ? text : text.slice(0, hash)
     references.push({
       raw: trimmed,
-      path: percentDecode(beforeHash.split('?')[0]),
+      path: percentDecodePath(beforeHash.split('?')[0]),
       fragment: hash === -1 ? '' : percentDecode(text.slice(hash + 1)),
     })
   }

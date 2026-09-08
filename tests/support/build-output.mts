@@ -28,6 +28,16 @@ const OFF_SITE = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i
 /** An open tag with its attribute text; quoted values may contain '>'. */
 const TAG = /<([a-zA-Z][-\w]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/g
 
+/** Comments: markup inside them is text a browser never follows. */
+const COMMENT = /<!--[\s\S]*?-->/g
+
+/**
+ * A script or style element, captured as its open tag plus its raw-text body.
+ * The body is dropped and the open tag kept, because `<script src>` is a real
+ * reference while a string literal or a CSS url() inside the body is not.
+ */
+const RAW_TEXT_ELEMENT = /(<(script|style)\b(?:[^>"']|"[^"]*"|'[^']*')*>)[\s\S]*?(?=<\/\2[\s>]|$)/gi
+
 /** name=value pairs inside a tag's attribute text; value may be unquoted. */
 const ATTR = /([-\w:.]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g
 
@@ -37,15 +47,32 @@ const URL_ATTRS = new Set(['href', 'src'])
 interface Reference {
   /** The reference as written, used verbatim in reports. */
   raw: string
-  /** Path part, query stripped, empty for a same-page fragment. */
+  /** Path part, query stripped and percent-decoded, empty for a same-page fragment. */
   path: string
-  /** Fragment without '#', empty when the reference carries none. */
+  /** Fragment without '#', percent-decoded, empty when the reference carries none. */
   fragment: string
+}
+
+/** The markup a browser would parse as markup: no comments, no raw-text bodies. */
+function markupOf(html: string): string {
+  return html.replace(COMMENT, '').replace(RAW_TEXT_ELEMENT, '$1')
+}
+
+/**
+ * Percent-decoded, so an encoded reference matches the id or the file name it
+ * points at. A malformed escape sequence is left as written.
+ */
+function decode(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
 }
 
 function attributesOf(html: string): Array<[string, string]> {
   const attrs: Array<[string, string]> = []
-  for (const tag of html.matchAll(TAG)) {
+  for (const tag of markupOf(html).matchAll(TAG)) {
     for (const attr of tag[2].matchAll(ATTR)) {
       attrs.push([attr[1].toLowerCase(), attr[2] ?? attr[3] ?? attr[4] ?? ''])
     }
@@ -81,8 +108,8 @@ function referencesOf(html: string): Reference[] {
     const beforeHash = hash === -1 ? trimmed : trimmed.slice(0, hash)
     references.push({
       raw: trimmed,
-      path: beforeHash.split('?')[0],
-      fragment: hash === -1 ? '' : trimmed.slice(hash + 1),
+      path: decode(beforeHash.split('?')[0]),
+      fragment: hash === -1 ? '' : decode(trimmed.slice(hash + 1)),
     })
   }
   return references

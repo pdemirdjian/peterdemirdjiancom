@@ -122,6 +122,62 @@ test.describe('findBrokenLinks', () => {
     expect(findBrokenLinks(files)).toEqual([])
   })
 
+  test('a reference inside an HTML comment is not a reference', () => {
+    const files = new Map([
+      ['/index.html', page('<!-- <img src="/deleted.png"> --><p>kept</p>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('markup-like text inside a script body is not a reference', () => {
+    const files = new Map([
+      [
+        '/index.html',
+        page('<script>const markup = \'<a href="/nope/">x</a>\'</script>'),
+      ],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test("a script's own src is still checked", () => {
+    const files = new Map([
+      ['/index.html', page('<script src="/js/gone.js">const a = 1</script>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '/js/gone.js', reason: 'missing' },
+    ])
+  })
+
+  test('a url() inside a style body is not a reference', () => {
+    const files = new Map([
+      ['/index.html', page('<style>body { background: url(/nope.png) }</style>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a percent-encoded fragment matches its decoded id', () => {
+    const files = new Map([
+      ['/index.html', page('<a href="/resume/#caf%C3%A9">c</a>')],
+      ['/resume/index.html', page('<h2 id="café">c</h2>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a percent-encoded path matches its decoded file', () => {
+    const files = new Map([
+      ['/index.html', page('<a href="/caf%C3%A9/">c</a>')],
+      ['/café/index.html', page('c')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a malformed escape sequence is reported, not thrown', () => {
+    const files = new Map([['/index.html', page('<a href="#%E0%A4%A">x</a>')]])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '#%E0%A4%A', reason: 'missing-fragment' },
+    ])
+  })
+
   test('each broken target is reported once per page', () => {
     const files = new Map([
       ['/index.html', page('<a href="/nope/">a</a><a href="/nope/">b</a>')],

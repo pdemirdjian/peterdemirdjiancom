@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { request } from 'node:http'
+import { TEST_HOST, TEST_PORT } from './support/config.mts'
 
-// Verifies the deploy config in netlify.toml (headers, redirects, 404 handling)
-// as served by tests/support/netlify-static-server.ts. Expected values here are
-// the production contract; netlify.toml is the source under test.
+// Verifies the deploy contract in netlify.toml (headers, redirects, 404
+// handling) end to end, over HTTP against the Netlify emulator. Expected values
+// here are the production contract; netlify.toml is the source under test.
 
 test.describe('Security headers', () => {
   test('home page carries the security headers', async ({ request }) => {
@@ -58,7 +59,7 @@ test.describe('Redirects', () => {
 // Send the request target verbatim over node:http instead.
 function rawGet(path: string): Promise<{ status: number; location: string | undefined }> {
   return new Promise((resolvePromise, reject) => {
-    const req = request({ host: 'localhost', port: 8080, path, method: 'GET' }, (res) => {
+    const req = request({ host: TEST_HOST, port: TEST_PORT, path, method: 'GET' }, (res) => {
       res.resume()
       res.on('end', () =>
         resolvePromise({ status: res.statusCode ?? 0, location: res.headers['location'] })

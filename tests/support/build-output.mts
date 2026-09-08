@@ -28,8 +28,23 @@ const OFF_SITE = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i
 /** An open tag with its attribute text; quoted values may contain '>'. */
 const TAG = /<([a-zA-Z][-\w]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/g
 
-/** Comments: markup inside them is text a browser never follows. */
-const COMMENT = /<!--[\s\S]*?-->/g
+/**
+ * Comments: markup inside them is text a browser never follows. Scanned by
+ * index rather than a regex replace, so an unterminated comment swallows the
+ * rest of the document the way a browser's tokenizer does.
+ */
+function stripComments(html: string): string {
+  let out = ''
+  let at = 0
+  for (;;) {
+    const open = html.indexOf('<!--', at)
+    if (open === -1) return out + html.slice(at)
+    out += html.slice(at, open)
+    const close = html.indexOf('-->', open + 4)
+    if (close === -1) return out
+    at = close + 3
+  }
+}
 
 /**
  * A script or style element, captured as its open tag plus its raw-text body.
@@ -55,7 +70,7 @@ interface Reference {
 
 /** The markup a browser would parse as markup: no comments, no raw-text bodies. */
 function markupOf(html: string): string {
-  return html.replace(COMMENT, '').replace(RAW_TEXT_ELEMENT, '$1')
+  return stripComments(html).replace(RAW_TEXT_ELEMENT, '$1')
 }
 
 /** A character reference: named (the five HTML markup ones) or numeric. */

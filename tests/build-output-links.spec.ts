@@ -129,6 +129,20 @@ test.describe('findBrokenLinks', () => {
     expect(findBrokenLinks(files)).toEqual([])
   })
 
+  test('a reference between two comments is still a reference', () => {
+    const files = new Map([
+      ['/index.html', page('<!-- a --><a href="/nope/">x</a><!-- b -->')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([{ page: '/index.html', target: '/nope/', reason: 'missing' }])
+  })
+
+  test('an unterminated comment hides the rest of the document', () => {
+    const files = new Map([
+      ['/index.html', page('<p>kept</p><!-- <a href="/nope/">x</a>')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
   test('markup-like text inside a script body is not a reference', () => {
     const files = new Map([
       [

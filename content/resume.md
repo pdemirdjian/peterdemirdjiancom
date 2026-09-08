@@ -4,11 +4,7 @@ title: "Resume"
 
 ## Contact Info
 
-<p class="contact-row">
-  <a href="mailto:code@peterdemirdjian.com">code@peterdemirdjian.com</a>
-  <span>(857) 895-2304</span>
-  <a href="https://www.linkedin.com/in/peter-demirdjian/" rel="noopener" target="_blank">linkedin.com/in/peter-demirdjian</a>
-</p>
+{{< contact >}}
 
 ## Experience
 

@@ -6,9 +6,19 @@ enableEmoji = true
 
 [params]
   description = "Personal website and resume of Pete Demirdjian, Principal DevOps Engineer"
-  author = "Peter Demirdjian"
-  ogImage = "/images/home.png"
   twitterID = "@pdemirdjian"
+
+[params.person]
+  name = "Peter Demirdjian"
+  shortName = "Pete Demirdjian"
+  jobTitle = "Principal DevOps Engineer"
+  employer = "CarGurus"
+  school = "Northeastern University"
+  email = "code@peterdemirdjian.com"
+  phone = "(857) 895-2304"
+  linkedin = "https://www.linkedin.com/in/peter-demirdjian/"
+  github = "https://github.com/pdemirdjian/peterdemirdjiancom"
+  image = "/images/home.png"
 
 [sitemap]
   changeFreq = "monthly"
@@ -25,18 +35,3 @@ enableEmoji = true
   name = "License"
   url = "/license/"
   weight = 2
-
-[[menus.main]]
-  name = "LinkedIn"
-  url = "https://www.linkedin.com/in/peter-demirdjian/"
-  weight = 3
-
-[[menus.main]]
-  name = "GitHub"
-  url = "https://github.com/pdemirdjian/peterdemirdjiancom"
-  weight = 4
-
-[[menus.main]]
-  name = "Email"
-  url = "mailto:code@peterdemirdjian.com"
-  weight = 5

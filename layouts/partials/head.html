@@ -1,0 +1,3 @@
+{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+{{ $description := .Description | default .Site.Params.description }}
+{{ return dict "title" $title "description" $description }}

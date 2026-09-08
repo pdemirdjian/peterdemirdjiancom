@@ -254,6 +254,33 @@ test.describe('findBrokenLinks', () => {
     ])
   })
 
+  test('a candidate after a descriptorless data URL is still checked', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="data:image/png;base64,AAAA, /missing.png 2x">')],
+    ])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '/missing.png', reason: 'missing' },
+    ])
+  })
+
+  test('a candidate after a data URL with a descriptor is still checked', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="data:image/png;base64,AAAA 1x, /b.png 2x">')],
+      ['/b.png', ''],
+    ])
+    expect(findBrokenLinks(files)).toEqual([])
+  })
+
+  test('a comma-and-space separated pair with no descriptors yields both', () => {
+    const files = new Map([
+      ['/index.html', page('<img srcset="/a.png, /b.png">')],
+      ['/a.png', ''],
+    ])
+    expect(findBrokenLinks(files)).toEqual([
+      { page: '/index.html', target: '/b.png', reason: 'missing' },
+    ])
+  })
+
   test('each broken target is reported once per page', () => {
     const files = new Map([
       ['/index.html', page('<a href="/nope/">a</a><a href="/nope/">b</a>')],

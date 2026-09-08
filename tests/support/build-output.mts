@@ -138,11 +138,16 @@ function srcsetUrls(value: string): string[] {
     const start = at
     const commaEndsUrl = !value.startsWith('data:', start)
     while (at < value.length && !SPACE.test(value[at]) && !(commaEndsUrl && value[at] === ',')) at++
-    const url = value.slice(start, at).replace(/,+$/, '')
+
+    const token = value.slice(start, at)
+    const url = token.replace(/,+$/, '')
     if (url !== '') urls.push(url)
 
-    // The URL ended at whitespace, so descriptors run up to the next comma.
-    if (at < value.length && SPACE.test(value[at])) {
+    // A trailing comma already separated this candidate from the next, so what
+    // follows is another candidate. Only a URL that ended at whitespace can be
+    // followed by descriptors, which run up to the next comma.
+    const separated = token.endsWith(',') || value[at] === ','
+    if (!separated && at < value.length && SPACE.test(value[at])) {
       while (at < value.length && value[at] !== ',') at++
     }
   }

@@ -125,7 +125,7 @@ jobs:
       actions: read
     uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@a345acffa64b0eaede81a3d9aae6141214d9c8fc # v2.6.0
     with:
+      # --skip-git was removed in osv-scanner v2; git-root scanning is off by default.
       scan-args: |-
         -r
-        --skip-git
         ./

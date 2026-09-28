@@ -1,8 +1,7 @@
 # Issue tracker: Linear
 
 Issues and specs for this repo live in Linear — workspace `pdemirdjian`
-(https://linear.app/pdemirdjian), team `pdemirdjian`. Use the Linear MCP tools
-(`mcp__plugin_linear_linear__*`) for all operations. If they aren't loaded,
+(https://linear.app/pdemirdjian), team `pdemirdjian`. Use the Linear MCP tools for all operations. If they aren't loaded,
 load them via ToolSearch first.
 
 ## Conventions

@@ -6,15 +6,28 @@ export const policy = contract.headers.find((rule) => rule.for === '/*')
   ?.values['Content-Security-Policy']
 if (!policy) throw new Error('Deploy contract is missing Content-Security-Policy')
 
-export const directives = new Map<string, string[]>()
-for (const directive of policy.split(';')) {
-  const [name, ...sources] = directive.trim().split(/\s+/)
-  if (name && !directives.has(name)) directives.set(name, sources)
+export function parseCsp(policy: string) {
+  const directives = new Map<string, string[]>()
+  for (const directive of policy.split(';')) {
+    const [name, ...sources] = directive.trim().split(/\s+/)
+    if (name && !directives.has(name)) directives.set(name, sources)
+  }
+
+  const origins = new Set<string>()
+  for (const source of [...directives.values()].flat()) {
+    // Quoted keywords and bare schemes grant no single origin.
+    if (/^'[^']+'$/.test(source) || /^[a-z][a-z\d+.-]*:$/i.test(source)) continue
+    // Deliberately support only concrete origins; never silently skip host patterns.
+    if (/^[a-z][a-z\d+.-]*:\/\/[a-z\d.-]+(?::\d+)?\/?$/i.test(source)) {
+      const origin = new URL(source).origin
+      if (origin !== 'null') {
+        origins.add(origin)
+        continue
+      }
+    }
+    throw new Error(`Unsupported CSP source: ${source}`)
+  }
+  return { directives, origins }
 }
 
-// Concrete host origins only; keywords and bare schemes grant no single origin.
-export const origins = new Set(
-  [...directives.values()].flat()
-    .filter((source) => /^[a-z][a-z\d+.-]*:\/\//i.test(source))
-    .map((source) => new URL(source).origin)
-)
+export const { directives, origins } = parseCsp(policy)

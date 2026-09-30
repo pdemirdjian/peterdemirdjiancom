@@ -37,5 +37,6 @@ test('CSP permits the site and every allowed origin has a consumer', async ({ pa
       expect.soft(violations, `CSP violations after ${path}`).toEqual([])
     })
   }
+  expect(violations, 'CSP violations').toEqual([])
   expect([...origins].filter((origin) => !requested.has(origin)), 'Unused CSP origins').toEqual([])
 })

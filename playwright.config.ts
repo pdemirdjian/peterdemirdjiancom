@@ -8,7 +8,7 @@ import { TEST_BASE_URL, TEST_PORT } from './tests/support/config.mts'
 /* Deploy-contract specs are browser-independent: they exercise the Netlify
  * emulator directly or over HTTP, so they run once in the `deploy` project and
  * are ignored by every browser project. */
-const deploySpecs = ['**/deploy-config.spec.ts', '**/netlify-site.spec.ts']
+const deploySpecs = ['**/deploy-config.spec.ts', '**/netlify-site.spec.ts', '**/csp.spec.ts']
 
 /* Build-output specs read the publish directory from disk and need no browser,
  * so they run once in the `build` project and are ignored by every browser

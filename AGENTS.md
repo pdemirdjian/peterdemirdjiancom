@@ -14,7 +14,7 @@ Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/p
 
 - Content is Markdown in `content/`; templates are Hugo layouts in `layouts/`
 - Styling lives in `static/css/style.css` — no CSS framework, no preprocessor
-- pnpm only — never npm or yarn (Playwright is the only Node dependency)
+- pnpm only — never npm or yarn (Node is used only for the test toolchain: Playwright, TypeScript, htmlhint, smol-toml)
 - Test locally with `hugo server` before suggesting changes
 - Run `pnpm test` (Playwright e2e) before committing site changes
 

@@ -5,9 +5,11 @@
   <h1>{{ $person.shortName }}</h1>
   <p class="lede">I build self-service infrastructure platforms — paved roads that let engineering teams ship to the cloud quickly and safely.</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="/resume/">View resume</a>
-    <a class="btn" href="{{ $person.linkedin }}" rel="noopener" target="_blank">LinkedIn</a>
-    <a class="btn" href="mailto:{{ $person.email }}">Email me</a>
+    {{ range $index, $action := .Site.Params.heroActions }}
+    {{ $url := $action.url }}
+    {{ with $action.person }}{{ $url = index $person . }}{{ if eq . "email" }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
+    <a class="btn{{ if eq $index 0 }} btn-primary{{ end }}" href="{{ $url }}"{{ if hasPrefix $url "http" }} rel="noopener" target="_blank"{{ end }}>{{ $action.name }}</a>
+    {{ end }}
   </div>
 </section>
 {{ .Content }}

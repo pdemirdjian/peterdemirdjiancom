@@ -20,6 +20,18 @@ enableEmoji = true
   github = "https://github.com/pdemirdjian/peterdemirdjiancom"
   image = "/images/home.png"
 
+[[params.heroActions]]
+  name = "View resume"
+  url = "/resume/"
+
+[[params.heroActions]]
+  name = "LinkedIn"
+  person = "linkedin"
+
+[[params.heroActions]]
+  name = "Email me"
+  person = "email"
+
 [sitemap]
   changeFreq = "monthly"
 

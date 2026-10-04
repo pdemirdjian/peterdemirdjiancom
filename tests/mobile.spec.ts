@@ -18,7 +18,7 @@ test.describe('Mobile Responsiveness', () => {
     
     // Check main content is visible on mobile
     await expect(page.locator('h1').first()).toBeVisible()
-    // Check navigation links are accessible - use first() to handle duplicates
-    await expect(page.getByRole('link', { name: 'Resume' }).first()).toBeVisible()
+    // Check navigation links are accessible
+    await expect(page.locator('header nav').getByRole('link', { name: 'Resume', exact: true })).toBeVisible()
   })
 })

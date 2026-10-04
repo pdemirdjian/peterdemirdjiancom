@@ -1,21 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { parse } from 'smol-toml'
-import { readFileSync } from 'node:fs'
-import path from 'node:path'
-
-const hugoConfig = parse(
-  readFileSync(path.resolve(__dirname, '../hugo.toml'), 'utf-8')
-) as {
-  params: {
-    person: {
-      email: string
-      phone: string
-      linkedin: string
-    }
-  }
-}
-
-const person = hugoConfig.params.person
+import { person } from './support/site-config.mts'
 
 test.describe('Resume Page', () => {
   test('should load resume page', async ({ page }) => {
@@ -48,14 +32,10 @@ test.describe('Resume Page', () => {
   test('should navigate from home to resume', async ({ page }) => {
     await page.goto('/')
     
-    // Verify Resume link exists
-    await expect(page.getByRole('link', { name: 'Resume' }).first()).toBeVisible()
-    
-    // Navigate to resume page
-    await page.goto('/resume/')
+    await page.locator('header nav').getByRole('link', { name: 'Resume', exact: true }).click()
     
     // Verify we're on the resume page
-    await expect(page).toHaveURL(/.*resume/)
-    await expect(page.getByText('Contact Info').first()).toBeVisible()
+    await expect(page).toHaveURL(/\/resume\/$/)
+    await expect(page.getByRole('heading', { name: 'Contact Info', exact: true })).toBeVisible()
   })
 })

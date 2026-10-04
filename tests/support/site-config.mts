@@ -13,7 +13,7 @@ type HeroAction = { name: string } & (
   | { person: keyof Person; url?: never }
 )
 
-const config = parse(readFileSync(new URL('../../hugo.toml', import.meta.url), 'utf8')) as unknown as {
+const config = parse(readFileSync('hugo.toml', 'utf8')) as unknown as {
   title: string
   menus: { main: Array<{ name: string; url: string; weight: number }> }
   params: { person: Person; heroActions: HeroAction[] }

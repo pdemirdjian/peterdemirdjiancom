@@ -8,9 +8,25 @@ test.describe('Resume Page', () => {
     // Check title
     await expect(page).toHaveTitle(/Pete Demirdjian/)
     
-    // Check resume content exists - look for h2 headings
-    await expect(page.locator('h2').first()).toBeVisible()
-    await expect(page.getByText('Contact Info').first()).toBeVisible()
+    await expect(page.locator('main h2')).toHaveText([
+      'Contact Info',
+      'Experience',
+      'Skills',
+      'Selected Projects & Open Source',
+      'Education',
+    ])
+  })
+
+  test('every job heading contains exactly one dates span', async ({ page }) => {
+    await page.goto('/resume/')
+
+    const jobHeadings = page.locator('main h4')
+    await expect(jobHeadings.first()).toBeVisible()
+
+    for (const heading of await jobHeadings.all()) {
+      await expect(heading.locator('.dates')).toHaveCount(1)
+      await expect(heading.locator('span.dates')).toHaveCount(1)
+    }
   })
 
   test('should have contact information from Person', async ({ page }) => {

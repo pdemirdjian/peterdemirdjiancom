@@ -1,16 +1,5 @@
 {{ define "main" }}
 {{ $person := .Site.Params.person }}
-<section class="hero">
-  <p class="eyebrow">{{ $person.jobTitle }}</p>
-  <h1>{{ $person.shortName }}</h1>
-  <p class="lede">I build self-service infrastructure platforms — paved roads that let engineering teams ship to the cloud quickly and safely.</p>
-  <div class="hero-actions">
-    {{ range $index, $action := .Site.Params.heroActions }}
-    {{ $url := $action.url }}
-    {{ with $action.person }}{{ $url = index $person . }}{{ if eq . "email" }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
-    <a class="btn{{ if eq $index 0 }} btn-primary{{ end }}" href="{{ $url }}"{{ if hasPrefix $url "http" }} rel="noopener" target="_blank"{{ end }}>{{ $action.name }}</a>
-    {{ end }}
-  </div>
-</section>
+{{ partial "hero.html" (dict "eyebrow" $person.jobTitle "title" $person.shortName "lede" "I build self-service infrastructure platforms — paved roads that let engineering teams ship to the cloud quickly and safely." "actions" .Site.Params.heroActions "person" $person) }}
 {{ .Content }}
 {{ end }}

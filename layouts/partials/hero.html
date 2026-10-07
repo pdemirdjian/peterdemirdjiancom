@@ -1,0 +1,12 @@
+<section class="hero">
+  <p class="eyebrow">{{ .eyebrow }}</p>
+  <h1>{{ .title }}</h1>
+  <p class="lede">{{ .lede | safeHTML }}</p>
+  <div class="hero-actions">
+    {{ range $index, $action := .actions }}
+    {{ $url := $action.url }}
+    {{ with $action.person }}{{ $url = index $.person . }}{{ if eq . "email" }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
+    <a class="btn{{ if eq $index 0 }} btn-primary{{ end }}" href="{{ $url }}"{{ if hasPrefix $url "http" }} rel="noopener" target="_blank"{{ end }}>{{ $action.name }}</a>
+    {{ end }}
+  </div>
+</section>

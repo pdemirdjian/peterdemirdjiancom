@@ -1,0 +1,18 @@
+{{ if .IsHome }}
+{{ $person := .Site.Params.person }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ $person.name }}",
+  "alternateName": "{{ $person.shortName }}",
+  "jobTitle": "{{ $person.jobTitle }}",
+  "worksFor": { "@type": "Organization", "name": "{{ $person.employer }}" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "{{ $person.school }}" },
+  "url": "{{ .Site.BaseURL }}",
+  "image": "{{ $person.image | absURL }}",
+  "email": "mailto:{{ $person.email }}",
+  "sameAs": ["{{ $person.linkedin }}"]
+}
+</script>
+{{ end }}

@@ -22,13 +22,6 @@ playwright/.cache/
 .terraform
 .terraform.lock.hcl
 *.tfstate*
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 .tmp.driveupload
 .tmp.drivedownload
 

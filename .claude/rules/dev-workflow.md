@@ -12,7 +12,7 @@ pnpm run test:headed       # tests with browser visible
 pnpm run test:debug        # step through with Playwright Inspector
 ```
 
-Local Hugo should match the `HUGO_VERSION` pin in `netlify.toml`.
+See `AGENTS.md` for Hugo version and dependency-update constraints.
 
 ## Common Tasks
 
@@ -26,15 +26,15 @@ Local Hugo should match the `HUGO_VERSION` pin in `netlify.toml`.
 
 **Add static assets**: Place in `static/` → referenced from the site root (e.g. `static/images/foo.png` → `/images/foo.png`)
 
-**Update dependencies**: Renovate handles this, including the Hugo pin in `netlify.toml` — only intervene for majors or failures
+**Update dependencies**: Follow the dependency-update constraints in `AGENTS.md`
 
 ## Troubleshooting
 
 **Build fails**:
-1. Check local Hugo version against `HUGO_VERSION` in `netlify.toml`
+1. Check local Hugo version against the version constraint in `AGENTS.md`
 2. Run `hugo` locally and read the error — template errors name the offending layout file
 3. For test failures: `rm -rf node_modules && pnpm install` (only delete `pnpm-lock.yaml` if it's actually corrupted)
 
 **Dev server issues**: Kill port 1313 and restart `hugo server`; Playwright's test server uses port 8080
 
-**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → confirm `HUGO_VERSION` in `netlify.toml` is valid → reproduce with the same Hugo version locally
+**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → confirm the configured Hugo version is valid → reproduce with the same Hugo version locally

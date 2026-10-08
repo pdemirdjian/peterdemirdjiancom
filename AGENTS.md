@@ -29,7 +29,7 @@ Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/p
 | `layouts/` | Hugo templates (`index.html`, `404.html`, `_default/`) |
 | `static/css/style.css` | Site styles |
 | `static/images/` | Static assets, served at `/images/` |
-| `netlify.toml` | Build command, `HUGO_VERSION` pin, security headers, redirects |
+| `netlify.toml` | Build command, security headers, redirects |
 | `tests/` + `playwright.config.ts` | Playwright e2e tests |
 | `package.json` | Playwright deps, Node/pnpm version constraints |
 | `renovate.json` | Automated dependency updates |

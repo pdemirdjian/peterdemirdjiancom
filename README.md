@@ -24,6 +24,8 @@ hugo server
 hugo
 ```
 
+Node/pnpm is used only for the test toolchain. See [`package.json`](package.json) for available test and typecheck commands.
+
 ### Pre-commit Hooks
 
 This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. The hooks will automatically run before each commit to:

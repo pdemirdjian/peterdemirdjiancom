@@ -37,4 +37,4 @@ See `AGENTS.md` for Hugo version and dependency-update constraints.
 
 **Dev server issues**: Kill port 1313 and restart `hugo server`; Playwright's test server uses port 8080
 
-**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → confirm the configured Hugo version is valid → reproduce with the same Hugo version locally
+**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → check the configured Hugo version against the version constraint in `AGENTS.md` → reproduce with the same Hugo version locally

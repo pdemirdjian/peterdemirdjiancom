@@ -70,8 +70,11 @@ test.describe('Home Page', () => {
     await expect(img.locator('../source')).toHaveAttribute('srcset', /\.webp 300w, .*\.webp 600w/)
     await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0)
     const dimensions = await img.boundingBox()
-    expect(dimensions?.width).toBeCloseTo(260, 0)
-    expect(dimensions?.height).toBeCloseTo(359, 0)
+    const isMobileLayout = await page.evaluate(() => window.matchMedia('(max-width: 700px)').matches)
+    const expectedWidth = isMobileLayout ? 300 : 260
+    expect(dimensions?.width).toBeCloseTo(expectedWidth, 0)
+    // Allow one pixel for the border and rounding of the resized image source.
+    expect(Math.abs(dimensions!.height - expectedWidth * 415 / 300)).toBeLessThan(1)
   })
 
   test('should have footer with license info', async ({ page }) => {

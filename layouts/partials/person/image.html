@@ -1,2 +1,2 @@
 {{- $master := resources.Get .image -}}
-{{- return (dict "small" ($master.Resize "300x webp") "large" ($master.Resize "600x webp") "social" ($master.Fill "1200x630 jpg")) -}}
+{{- return (dict "small" ($master.Resize "300x webp") "large" ($master.Resize "600x webp") "social" ($master.Fill "1200x630 jpg Top")) -}}

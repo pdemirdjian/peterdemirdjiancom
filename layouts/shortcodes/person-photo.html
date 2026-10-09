@@ -1,0 +1,5 @@
+{{- $image := partial "person/image.html" .Site.Params.person -}}
+<picture>
+  <source type="image/webp" srcset="{{ $image.small.RelPermalink }} 300w, {{ $image.large.RelPermalink }} 600w" sizes="(max-width: 700px) 300px, 260px">
+  <img src="{{ $image.small.RelPermalink }}" width="{{ $image.small.Width }}" height="{{ $image.small.Height }}" alt="Portrait of Peter Demirdjian" class="about-photo" fetchpriority="high">
+</picture>

@@ -60,8 +60,21 @@ test.describe('Home Page', () => {
     await page.goto('/')
     
     // Check image loads
-    const img = page.locator('img[alt="picture-of-me"]')
+    const img = page.getByRole('img', { name: 'Portrait of Peter Demirdjian' })
     await expect(img).toBeVisible()
+    await expect(img).toHaveAttribute('width', '300')
+    await expect(img).toHaveAttribute('height', '415')
+    await expect(img).toHaveAttribute('fetchpriority', 'high')
+    await expect(img).not.toHaveAttribute('loading', 'lazy')
+    await expect(img.locator('..')).toHaveJSProperty('tagName', 'PICTURE')
+    await expect(img.locator('../source')).toHaveAttribute('srcset', /\.webp 300w, .*\.webp 600w/)
+    await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0)
+    const dimensions = await img.boundingBox()
+    const isMobileLayout = await page.evaluate(() => window.matchMedia('(max-width: 700px)').matches)
+    const expectedWidth = isMobileLayout ? 300 : 260
+    expect(dimensions?.width).toBeCloseTo(expectedWidth, 0)
+    // Allow one pixel for the border and rounding of the resized image source.
+    expect(Math.abs(dimensions!.height - expectedWidth * 415 / 300)).toBeLessThan(1)
   })
 
   test('should have footer with license info', async ({ page }) => {

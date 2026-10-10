@@ -6,6 +6,7 @@ coverage/
 run
 dist
 public/
+resources/_gen/
 .hugo_build.lock
 .DS_Store
 .nyc_output

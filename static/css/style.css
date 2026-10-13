@@ -327,10 +327,10 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
 
 .about-text p { margin: 0 0 1rem; }
 
-img.about-photo,
-img[alt="picture-of-me"] {
+img.about-photo {
   width: 100%;
   max-width: 300px;
+  height: auto;
   margin: 0;
   border-radius: 12px;
   border: 1px solid var(--color-border);
@@ -371,7 +371,7 @@ img.cc-badge { margin: 1rem 0; border-radius: 0; }
   nav ul { gap: 0.9rem 1.1rem; justify-content: center; }
   .hero { padding: 2.5rem 0 2rem; }
   .about-grid { grid-template-columns: 1fr; }
-  img.about-photo, img[alt="picture-of-me"] { margin: 0 auto; }
+  img.about-photo { margin: 0 auto; }
   h4 .dates { flex-basis: 100%; }
 }
 

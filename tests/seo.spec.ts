@@ -47,7 +47,7 @@ test.describe('SEO and Meta Tags', () => {
     const ogImage = await page.locator('meta[property="og:image"]').first()
     await expect(ogImage).toHaveAttribute(
       'content',
-      new RegExp(`https://peterdemirdjian\\.com${person.image}`)
+      /^https:\/\/peterdemirdjian\.com\/images\/.+\.jpg$/
     )
 
     // Check canonical link

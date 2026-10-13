@@ -18,7 +18,7 @@ enableEmoji = true
   phone = "(857) 895-2304"
   linkedin = "https://www.linkedin.com/in/peter-demirdjian/"
   github = "https://github.com/pdemirdjian/peterdemirdjiancom"
-  image = "/images/home.png"
+  image = "images/home.png"
 
 [[params.heroActions]]
   name = "View resume"

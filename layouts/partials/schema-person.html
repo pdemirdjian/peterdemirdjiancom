@@ -1,3 +1,4 @@
+{{ $image := partial "person/image.html" .Site.Params.person }}
 {{ if .IsHome }}
 {{ $person := .Site.Params.person }}
 <script type="application/ld+json">
@@ -10,7 +11,7 @@
   "worksFor": { "@type": "Organization", "name": "{{ $person.employer }}" },
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "{{ $person.school }}" },
   "url": "{{ .Site.BaseURL }}",
-  "image": "{{ $person.image | absURL }}",
+  "image": "{{ $image.social.RelPermalink | absURL }}",
   "email": "mailto:{{ $person.email }}",
   "sameAs": ["{{ $person.linkedin }}"]
 }

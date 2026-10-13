@@ -5,7 +5,9 @@ import { HTMLHint } from 'htmlhint/dist/core/core.js'
 import type { Ruleset } from 'htmlhint/dist/core/types.js'
 import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 import { findBrokenLinks, type SiteFiles } from './support/build-output.mts'
+import { person } from './support/site-config.mts'
 
 // Verifies the build output: the files Hugo must have written, the HTML rules
 // in .htmlhintrc, and that every same-site reference resolves. These checks
@@ -17,11 +19,33 @@ const publishDir = resolve(process.env.PUBLISH_DIR ?? 'public')
 const REQUIRED_FILES = [
   '/index.html',
   '/resume/index.html',
+  '/resume.pdf',
   '/license/index.html',
   '/sitemap.xml',
   '/robots.txt',
   '/404.html',
 ]
+
+test('the downloadable resume is a one or two page Letter PDF naming the current role', async () => {
+  const pdf = await getDocument({ data: new Uint8Array(await readFile(join(publishDir, 'resume.pdf'))) }).promise
+  expect(pdf.numPages).toBeGreaterThanOrEqual(1)
+  expect(pdf.numPages).toBeLessThanOrEqual(2)
+  const { info } = await pdf.getMetadata()
+  expect((info as { Title?: string }).Title).toBe(`Resume — ${person.name}`)
+  const pageTexts: string[] = []
+  for (let n = 1; n <= pdf.numPages; n++) {
+    const page = await pdf.getPage(n)
+    expect(page.view).toEqual([0, 0, 612, 792])
+    const { items } = await page.getTextContent()
+    pageTexts.push(items.map((item) => ('str' in item ? item.str : '')).join(' '))
+  }
+  // Chromium splits words into text runs at font-dependent points (e.g.
+  // "Principa l" on Linux), so compare with all whitespace removed.
+  const squash = (value: string) => value.replace(/\s+/g, '')
+  const text = squash(pageTexts.join(''))
+  expect(text).toContain(squash(person.jobTitle))
+  expect(text).toContain(squash(person.employer))
+})
 
 /** Site-relative paths of every file in the publish directory. */
 async function listFiles(dir: string, prefix = ''): Promise<string[]> {

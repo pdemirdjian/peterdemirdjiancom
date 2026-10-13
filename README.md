@@ -21,10 +21,12 @@ pre-commit install
 hugo server
 
 # Build for production
-hugo
+pnpm build
 ```
 
-Node/pnpm is used only for the test toolchain. See [`package.json`](package.json) for available test and typecheck commands.
+Node/pnpm runs the test toolchain and generates `/resume.pdf` from the built resume page using Chromium's print rendering. The PDF includes the same Person contact details as the page. Netlify runs `pnpm build` (Hugo, then the Chromium headless shell, then `scripts/render-resume.mts`; see [ADR-0001](docs/adr/0001-render-resume-pdf-in-netlify-build.md)); Chromium installation or launch errors fail the build. No system packages are installed by the Netlify build command.
+
+`pnpm test` builds the site and PDF locally. Tests parse the PDF with `pdfjs-dist` (a test-only dependency) and check its title, Letter page size, one or two page length, and that it names the current job title and employer from Person. See [`package.json`](package.json) for available test and typecheck commands.
 
 ### Pre-commit Hooks
 

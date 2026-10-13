@@ -2,7 +2,7 @@
 
 [build]
   publish = "public"
-  command = "hugo"
+  command = "pnpm build"
 
 [build.environment]
   HUGO_VERSION = "0.167.0"
@@ -63,6 +63,13 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+# Resume PDF - readable filename when saved; short cache so deploys propagate
+[[headers]]
+  for = "/resume.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Disposition = "inline; filename=\"Peter-Demirdjian-Resume.pdf\""
 
 # Force HTTPS redirects
 [[redirects]]

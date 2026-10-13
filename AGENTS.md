@@ -1,6 +1,6 @@
 # peterdemirdjiancom
 
-Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/pnpm is used only for Playwright e2e tests.
+Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/pnpm runs the Playwright e2e tests and renders `/resume.pdf` in the production build (see `docs/adr/0001-render-resume-pdf-in-netlify-build.md`).
 
 ## Constraints
 
@@ -14,7 +14,7 @@ Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/p
 
 - Content is Markdown in `content/`; templates are Hugo layouts in `layouts/`
 - Styling lives in `static/css/style.css` — no CSS framework, no preprocessor
-- pnpm only — never npm or yarn (Node is used only for the test toolchain: Playwright, TypeScript, htmlhint, smol-toml)
+- pnpm only — never npm or yarn (Node runs the test toolchain — Playwright, TypeScript, htmlhint, smol-toml, pdfjs-dist — and the resume PDF build step)
 - Test locally with `hugo server` before suggesting changes
 - Run `pnpm test` (Playwright e2e) before committing site changes
 
@@ -31,6 +31,7 @@ Personal portfolio/resume website. Hugo static site, deployed to Netlify. Node/p
 | `static/images/` | Static assets, served at `/images/` |
 | `netlify.toml` | Build command, security headers, redirects |
 | `tests/` + `playwright.config.ts` | Playwright e2e tests |
+| `scripts/render-resume.mts` | Build step: renders `public/resume.pdf` |
 | `package.json` | Playwright deps, Node/pnpm version constraints |
 | `renovate.json` | Automated dependency updates |
 

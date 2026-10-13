@@ -2,7 +2,7 @@
 
 ## Netlify
 
-- **Build command**: `hugo`
+- **Build command**: `pnpm build` (Hugo, then Chromium renders `public/resume.pdf`; see ADR-0001)
 - **Publish directory**: `public`
 - **Auto-deploy**: push to main branch
 - **Security headers**: configured in `netlify.toml` — never weaken them
@@ -10,7 +10,7 @@
 
 ## Pre-deploy Checklist
 
-- `hugo` builds cleanly (local)
+- `pnpm build` builds cleanly (local)
 - `pnpm test` (Playwright e2e) passes
 - Verify content renders correctly with `hugo server`
 

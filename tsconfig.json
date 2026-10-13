@@ -21,6 +21,7 @@
   "include": [
     "tests/**/*.ts",
     "tests/**/*.mts",
+    "scripts/**/*.mts",
     "*.ts"
   ],
   "exclude": [

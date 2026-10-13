@@ -1,5 +1,6 @@
 ---
 title: "Resume"
+pdf: true
 ---
 
 ## Contact Info

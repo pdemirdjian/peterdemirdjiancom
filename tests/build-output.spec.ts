@@ -39,9 +39,12 @@ test('the downloadable resume is a one or two page Letter PDF naming the current
     const { items } = await page.getTextContent()
     pageTexts.push(items.map((item) => ('str' in item ? item.str : '')).join(' '))
   }
-  const text = pageTexts.join(' ').replace(/\s+/g, ' ')
-  expect(text).toContain(person.jobTitle)
-  expect(text).toContain(person.employer)
+  // Chromium splits words into text runs at font-dependent points (e.g.
+  // "Principa l" on Linux), so compare with all whitespace removed.
+  const squash = (value: string) => value.replace(/\s+/g, '')
+  const text = squash(pageTexts.join(''))
+  expect(text).toContain(squash(person.jobTitle))
+  expect(text).toContain(squash(person.employer))
 })
 
 /** Site-relative paths of every file in the publish directory. */

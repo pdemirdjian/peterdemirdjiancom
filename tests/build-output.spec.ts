@@ -5,7 +5,9 @@ import { HTMLHint } from 'htmlhint/dist/core/core.js'
 import type { Ruleset } from 'htmlhint/dist/core/types.js'
 import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 import { findBrokenLinks, type SiteFiles } from './support/build-output.mts'
+import { person } from './support/site-config.mts'
 
 // Verifies the build output: the files Hugo must have written, the HTML rules
 // in .htmlhintrc, and that every same-site reference resolves. These checks
@@ -24,17 +26,22 @@ const REQUIRED_FILES = [
   '/404.html',
 ]
 
-test('the downloadable resume is a valid one or two page Letter PDF', async () => {
-  const pdf = await readFile(join(publishDir, 'resume.pdf'))
-  expect(pdf.subarray(0, 5).toString()).toBe('%PDF-')
-  // Chromium writes page dictionaries uncompressed; no PDF parser dependency needed.
-  const source = pdf.toString('latin1')
-  const pages = [...source.matchAll(/\/Type\s*\/Page\b/g)]
-  expect(pages.length).toBeGreaterThanOrEqual(1)
-  expect(pages.length).toBeLessThanOrEqual(2)
-  const sizes = [...source.matchAll(/\/MediaBox\s*\[([^\]]+)\]/g)]
-  expect(sizes.length).toBe(pages.length)
-  for (const size of sizes) expect(size[1].trim().split(/\s+/).map(Number)).toEqual([0, 0, 612, 792])
+test('the downloadable resume is a one or two page Letter PDF naming the current role', async () => {
+  const pdf = await getDocument({ data: new Uint8Array(await readFile(join(publishDir, 'resume.pdf'))) }).promise
+  expect(pdf.numPages).toBeGreaterThanOrEqual(1)
+  expect(pdf.numPages).toBeLessThanOrEqual(2)
+  const { info } = await pdf.getMetadata()
+  expect((info as { Title?: string }).Title).toBe(`Resume — ${person.name}`)
+  const pageTexts: string[] = []
+  for (let n = 1; n <= pdf.numPages; n++) {
+    const page = await pdf.getPage(n)
+    expect(page.view).toEqual([0, 0, 612, 792])
+    const { items } = await page.getTextContent()
+    pageTexts.push(items.map((item) => ('str' in item ? item.str : '')).join(' '))
+  }
+  const text = pageTexts.join(' ').replace(/\s+/g, ' ')
+  expect(text).toContain(person.jobTitle)
+  expect(text).toContain(person.employer)
 })
 
 /** Site-relative paths of every file in the publish directory. */

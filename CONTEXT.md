@@ -18,7 +18,7 @@ Avoid: "deploy config", "netlify settings", "the toml".
 
 ### Netlify emulator
 
-The module that serves the built site under the deploy contract during tests, so the contract can be exercised without deploying.
+The module that serves the built site under the deploy contract during tests and when rendering the resume PDF at build time, so the contract can be exercised without deploying.
 
 Avoid: "static server", "mock Netlify", "test server".
 

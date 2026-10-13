@@ -117,4 +117,14 @@ test.describe('Cache headers', () => {
     expect(response.status()).toBe(200)
     expect(response.headers()['cache-control']).toBe('public, max-age=31536000, immutable')
   })
+
+  test('resume PDF is cacheable for an hour, named, and keeps the security headers', async ({ request }) => {
+    const response = await request.get('/resume.pdf')
+    expect(response.status()).toBe(200)
+    const headers = response.headers()
+    expect(headers['cache-control']).toBe('public, max-age=3600')
+    expect(headers['content-disposition']).toBe('inline; filename="Peter-Demirdjian-Resume.pdf"')
+    expect(headers['x-frame-options']).toBe('DENY')
+    expect(headers['strict-transport-security']).toContain('max-age=31536000')
+  })
 })

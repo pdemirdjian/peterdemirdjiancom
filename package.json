@@ -8,7 +8,8 @@
     "pnpm": "12.11.2"
   },
   "scripts": {
-    "build:pdf": "node tests/support/render-resume.mts",
+    "build": "hugo && playwright install --only-shell chromium && node scripts/render-resume.mts",
+    "build:pdf": "node scripts/render-resume.mts",
     "test": "playwright test",
     "typecheck": "tsc --noEmit",
     "test:ui": "playwright test --ui",
@@ -19,6 +20,7 @@
     "@playwright/test": "1.64.0",
     "@types/node": "26.6.5",
     "htmlhint": "1.9.2",
+    "pdfjs-dist": "6.4.299",
     "smol-toml": "1.9.1",
     "typescript": "7.0.2"
   }

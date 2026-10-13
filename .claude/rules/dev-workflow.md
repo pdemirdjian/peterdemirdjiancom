@@ -5,6 +5,7 @@
 ```bash
 hugo server                # dev server at http://localhost:1313 (live reload)
 hugo                       # build static site → public/
+pnpm build                 # production build: hugo + public/resume.pdf
 pnpm install               # install Playwright test dependencies
 pnpm test                  # Playwright e2e (builds site, serves public/ on :8080)
 pnpm run test:ui           # interactive test UI
@@ -37,4 +38,4 @@ See `AGENTS.md` for Hugo version and dependency-update constraints.
 
 **Dev server issues**: Kill port 1313 and restart `hugo server`; Playwright's test server uses port 8080
 
-**Netlify failures**: Check build logs → verify build command is `hugo` and publish dir is `public` → check the configured Hugo version against the version constraint in `AGENTS.md` → reproduce with the same Hugo version locally
+**Netlify failures**: Check build logs → verify build command is `pnpm build` and publish dir is `public` → check the configured Hugo version against the version constraint in `AGENTS.md` → reproduce with the same Hugo version locally

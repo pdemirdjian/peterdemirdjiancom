@@ -403,6 +403,8 @@ img.cc-badge { margin: 1rem 0; border-radius: 0; }
     font-size: 8pt;
     overflow-wrap: anywhere;
   }
+  /* Contact links already read as their own URL */
+  .contact-row a::after { content: none; }
   .dates, em, .contact-row span { color: #333; }
   .contact-row { font-size: 9pt; gap: 0.25rem 1rem; margin-bottom: 0.5rem; }
   li::marker { color: #000; }

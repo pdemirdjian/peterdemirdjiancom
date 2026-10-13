@@ -1,6 +1,7 @@
 import { chromium } from '@playwright/test'
 import { resolve } from 'node:path'
-import { createPublishServer } from './netlify-static-server.mts'
+import { createPublishServer } from '../tests/support/netlify-static-server.mts'
+import { person } from '../tests/support/site-config.mts'
 
 const publishDir = process.env.PUBLISH_DIR ?? 'public'
 const server = createPublishServer(publishDir)
@@ -20,7 +21,9 @@ try {
     if (!response?.ok()) throw new Error(`Resume page returned ${response?.status()}`)
     await page.emulateMedia({ media: 'print' })
     await page.evaluate(() => document.fonts.ready)
-    // Chromium uses the HTML document title as the PDF document title.
+    // Chromium writes the HTML document title as the PDF Title, so name the
+    // document after Person rather than the site's page title.
+    await page.evaluate((title) => { document.title = title }, `Resume — ${person.name}`)
     await page.pdf({
       path: resolve(publishDir, 'resume.pdf'),
       format: 'Letter',

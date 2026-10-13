@@ -86,7 +86,7 @@ export default defineConfig({
   webServer: {
     command: process.env.CI
       ? 'node tests/support/netlify-static-server.mts'
-      : 'hugo && node tests/support/netlify-static-server.mts',
+      : 'hugo && pnpm build:pdf && node tests/support/netlify-static-server.mts',
     port: TEST_PORT,
     reuseExistingServer: !process.env.CI,
     timeout: 60000,

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs'
 import { parse } from 'smol-toml'
 
 type Person = {
+  name: string
   email: string
   phone: string
   linkedin: string

@@ -17,11 +17,25 @@ const publishDir = resolve(process.env.PUBLISH_DIR ?? 'public')
 const REQUIRED_FILES = [
   '/index.html',
   '/resume/index.html',
+  '/resume.pdf',
   '/license/index.html',
   '/sitemap.xml',
   '/robots.txt',
   '/404.html',
 ]
+
+test('the downloadable resume is a valid one or two page Letter PDF', async () => {
+  const pdf = await readFile(join(publishDir, 'resume.pdf'))
+  expect(pdf.subarray(0, 5).toString()).toBe('%PDF-')
+  // Chromium writes page dictionaries uncompressed; no PDF parser dependency needed.
+  const source = pdf.toString('latin1')
+  const pages = [...source.matchAll(/\/Type\s*\/Page\b/g)]
+  expect(pages.length).toBeGreaterThanOrEqual(1)
+  expect(pages.length).toBeLessThanOrEqual(2)
+  const sizes = [...source.matchAll(/\/MediaBox\s*\[([^\]]+)\]/g)]
+  expect(sizes.length).toBe(pages.length)
+  for (const size of sizes) expect(size[1].trim().split(/\s+/).map(Number)).toEqual([0, 0, 612, 792])
+})
 
 /** Site-relative paths of every file in the publish directory. */
 async function listFiles(dir: string, prefix = ''): Promise<string[]> {

@@ -1,6 +1,9 @@
 {{ define "main" }}
 <article>
-  <h1>{{ .Title }}</h1>
+  <h1>{{ .Title }}{{ if eq .RelPermalink "/resume/" }} — {{ .Site.Params.person.name }}{{ end }}</h1>
+  {{ if eq .RelPermalink "/resume/" }}
+  <p class="screen-only"><a class="btn" href="/resume.pdf" download>Download PDF</a></p>
+  {{ end }}
   {{ .Content }}
 </article>
 {{ end }}

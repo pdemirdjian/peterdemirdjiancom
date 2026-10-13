@@ -2,7 +2,7 @@
 
 [build]
   publish = "public"
-  command = "hugo"
+  command = "hugo && pnpm exec playwright install chromium && pnpm build:pdf"
 
 [build.environment]
   HUGO_VERSION = "0.167.0"

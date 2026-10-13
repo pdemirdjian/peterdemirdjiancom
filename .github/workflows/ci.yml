@@ -107,7 +107,13 @@ jobs:
         run: pnpm exec playwright install-deps ${{ matrix.browser }}
 
       - name: Run Playwright tests
-        run: pnpm exec playwright test --project=${{ matrix.browser }}
+        # All projects verify build output that includes the downloadable PDF.
+        # This generates test input only; deployment remains on Netlify.
+        run: |
+          pnpm exec playwright install chromium
+          pnpm exec playwright install-deps chromium
+          pnpm build:pdf
+          pnpm exec playwright test --project=${{ matrix.browser }}
 
       - name: Upload Playwright report
         if: always()

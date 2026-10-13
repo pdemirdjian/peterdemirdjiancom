@@ -8,6 +8,7 @@
     "pnpm": "12.11.2"
   },
   "scripts": {
+    "build:pdf": "node tests/support/render-resume.mts",
     "test": "playwright test",
     "typecheck": "tsc --noEmit",
     "test:ui": "playwright test --ui",

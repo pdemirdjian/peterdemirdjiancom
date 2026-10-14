@@ -15,12 +15,13 @@ const deploySpecs = ['**/deploy-config.spec.ts', '**/netlify-site.spec.ts', '**/
  * project. */
 const buildSpecs = ['**/build-output.spec.ts', '**/build-output-links.spec.ts']
 
-/* Everything a browser project must not pick up: each browserless spec runs
- * exactly once, in its own project. */
-const browserlessSpecs = [...deploySpecs, ...buildSpecs]
+/* Browserless specs run in their own projects. Live specs run only through
+ * playwright.live.config.ts, never as part of the main suite. */
+const browserlessSpecs = [...deploySpecs, ...buildSpecs, '**/live/**']
 
 export default defineConfig({
   testDir: './tests',
+  testIgnore: ['**/live/**'],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

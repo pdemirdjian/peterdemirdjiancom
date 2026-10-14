@@ -4,6 +4,13 @@ import { matchPath, parseDeployContract } from '../support/netlify-site.mts'
 
 const contract = parseDeployContract(readFileSync('netlify.toml', 'utf8'))
 
+function cacheDirectives(value: string | undefined) {
+  return value?.split(',').map((directive) => {
+    const [name, ...parts] = directive.trim().split('=')
+    return [name.toLowerCase(), ...parts].join('=')
+  }).sort()
+}
+
 function expectContractHeaders(response: APIResponse, path: string) {
   const headers = response.headers()
   const expected: Record<string, string> = {}
@@ -11,7 +18,13 @@ function expectContractHeaders(response: APIResponse, path: string) {
     if (matchPath(rule.for, path)) Object.assign(expected, rule.values)
   }
   for (const [name, value] of Object.entries(expected)) {
-    expect.soft(headers[name.toLowerCase()], `${path} ${name}`).toBe(value)
+    const received = headers[name.toLowerCase()]
+    const message = `${path} ${name}\nExpected: ${JSON.stringify(value)}\nReceived: ${JSON.stringify(received)}`
+    if (name.toLowerCase() === 'cache-control') {
+      expect.soft(cacheDirectives(received), message).toEqual(cacheDirectives(value))
+    } else {
+      expect.soft(received, message).toBe(value)
+    }
   }
 }
 

@@ -7,7 +7,7 @@ title: "License"
 This website and its content are licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**.
 
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
-  <img alt="Creative Commons License" class="cc-badge" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+  <img alt="Creative Commons License" class="cc-badge" src="/images/cc-by-nc-nd-4.0-88x31.png" />
 </a>
 
 ## What this means

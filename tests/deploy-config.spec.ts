@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { request } from 'node:http'
+import { readFileSync } from 'node:fs'
+import { createNetlifySite, parseDeployContract } from './support/netlify-site.mts'
 import { TEST_HOST, TEST_PORT } from './support/config.mts'
 
 // Verifies the deploy contract in netlify.toml (headers, redirects, 404
@@ -24,6 +26,27 @@ test.describe('Security headers', () => {
     const headers = (await request.get('/resume/')).headers()
     expect(headers['content-security-policy']).toContain("frame-ancestors 'none'")
     expect(headers['x-frame-options']).toBe('DENY')
+  })
+
+  test('disables the obsolete XSS auditor', () => {
+    const site = createNetlifySite({
+      contract: parseDeployContract(readFileSync('netlify.toml', 'utf8')),
+      readFile: () => new TextEncoder().encode('<html></html>'),
+    })
+    expect(site('/').headers.get('x-xss-protection')).toBe('0')
+  })
+
+  test('denies unused features with current Permissions-Policy directives', () => {
+    const site = createNetlifySite({
+      contract: parseDeployContract(readFileSync('netlify.toml', 'utf8')),
+      readFile: () => new TextEncoder().encode('<html></html>'),
+    })
+    const policy = site('/').headers.get('permissions-policy') ?? ''
+    expect(policy.split(',').map((directive) => directive.trim()).sort()).toEqual([
+      'accelerometer=()', 'camera=()', 'clipboard-read=()', 'clipboard-write=()',
+      'geolocation=()', 'gyroscope=()', 'magnetometer=()', 'microphone=()',
+      'payment=()', 'usb=()', 'xr-spatial-tracking=()',
+    ])
   })
 })
 

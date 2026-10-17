@@ -47,3 +47,12 @@ enableEmoji = true
   name = "License"
   url = "/license/"
   weight = 2
+
+[outputFormats.Security]
+  mediaType = "text/plain"
+  baseName = "security"
+  path = ".well-known"
+  isPlainText = true
+
+[outputs]
+  home = ["HTML", "RSS", "Security"]

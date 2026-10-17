@@ -3,11 +3,11 @@ import { test, expect } from '@playwright/test'
 // re-exports, with the rules registered, and it carries core.d.ts.
 import { HTMLHint } from 'htmlhint/dist/core/core.js'
 import type { Ruleset } from 'htmlhint/dist/core/types.js'
-import { readdir, readFile } from 'node:fs/promises'
+import { readdir, readFile, stat } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 import { findBrokenLinks, type SiteFiles } from './support/build-output.mts'
-import { person } from './support/site-config.mts'
+import { person, baseURL } from './support/site-config.mts'
 
 // Verifies the build output: the files Hugo must have written, the HTML rules
 // in .htmlhintrc, and that every same-site reference resolves. These checks
@@ -23,6 +23,7 @@ const REQUIRED_FILES = [
   '/license/index.html',
   '/sitemap.xml',
   '/robots.txt',
+  '/.well-known/security.txt',
   '/404.html',
 ]
 
@@ -147,4 +148,17 @@ test('Person metadata shares an absolute 1200×630 JPEG in the build output', as
     offset += 2 + jpeg.readUInt16BE(offset + 2)
   }
   expect(dimensions).toEqual([1200, 630])
+})
+
+test('security.txt publishes Person contact and a UTC expiry about a year after build time', async () => {
+  const path = join(publishDir, '.well-known/security.txt')
+  const text = await readFile(path, 'utf8')
+  expect(text).toContain(`Contact: mailto:${person.email}\n`)
+  expect(text).toContain('Preferred-Languages: en\n')
+  expect(text).toContain(`Canonical: ${new URL('.well-known/security.txt', baseURL).href}\n`)
+  const expires = text.match(/^Expires: (.+)$/m)?.[1] ?? ''
+  expect(expires).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/)
+  const daysAfterBuild = (Date.parse(expires) - (await stat(path)).mtimeMs) / 86_400_000
+  expect(daysAfterBuild).toBeGreaterThan(300)
+  expect(daysAfterBuild).toBeLessThan(400)
 })

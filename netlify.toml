@@ -5,7 +5,7 @@
   command = "pnpm build"
 
 [build.environment]
-  HUGO_VERSION = "0.167.0"
+  HUGO_VERSION = "0.168.0"
 
 # Security Headers
 [[headers]]

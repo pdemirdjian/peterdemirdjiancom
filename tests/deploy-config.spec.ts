@@ -151,3 +151,13 @@ test.describe('Cache headers', () => {
     expect(headers['strict-transport-security']).toContain('max-age=31536000')
   })
 })
+
+test('security.txt is served as plain text with contact and a future expiry', async ({ request }) => {
+  const response = await request.get('/.well-known/security.txt', { maxRedirects: 0 })
+  expect(response.status()).toBe(200)
+  expect(response.headers()['content-type']).toBe('text/plain; charset=utf-8')
+  const text = await response.text()
+  expect(text).toMatch(/^Contact: mailto:.+$/m)
+  const expires = text.match(/^Expires: (.+)$/m)?.[1] ?? ''
+  expect(Date.parse(expires)).toBeGreaterThan(Date.now())
+})

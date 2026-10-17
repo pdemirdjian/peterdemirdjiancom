@@ -155,7 +155,8 @@ test.describe('Cache headers', () => {
 test('security.txt is served as plain text with contact and a future expiry', async ({ request }) => {
   const response = await request.get('/.well-known/security.txt', { maxRedirects: 0 })
   expect(response.status()).toBe(200)
-  expect(response.headers()['content-type']).toBe('text/plain; charset=utf-8')
+  // Netlify sends `charset=UTF-8`, the emulator `utf-8`; charset is case-insensitive.
+  expect(response.headers()['content-type']).toMatch(/^text\/plain(;|$)/i)
   const text = await response.text()
   expect(text).toMatch(/^Contact: mailto:.+$/m)
   const expires = text.match(/^Expires: (.+)$/m)?.[1] ?? ''

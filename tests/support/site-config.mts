@@ -18,11 +18,13 @@ type HeroAction = { name: string } & (
 )
 
 const config = parse(readFileSync('hugo.toml', 'utf8')) as unknown as {
+  baseURL: string
   title: string
   menus: { main: Array<{ name: string; url: string; weight: number }> }
   params: { person: Person; heroActions: HeroAction[] }
 }
 
+export const baseURL = config.baseURL
 export const siteTitle = config.title
 export const menuEntries = [...config.menus.main].sort((a, b) => a.weight - b.weight)
 export const person = config.params.person

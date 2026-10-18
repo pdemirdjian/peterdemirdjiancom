@@ -17,7 +17,7 @@
     "test:debug": "playwright test --debug"
   },
   "devDependencies": {
-    "@playwright/test": "1.64.0",
+    "@playwright/test": "1.64.1",
     "@types/node": "26.6.5",
     "htmlhint": "1.9.2",
     "pdfjs-dist": "6.4.299",

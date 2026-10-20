@@ -91,6 +91,6 @@ test.describe('SEO and Meta Tags', () => {
 test('resume shows its last update and dateModified metadata', async ({ page }) => {
   await page.goto('/resume/')
   await expect(page.getByText(/^Last updated (January|February|March|April|May|June|July|August|September|October|November|December) 20\d{2}$/)).toBeVisible()
-  const modified = await page.locator('meta[itemprop="dateModified"]').getAttribute('content')
+  const modified = await page.locator('[itemscope] [itemprop="dateModified"]').getAttribute('datetime')
   expect(Number.isFinite(Date.parse(modified ?? ''))).toBe(true)
 })

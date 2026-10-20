@@ -46,6 +46,7 @@ test('the downloadable resume is a one or two page Letter PDF naming the current
   const text = squash(pageTexts.join(''))
   expect(text).toContain(squash(person.jobTitle))
   expect(text).toContain(squash(person.employer))
+  expect(text).toMatch(/Lastupdated(January|February|March|April|May|June|July|August|September|October|November|December)20\d{2}/)
 })
 
 /** Site-relative paths of every file in the publish directory. */
@@ -131,7 +132,7 @@ test('Person metadata shares an absolute 1200×630 JPEG in the build output', as
   const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]
   expect(og).toMatch(/^https:\/\/peterdemirdjian\.com\/images\/.+\.jpg$/)
   expect(twitter).toBe(og)
-  expect(JSON.parse(json ?? '{}').image).toBe(og)
+  expect(JSON.parse(json ?? '{}').mainEntity.image).toBe(og)
 
   const jpeg = await readFile(join(publishDir, new URL(og!).pathname))
   expect(jpeg.readUInt16BE(0)).toBe(0xffd8)
@@ -161,4 +162,26 @@ test('security.txt publishes Person contact and a UTC expiry about a year after 
   const daysAfterBuild = (Date.parse(expires) - (await stat(path)).mtimeMs) / 86_400_000
   expect(daysAfterBuild).toBeGreaterThan(300)
   expect(daysAfterBuild).toBeLessThan(400)
+})
+
+test('the sitemap advertises only HTML pages with valid lastmod dates', async () => {
+  const sitemap = await readFile(join(publishDir, 'sitemap.xml'), 'utf8')
+  const urls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)]
+  expect(urls.length).toBeGreaterThan(0)
+  for (const [, entry] of urls) {
+    const loc = entry.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? ''
+    const url = new URL(loc)
+    expect(url.origin).toBe(new URL(baseURL).origin)
+    expect(['/tags/', '/categories/', '/resume.pdf']).not.toContain(url.pathname)
+    const htmlPath = url.pathname.endsWith('/') ? `${url.pathname}index.html` : url.pathname
+    expect(htmlPath).toMatch(/\.html$/)
+    expect(buildOutput.has(htmlPath)).toBe(true)
+    const lastmod = entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? ''
+    expect(lastmod).toMatch(/^\d{4}-\d{2}-\d{2}T/)
+    expect(Number.isFinite(Date.parse(lastmod))).toBe(true)
+  }
+  const files = await readdir(publishDir)
+  expect(files).not.toContain('tags')
+  expect(files).not.toContain('categories')
+  expect(files).not.toContain('index.xml')
 })

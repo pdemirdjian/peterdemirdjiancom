@@ -13,7 +13,7 @@
   "url": "{{ .Site.BaseURL }}",
   "image": "{{ $image.social.RelPermalink | absURL }}",
   "email": "mailto:{{ $person.email }}",
-  "sameAs": ["{{ $person.linkedin }}"]
+  "sameAs": ["{{ $person.linkedin }}", "{{ $person.github }}"]
 }
 </script>
 {{ end }}

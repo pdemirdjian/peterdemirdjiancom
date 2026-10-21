@@ -1,0 +1,21 @@
+# Selected projects & open source — rendered on the home page and the resume
+# via the `projects` shortcode. Omit `url` for private work.
+
+[[project]]
+  name = "Volume-Price Analysis MCP Server"
+  url = "https://github.com/pdemirdjian/volume-price-analysis"
+  summary = "Python MCP server that gives AI assistants volume-price analysis tools for stock market data (OBV, VWAP, Volume Profile, MFI, and more)."
+
+[[project]]
+  name = "Homelab"
+  summary = "Three-node k3s Kubernetes cluster managed entirely as code: Ansible host bootstrap, Kustomize and Helm workloads, GPU-scheduled local LLM serving, distributed storage, full monitoring stack, and a Flux CD GitOps pipeline."
+
+[[project]]
+  name = "peterdemirdjian.com"
+  url = "https://github.com/pdemirdjian/peterdemirdjiancom"
+  summary = "This site — Hugo on Netlify with automated CI/CD, Playwright end-to-end tests, and a resume PDF rendered at build time."
+
+[[project]]
+  name = "Golang: Buildkite Agent PR"
+  url = "https://github.com/buildkite/agent/pull/1122"
+  summary = "Enabled native PowerShell support."

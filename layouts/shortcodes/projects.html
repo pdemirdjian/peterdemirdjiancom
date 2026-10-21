@@ -1,0 +1,5 @@
+<ul class="projects">
+{{- range hugo.Data.projects.project }}
+  <li>{{ if .url }}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .name }}</a>{{ else }}<strong>{{ .name }}</strong>{{ end }} — {{ .summary }}</li>
+{{- end }}
+</ul>

@@ -16,15 +16,15 @@ pdf: true
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2025 roadmap.
+* Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.
-* Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
 * Rapidly re-architected site-homepage redirects to resolve critical time-sensitive dependencies for Product Engineering.
-* Volunteered as Scrum Leader for the Kubernetes team to bootstrap agile processes, unblocking sprint goals and facilitating organizational success.
+* Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
 * Stepped up as interim lead during team transitions, ensuring critical Q2 objectives were met despite resourcing challenges.
+* Volunteered as Scrum Leader for the Kubernetes team to bootstrap agile processes, unblocking sprint goals and facilitating organizational success.
 * Acted as a technical mentor and "Coach" for the team, fostering a culture of knowledge sharing and elevating engineering standards.
 * Contributed to organizational growth by serving on interview panels for partner companies (e.g., CarOffer).
-* Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
 
 #### Senior DevOps Engineer <span class="dates">January 2022 – October 2024</span>
 
@@ -40,24 +40,24 @@ pdf: true
 
 #### Senior Cloud Engineer <span class="dates">October 2020 – January 2022</span>
 
-* Consultation with developer teams to drive cloud adoption and migration from our on premise datacenter.
-* Develop Terraform modules to enable and accelerate features available in Open Source Terraform and Terraform Enterprise.
-* Extend features and flexibility in our Google Cloud Engine Image pipeline to allow engineers to update their running instances without downtime and greater confidence.
-* Integrate Terraform Enterprise modules with Backstage for self-service Infrastructure for Developers.
+* Consulted with developer teams to drive cloud adoption and migration from our on-premise datacenter.
+* Developed Terraform modules to enable and accelerate features available in Open Source Terraform and Terraform Enterprise.
+* Extended our Google Compute Engine image pipeline so engineers could update running instances without downtime and with greater confidence.
+* Integrated Terraform Enterprise modules with Backstage for self-service developer infrastructure.
 * Created a team Golang utility to assist with troubleshooting, day to day operations, and oncall.
 * Deployed Datadog monitoring scripts for observability into our most critical cloud resources running the storefront.
 
 #### Senior Site Reliability Engineer <span class="dates">August 2017 – October 2020</span>
 
-* Created complete configuration management roles and profiles within Puppet for windows and linux based machines.
-* Build out Buildkite agent infrastructure, create Buildkite plugins, and contribute code into open source Buildkite Agent.
-* Enabled Application Teams to self-service puppet and terraform configurations after consultation and design meetings.
+* Migrated over 3000 Windows machines from Microsoft's Desired State Configuration to Puppet.
+* Optimized Windows license placement, saving $3M in annual spend.
+* Created complete configuration management roles and profiles within Puppet for Windows and Linux machines.
+* Enabled application teams to self-service Puppet and Terraform configurations after consultation and design meetings.
+* Designed and implemented self-service Windows Update solution to enable developers to deploy updates on schedules that work for them via Octopus Deploy.
+* Designed, deployed, and maintained Octopus Deploy infrastructure for all .Net deploys.
+* Built out Buildkite agent infrastructure, created Buildkite plugins, and contributed code to the open source Buildkite Agent.
 * Reviewed and created Terraform configurations for virtual machines in a private data center.
 * Monitored for and responded to critical events for over 3000 machines.
-* Migrated over 3000 Windows machines from Microsoft's Desired State Configuration to Puppet.
-* Designed, deployed, and maintained Octopus Deploy infrastructure for all .Net deploys.
-* Designed and implemented self-service Windows Update solution to enable Developers to deploy updates on schedules that work for them via Octopus Deploy.
-* Optimize Windows License Placement to save $3Mil in Annual Spend.
 * Empowered teammates to learn latest technology (Puppet, Terraform) with careful reviews, constructive feedback, and peer-coding sessions.
 
 #### IT Support Engineer <span class="dates">June 2016 – August 2017</span>
@@ -69,29 +69,22 @@ pdf: true
 
 #### IT Intern <span class="dates">January 2014 – June 2016</span>
 
-* Imaged and configured workstations using SCCM for weekly new hire cohorts ranging in size from 25–150 new hires.
-* Ensured equipment was ready and available for employees and conference rooms.
-* Branded certain conference room experience and equipment to align with a newly launched brand.
-* Followed code deployment processes and guidelines to write and implement Powershell scripts to send automated email reminders for a variety of IT, HR, and Facilities use cases.
-* Responded to internal user requests and processed helpdesk tickets in a timely and efficient manner.
-* Maintained, installed, and repaired computer and network hardware as needed.
-* Automated base IT functions for other IT staff to utilize in their daily functions.
+* Imaged and configured workstations using SCCM for weekly new hire cohorts of 25–150 people, and prepared equipment and conference rooms (including a rebrand rollout).
+* Wrote PowerShell automation for IT, HR, and Facilities reminders and routine IT tasks, following code deployment processes.
+* Resolved helpdesk tickets and maintained, installed, and repaired computer and network hardware.
 
 ## Skills
 
 * **Cloud & Orchestration:** AWS (EC2, S3, Redis, IAM), GCP, Kubernetes (EKS), Nomad
 * **Infrastructure as Code:** Self-Service Infrastructure Platform Design, HCP Terraform, Terraform, Sentinel (Policy as Code), Puppet, Packer, Consul
 * **CI/CD & DevEx:** AI-Assisted Infrastructure Development, Concourse CI/CD, Jenkins, GitHub Actions, Artifactory, Buildkite, Octopus Deploy
-* **Networking & Security:** HAProxy (Canary LBs, Traffic Mirroring), Cyera (Data Discovery), Sentinel, SSL/TLS Management
+* **Networking & Security:** HAProxy (Canary LBs, Traffic Mirroring), Cyera (Data Discovery), SSL/TLS Management
 * **Programming & Automation:** Golang, Python, PowerShell, PHP, Ruby, SQL
 * **Leadership & Strategy:** Cloud Enablement, Agile/Scrum (Scrum Leader), RFC/ADR Authoring, Mentorship & Coaching, Cost Optimization, Vendor Management
 
 ## Selected Projects & Open Source
 
-* [Volume-Price Analysis MCP Server](https://github.com/pdemirdjian/volume-price-analysis) — Python MCP server that gives AI assistants volume-price analysis tools for stock market data (OBV, VWAP, Volume Profile, MFI, and more).
-* **Homelab** — Three-node k3s Kubernetes cluster managed entirely as code: Ansible host bootstrap, Kustomize and Helm workloads, GPU-scheduled local LLM serving, distributed storage, full monitoring stack, and a Flux CD GitOps pipeline.
-* [peterdemirdjian.com](https://github.com/pdemirdjian/peterdemirdjiancom) — Full-stack website with automated CI/CD and visual testing.
-* [Golang: Buildkite Agent PR](https://github.com/buildkite/agent/pull/1122) — Enabled native PowerShell support.
+{{< projects >}}
 
 ## Education
 

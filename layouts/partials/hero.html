@@ -1,12 +1,19 @@
 <section class="hero">
-  <p class="eyebrow">{{ .eyebrow }}</p>
-  <h1>{{ .title }}</h1>
-  <p class="lede">{{ .lede | safeHTML }}</p>
-  <div class="hero-actions">
-    {{ range $index, $action := .actions }}
-    {{ $url := $action.url }}
-    {{ with $action.person }}{{ $url = index $.person . }}{{ if eq . "email" }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
-    <a class="btn{{ if eq $index 0 }} btn-primary{{ end }}" href="{{ $url }}"{{ if hasPrefix $url "http" }} rel="noopener" target="_blank"{{ end }}>{{ $action.name }}</a>
-    {{ end }}
+  <div class="hero-text">
+    <p class="eyebrow">{{ .eyebrow }}</p>
+    <h1>{{ .title }}</h1>
+    <p class="lede">{{ .lede | safeHTML }}</p>
+    <div class="hero-actions">
+      {{ range $index, $action := .actions }}
+      {{ $url := $action.url }}
+      {{ with $action.person }}{{ $url = index $.person . }}{{ if eq . "email" }}{{ $url = printf "mailto:%s" $url }}{{ end }}{{ end }}
+      <a class="btn{{ if eq $index 0 }} btn-primary{{ end }}" href="{{ $url }}"{{ if hasPrefix $url "http" }} rel="noopener" target="_blank"{{ end }}>{{ $action.name }}</a>
+      {{ end }}
+    </div>
   </div>
+  {{- with .person }}{{ with resources.Get .headshot }}
+  {{- $small := .Resize "200x webp q85" }}
+  {{- $large := .Resize "400x webp q85" }}
+  <img class="hero-photo" src="{{ $small.RelPermalink }}" srcset="{{ $small.RelPermalink }} 1x, {{ $large.RelPermalink }} 2x" width="200" height="200" alt="Portrait of Peter Demirdjian" fetchpriority="high">
+  {{- end }}{{ end }}
 </section>

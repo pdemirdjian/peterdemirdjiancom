@@ -56,25 +56,39 @@ test.describe('Home Page', () => {
     }
   })
 
-  test('should display profile image', async ({ page }) => {
+  test('should display headshot in the hero', async ({ page }) => {
     await page.goto('/')
-    
-    // Check image loads
-    const img = page.getByRole('img', { name: 'Portrait of Peter Demirdjian' })
+
+    const img = page.locator('.hero').getByRole('img', { name: 'Portrait of Peter Demirdjian' })
     await expect(img).toBeVisible()
-    await expect(img).toHaveAttribute('width', '300')
-    await expect(img).toHaveAttribute('height', '415')
+    await expect(img).toHaveAttribute('width', '200')
+    await expect(img).toHaveAttribute('height', '200')
     await expect(img).toHaveAttribute('fetchpriority', 'high')
     await expect(img).not.toHaveAttribute('loading', 'lazy')
-    await expect(img.locator('..')).toHaveJSProperty('tagName', 'PICTURE')
-    await expect(img.locator('../source')).toHaveAttribute('srcset', /\.webp 300w, .*\.webp 600w/)
+    await expect(img).toHaveAttribute('srcset', /\.webp 1x, .*\.webp 2x/)
     await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0)
-    const dimensions = await img.boundingBox()
+    const box = await img.boundingBox()
     const isMobileLayout = await page.evaluate(() => window.matchMedia('(max-width: 700px)').matches)
-    const expectedWidth = isMobileLayout ? 300 : 260
-    expect(dimensions?.width).toBeCloseTo(expectedWidth, 0)
-    // Allow one pixel for the border and rounding of the resized image source.
-    expect(Math.abs(dimensions!.height - expectedWidth * 415 / 300)).toBeLessThan(1)
+    expect(box?.width).toBeCloseTo(isMobileLayout ? 112 : 200, 0)
+    expect(box?.height).toBeCloseTo(box!.width, 0)
+  })
+
+  test('should list selected work, linking public projects only', async ({ page }) => {
+    await page.goto('/')
+
+    const items = page.locator('ul.projects li')
+    await expect(items).toHaveCount(4)
+    await expect(items.filter({ hasText: 'Homelab' }).getByRole('link')).toHaveCount(0)
+    await expect(page.locator('ul.projects a[href="https://github.com/pdemirdjian/volume-price-analysis"]')).toBeVisible()
+  })
+
+  test('nav fits on one row on narrow screens', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 })
+    await page.goto('/')
+    const tops = await page.locator('header nav ul > li').evaluateAll((items) =>
+      items.map((item) => Math.round(item.getBoundingClientRect().top)))
+    expect(new Set(tops).size).toBe(1)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   })
 
   test('should have footer with license info', async ({ page }) => {

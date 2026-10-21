@@ -128,6 +128,8 @@ nav ul {
 }
 
 nav ul a {
+  display: inline-block;
+  padding: 0.3rem 0;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
@@ -336,13 +338,14 @@ img.hero-photo {
 .about-text { max-width: 40em; }
 .about-text p { margin: 0 0 1rem; }
 
-ul.projects { list-style: none; padding: 0; }
-ul.projects li { margin: 0 0 0.85rem; }
 ul.projects li > a, ul.projects li > strong {
   font-family: var(--font-display);
   font-weight: 600;
 }
-ul.projects li > strong { color: var(--color-text); }
+ul.projects li > strong { color: inherit; }
+
+ul.projects-plain { list-style: none; padding: 0; max-width: 40em; }
+ul.projects-plain li { margin: 0 0 0.85rem; }
 
 /* ── Resume ──────────────────────────────────────────────────────────────── */
 .contact-row {
@@ -376,7 +379,7 @@ img.cc-badge { margin: 1rem 0; border-radius: 0; }
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   nav { flex-direction: column; gap: 0.35rem; padding: 0.6rem 0; }
-  nav ul { gap: 0.4rem 1.1rem; justify-content: center; flex-wrap: nowrap; }
+  nav ul { gap: 0.4rem clamp(0.65rem, 3vw, 1.1rem); justify-content: center; flex-wrap: nowrap; }
   .hero, .hero:has(.hero-photo) { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0 2rem; }
   img.hero-photo { order: -1; width: 112px; height: 112px; }
   h4 .dates { flex-basis: 100%; }

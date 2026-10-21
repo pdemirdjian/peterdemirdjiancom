@@ -13,7 +13,7 @@
 [[project]]
   name = "peterdemirdjian.com"
   url = "https://github.com/pdemirdjian/peterdemirdjiancom"
-  summary = "This site — Hugo on Netlify with automated CI/CD, Playwright end-to-end tests, and a resume PDF rendered at build time."
+  summary = "Personal site and resume built with Hugo on Netlify, with automated CI/CD, Playwright end-to-end tests, and a resume PDF rendered at build time."
 
 [[project]]
   name = "Golang: Buildkite Agent PR"

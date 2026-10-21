@@ -11,4 +11,4 @@ title: "Pete Demirdjian"
 
 ## Selected Work
 
-{{< projects >}}
+{{< projects style="plain" >}}

@@ -40,11 +40,11 @@ pdf: true
 
 #### Senior Cloud Engineer <span class="dates">October 2020 – January 2022</span>
 
-* Consulted with developer teams to drive cloud adoption and migration from our on-premise datacenter.
+* Consulted with developer teams to drive cloud adoption and migration from our on-premises data center.
 * Developed Terraform modules to enable and accelerate features available in Open Source Terraform and Terraform Enterprise.
 * Extended our Google Compute Engine image pipeline so engineers could update running instances without downtime and with greater confidence.
 * Integrated Terraform Enterprise modules with Backstage for self-service developer infrastructure.
-* Created a team Golang utility to assist with troubleshooting, day to day operations, and oncall.
+* Created a team Golang utility to assist with troubleshooting, day-to-day operations, and on-call support.
 * Deployed Datadog monitoring scripts for observability into our most critical cloud resources running the storefront.
 
 #### Senior Site Reliability Engineer <span class="dates">August 2017 – October 2020</span>
@@ -53,24 +53,24 @@ pdf: true
 * Optimized Windows license placement, saving $3M in annual spend.
 * Created complete configuration management roles and profiles within Puppet for Windows and Linux machines.
 * Enabled application teams to self-service Puppet and Terraform configurations after consultation and design meetings.
-* Designed and implemented self-service Windows Update solution to enable developers to deploy updates on schedules that work for them via Octopus Deploy.
-* Designed, deployed, and maintained Octopus Deploy infrastructure for all .Net deploys.
+* Designed and implemented a self-service Windows Update solution to enable developers to deploy updates on schedules that worked for them via Octopus Deploy.
+* Designed, deployed, and maintained Octopus Deploy infrastructure for all .NET deployments.
 * Built out Buildkite agent infrastructure, created Buildkite plugins, and contributed code to the open source Buildkite Agent.
 * Reviewed and created Terraform configurations for virtual machines in a private data center.
 * Monitored for and responded to critical events for over 3000 machines.
-* Empowered teammates to learn latest technology (Puppet, Terraform) with careful reviews, constructive feedback, and peer-coding sessions.
+* Empowered teammates to learn the latest technologies (Puppet, Terraform) with careful reviews, constructive feedback, and peer-coding sessions.
 
 #### IT Support Engineer <span class="dates">June 2016 – August 2017</span>
 
-* Created self service Jenkins pipeline that allowed users to request software via System Center Configuration Manager that employed internal change control APIs to require manager approval to keep software licensing costs down and reduce ticket load for frontline IT members.
+* Created a self-service Jenkins pipeline that allowed users to request software via System Center Configuration Manager that employed internal change control APIs to require manager approval to keep software licensing costs down and reduce ticket load for frontline IT members.
 * Developed, maintained, and improved internal inventory system in PHP for tracking equipment in multiple locations.
 * Managed users and computers through Active Directory, Group Policy, and System Center Configuration Manager with 7000+ users.
-* Configured Linux virtual machines on various data center and office hypervisors to run the Casper Application to support Mac OS X in such a way that they conform to company-maintained security policies.
+* Configured Linux virtual machines on various data center and office hypervisors to run the Casper Application to support Mac OS X in such a way that they conformed to company-maintained security policies.
 
 #### IT Intern <span class="dates">January 2014 – June 2016</span>
 
 * Imaged and configured workstations using SCCM for weekly new hire cohorts of 25–150 people, and prepared equipment and conference rooms (including a rebrand rollout).
-* Wrote PowerShell automation for IT, HR, and Facilities reminders and routine IT tasks, following code deployment processes.
+* Wrote PowerShell scripts for automated IT, HR, and Facilities email reminders and automated routine IT functions for other IT staff, following code deployment processes.
 * Resolved helpdesk tickets and maintained, installed, and repaired computer and network hardware.
 
 ## Skills

@@ -178,7 +178,7 @@ test('the sitemap advertises only HTML pages with valid lastmod dates', async ()
     expect(buildOutput.has(htmlPath)).toBe(true)
     const lastmod = entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? ''
     expect(lastmod).toMatch(/^\d{4}-\d{2}-\d{2}T/)
-    expect(Number.isFinite(Date.parse(lastmod))).toBe(true)
+    expect(Date.parse(lastmod)).toBeGreaterThan(Date.parse("2020-01-01"))
   }
   const files = await readdir(publishDir)
   expect(files).not.toContain('tags')

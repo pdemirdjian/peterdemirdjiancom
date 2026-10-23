@@ -2,7 +2,9 @@
 
 [build]
   publish = "public"
-  command = "pnpm build"
+  # Hugo's :git lastmod needs real history: in a shallow clone every page gets
+  # the build commit's date (PDE-253), so deepen first when Netlify cloned shallow.
+  command = "if [ \"$(git rev-parse --is-shallow-repository)\" = true ]; then git fetch --unshallow --quiet; fi && pnpm build"
 
 [build.environment]
   HUGO_VERSION = "0.168.0"

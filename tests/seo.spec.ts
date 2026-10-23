@@ -73,7 +73,7 @@ test.describe('SEO and Meta Tags', () => {
 
     expect(data['@context']).toBe('https://schema.org')
     expect(data['@type']).toBe('ProfilePage')
-    expect(Number.isFinite(Date.parse(data.dateModified))).toBe(true)
+    expect(Date.parse(data.dateModified)).toBeGreaterThan(Date.parse("2020-01-01"))
     const entity = data.mainEntity
     expect(entity['@type']).toBe('Person')
     expect(entity.alternateName).toBe(person.shortName)
@@ -92,5 +92,5 @@ test('resume shows its last update and dateModified metadata', async ({ page }) 
   await page.goto('/resume/')
   await expect(page.getByText(/^Last updated (January|February|March|April|May|June|July|August|September|October|November|December) 20\d{2}$/)).toBeVisible()
   const modified = await page.locator('[itemscope] [itemprop="dateModified"]').getAttribute('datetime')
-  expect(Number.isFinite(Date.parse(modified ?? ''))).toBe(true)
+  expect(Date.parse(modified ?? "")).toBeGreaterThan(Date.parse("2020-01-01"))
 })

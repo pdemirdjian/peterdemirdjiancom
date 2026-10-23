@@ -1,7 +1,8 @@
 {{ define "main" }}
-<article>
+<article{{ if .Params.pdf }} itemscope itemtype="https://schema.org/WebPage"{{ end }}>
   <h1>{{ .Title }}{{ if .Params.pdf }} — {{ .Site.Params.person.name }}{{ end }}</h1>
   {{ if .Params.pdf }}
+  <p class="dates">Last updated <time itemprop="dateModified" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "January 2006" }}</time></p>
   <p class="screen-only"><a class="btn" href="/resume.pdf" download>Download PDF</a></p>
   {{ end }}
   {{ .Content }}

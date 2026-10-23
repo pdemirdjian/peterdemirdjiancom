@@ -3,6 +3,14 @@ languageCode = "en-US"
 title = "Pete Demirdjian"
 enableRobotsTXT = true
 enableEmoji = true
+enableGitInfo = true
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[frontmatter]
+  # First valid value wins: explicit lastmod, Git author date for this file,
+  # then file mtime when Git history is unavailable (e.g. a shallow clone).
+  # https://gohugo.io/configuration/front-matter/
+  lastmod = ["lastmod", ":git", ":fileModTime"]
 
 [params]
   description = "Personal website and resume of Pete Demirdjian, Principal DevOps Engineer"
@@ -47,4 +55,4 @@ enableEmoji = true
   isPlainText = true
 
 [outputs]
-  home = ["HTML", "RSS", "Security"]
+  home = ["HTML", "Security"]

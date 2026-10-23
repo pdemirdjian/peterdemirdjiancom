@@ -18,7 +18,7 @@ const hugoConfig = parse(
       email: string
       image: string
       linkedin: string
-      githubProfile: string
+      github: string
     }
   }
 }
@@ -81,7 +81,7 @@ test.describe('SEO and Meta Tags', () => {
     expect(entity.alumniOf).toEqual({ '@type': 'CollegeOrUniversity', name: person.school })
     expect(entity.url).toBe('https://peterdemirdjian.com/')
     expect(entity.image).toMatch(/^https:\/\/peterdemirdjian\.com\/images\/.+\.jpg$/)
-    expect(entity.sameAs).toEqual([person.linkedin, person.githubProfile])
+    expect(entity.sameAs).toEqual([person.linkedin, person.github])
     expect(entity.name).toBe(person.name)
     expect(entity.jobTitle).toBe(person.jobTitle)
     expect(entity.email).toBe(`mailto:${person.email}`)

@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+import { parse } from 'smol-toml'
 import { heroActions, menuEntries, person, siteTitle } from './support/site-config.mts'
+
+const projects = (parse(readFileSync('data/projects.toml', 'utf8')) as { project: unknown[] }).project
 
 test.describe('Home Page', () => {
   test('should load successfully', async ({ page }) => {
@@ -56,25 +60,50 @@ test.describe('Home Page', () => {
     }
   })
 
-  test('should display profile image', async ({ page }) => {
+  test('should display headshot in the hero', async ({ page }) => {
     await page.goto('/')
-    
-    // Check image loads
-    const img = page.getByRole('img', { name: 'Portrait of Peter Demirdjian' })
+
+    const img = page.locator('.hero').getByRole('img', { name: 'Portrait of Peter Demirdjian' })
     await expect(img).toBeVisible()
-    await expect(img).toHaveAttribute('width', '300')
-    await expect(img).toHaveAttribute('height', '415')
+    await expect(img).toHaveAttribute('width', '200')
+    await expect(img).toHaveAttribute('height', '200')
     await expect(img).toHaveAttribute('fetchpriority', 'high')
     await expect(img).not.toHaveAttribute('loading', 'lazy')
-    await expect(img.locator('..')).toHaveJSProperty('tagName', 'PICTURE')
-    await expect(img.locator('../source')).toHaveAttribute('srcset', /\.webp 300w, .*\.webp 600w/)
+    await expect(img).toHaveAttribute('srcset', /\.webp 1x, .*\.webp 2x/)
     await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0)
-    const dimensions = await img.boundingBox()
+    const box = await img.boundingBox()
     const isMobileLayout = await page.evaluate(() => window.matchMedia('(max-width: 700px)').matches)
-    const expectedWidth = isMobileLayout ? 300 : 260
-    expect(dimensions?.width).toBeCloseTo(expectedWidth, 0)
-    // Allow one pixel for the border and rounding of the resized image source.
-    expect(Math.abs(dimensions!.height - expectedWidth * 415 / 300)).toBeLessThan(1)
+    expect(box?.width).toBeCloseTo(isMobileLayout ? 112 : 200, 0)
+    expect(box?.height).toBeCloseTo(box!.width, 0)
+  })
+
+  test('should list selected work, linking public projects only', async ({ page }) => {
+    await page.goto('/')
+
+    const items = page.locator('ul.projects li')
+    await expect(items).toHaveCount(projects.length)
+    await expect(items.filter({ hasText: 'Homelab' }).getByRole('link')).toHaveCount(0)
+    await expect(page.locator('ul.projects a[href="https://github.com/pdemirdjian/volume-price-analysis"]')).toBeVisible()
+  })
+
+  for (const width of [320, 360]) {
+    test(`nav fits on one row at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 740 })
+      await page.goto('/')
+      const centers = await page.locator('header nav ul > li').evaluateAll((items) =>
+        items.map((item) => { const r = item.getBoundingClientRect(); return r.top + r.height / 2 }))
+      expect(Math.max(...centers) - Math.min(...centers)).toBeLessThan(2)
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+    })
+  }
+
+  test('printing from dark mode keeps project labels dark and compact', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.goto('/resume/')
+    await page.emulateMedia({ media: 'print', colorScheme: 'dark' })
+    const label = page.locator('ul.projects li > strong', { hasText: 'Homelab' })
+    expect(await label.evaluate((el) => getComputedStyle(el).color)).toBe('rgb(0, 0, 0)')
+    expect(await label.locator('..').evaluate((el) => getComputedStyle(el).marginBottom)).not.toBe('13.6px')
   })
 
   test('should have footer with license info', async ({ page }) => {

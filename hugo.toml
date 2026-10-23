@@ -25,17 +25,13 @@ disableKinds = ["taxonomy", "term", "RSS"]
   email = "code@peterdemirdjian.com"
   phone = "(857) 895-2304"
   linkedin = "https://www.linkedin.com/in/peter-demirdjian/"
-  githubProfile = "https://github.com/pdemirdjian"
-  github = "https://github.com/pdemirdjian/peterdemirdjiancom"
+  github = "https://github.com/pdemirdjian"
   image = "images/home.png"
+  headshot = "images/headshot.jpg"
 
 [[params.heroActions]]
   name = "View resume"
   url = "/resume/"
-
-[[params.heroActions]]
-  name = "LinkedIn"
-  person = "linkedin"
 
 [[params.heroActions]]
   name = "Email me"
@@ -51,11 +47,6 @@ disableKinds = ["taxonomy", "term", "RSS"]
   name = "Resume"
   url = "/resume/"
   weight = 1
-
-[[menus.main]]
-  name = "License"
-  url = "/license/"
-  weight = 2
 
 [outputFormats.Security]
   mediaType = "text/plain"

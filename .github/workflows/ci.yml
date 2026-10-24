@@ -112,6 +112,9 @@ jobs:
           fail-on-cache-miss: true
 
       - name: Run visual regression tests
+        # The `visual` project is only defined when this is set.
+        env:
+          PLAYWRIGHT_VISUAL: '1'
         run: pnpm exec playwright test --project=visual
 
       # -actual/-diff PNGs land in test-results/; a missing baseline is

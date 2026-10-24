@@ -59,6 +59,9 @@ jobs:
         run: pnpm build
 
       - name: Regenerate baselines
+        # The `visual` project is only defined when this is set.
+        env:
+          PLAYWRIGHT_VISUAL: '1'
         run: pnpm exec playwright test --project=visual --update-snapshots=all
 
       - name: Upload baselines

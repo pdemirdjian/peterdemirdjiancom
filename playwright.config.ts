@@ -27,6 +27,26 @@ const browserlessSpecs = [...deploySpecs, ...buildSpecs, '**/live/**']
 /* Specs every regular browser project skips. */
 const browserIgnore = [...browserlessSpecs, ...visualSpecs]
 
+/* Baselines are generated and compared in the Playwright Linux container
+ * (mcr.microsoft.com/playwright, tag matching @playwright/test), so the path
+ * has no platform or browser suffix: one committed set is the source of truth.
+ * The project exists only when PLAYWRIGHT_VISUAL=1 (set by the CI `visual`
+ * job, update-visual-baselines.yml and the README docker command), so a plain
+ * `pnpm test` on the host never compares or writes baselines. No retries: a
+ * retry would compare against a baseline the failed attempt just wrote. */
+const visualProjects =
+  process.env.PLAYWRIGHT_VISUAL === '1'
+    ? [
+        {
+          name: 'visual',
+          testMatch: visualSpecs,
+          retries: 0,
+          snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
+          use: { ...devices['Desktop Chrome'] },
+        },
+      ]
+    : []
+
 export default defineConfig({
   testDir: './tests',
   testIgnore: ['**/live/**'],
@@ -60,18 +80,7 @@ export default defineConfig({
       testMatch: buildSpecs,
     },
 
-    /* Baselines are generated and compared in the Playwright Linux container
-     * (mcr.microsoft.com/playwright, tag matching @playwright/test), so the
-     * path has no platform or browser suffix: one committed set is the source
-     * of truth. No retries: a retry would compare against a baseline the
-     * failed attempt just wrote. */
-    {
-      name: 'visual',
-      testMatch: visualSpecs,
-      retries: 0,
-      snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    ...visualProjects,
 
     {
       name: 'chromium',

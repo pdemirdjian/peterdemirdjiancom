@@ -21,6 +21,10 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # Full history so Hugo's Lastmod comes from Git (enableGitInfo), as
+        # on Netlify, rather than the checkout time.
+        with:
+          fetch-depth: 0
 
       - name: Get Hugo version from netlify.toml
         run: |
@@ -112,9 +116,6 @@ jobs:
           fail-on-cache-miss: true
 
       - name: Run visual regression tests
-        # The `visual` project is only defined when this is set.
-        env:
-          PLAYWRIGHT_VISUAL: '1'
         run: pnpm exec playwright test --project=visual
 
       # -actual/-diff PNGs land in test-results/; a missing baseline is

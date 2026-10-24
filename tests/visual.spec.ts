@@ -28,9 +28,6 @@ for (const theme of themes) {
           fullPage: true,
           animations: 'disabled',
           maxDiffPixelRatio: 0.01,
-          // "Last updated <Month Year>" comes from Git or file mtime, which in
-          // a shallow CI checkout is the checkout time, so it changes monthly.
-          mask: [page.locator('p.dates', { has: page.locator('time[itemprop="dateModified"]') })],
         })
       })
     }

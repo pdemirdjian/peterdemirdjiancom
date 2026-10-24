@@ -30,16 +30,16 @@ Node/pnpm runs the test toolchain and generates `/resume.pdf` from the built res
 
 ### Visual Regression Tests
 
-The `visual` Playwright project screenshots the home, resume and 404 pages in the light and dark themes and compares them with the baselines committed in `tests/visual.spec.ts-snapshots/`. Font rendering differs between macOS and Linux, so baselines are only generated and compared inside the official Playwright image, `mcr.microsoft.com/playwright:v1.64.1-noble`, whose tag must match `@playwright/test` in `package.json` (CI fails when they drift; Renovate bumps them together). The `visual` project is only defined when `PLAYWRIGHT_VISUAL=1`, so a plain `pnpm test` on the host never runs it.
+The `visual` Playwright project screenshots the home, resume and 404 pages in the light and dark themes and compares them with the baselines committed in `tests/visual.spec.ts-snapshots/`. Font rendering differs between macOS and Linux, so baselines are only generated and compared inside the official Playwright image, `mcr.microsoft.com/playwright:v1.64.1-noble`, whose tag must match `@playwright/test` in `package.json` (CI fails when they drift; Renovate bumps them together). The `visual` project is excluded from a plain `pnpm test` (`default: false`) and runs only with `--project=visual`.
 
 - **CI**: the `visual` job in `ci.yml` runs on every push and pull request. On failure, its `visual-regression` artifact holds the `-actual` and `-diff` PNGs from `test-results/` and the snapshot directory.
-- **Update baselines**: run the *Update visual baselines* workflow (`workflow_dispatch`), download its `visual-baselines` artifact, review the PNGs and commit them to `tests/visual.spec.ts-snapshots/`. The footer year changes each January, so expect to re-baseline then.
+- **Update baselines**: run the *Update visual baselines* workflow (`workflow_dispatch`), download its `visual-baselines` artifact, review the PNGs and commit them to `tests/visual.spec.ts-snapshots/`. The footer year changes each January and the resume's last-updated date changes whenever the resume is committed, so expect to re-baseline then.
 - **Locally** (Docker; never generate baselines on the host OS):
 
   ```bash
   pnpm build
   docker run --rm --ipc=host -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.64.1-noble \
-    bash -c 'corepack enable && CI=1 corepack pnpm install --frozen-lockfile && CI=1 PLAYWRIGHT_VISUAL=1 corepack pnpm exec playwright test --project=visual'
+    bash -c 'corepack enable && CI=1 corepack pnpm install --frozen-lockfile && CI=1 corepack pnpm exec playwright test --project=visual'
   ```
 
   Add `--update-snapshots=all` to regenerate the baselines. The container installs Linux `node_modules` into the mounted checkout, so run `pnpm install` again on the host afterwards.

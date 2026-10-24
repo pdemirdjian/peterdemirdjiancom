@@ -15,9 +15,17 @@ const deploySpecs = ['**/deploy-config.spec.ts', '**/netlify-site.spec.ts', '**/
  * project. */
 const buildSpecs = ['**/build-output.spec.ts', '**/build-output-links.spec.ts']
 
+/* Visual regression specs compare screenshots against one committed baseline
+ * set, so they run once in the Chromium-only `visual` project and are ignored
+ * by every other browser project. */
+const visualSpecs = ['**/visual.spec.ts']
+
 /* Browserless specs run in their own projects. Live specs run only through
  * playwright.live.config.ts, never as part of the main suite. */
 const browserlessSpecs = [...deploySpecs, ...buildSpecs, '**/live/**']
+
+/* Specs every regular browser project skips. */
+const browserIgnore = [...browserlessSpecs, ...visualSpecs]
 
 export default defineConfig({
   testDir: './tests',
@@ -52,33 +60,46 @@ export default defineConfig({
       testMatch: buildSpecs,
     },
 
+    /* Baselines are generated and compared in the Playwright Linux container
+     * (mcr.microsoft.com/playwright, tag matching @playwright/test), so the
+     * path has no platform or browser suffix: one committed set is the source
+     * of truth. No retries: a retry would compare against a baseline the
+     * failed attempt just wrote. */
+    {
+      name: 'visual',
+      testMatch: visualSpecs,
+      retries: 0,
+      snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
     {
       name: 'chromium',
-      testIgnore: browserlessSpecs,
+      testIgnore: browserIgnore,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      testIgnore: browserlessSpecs,
+      testIgnore: browserIgnore,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      testIgnore: browserlessSpecs,
+      testIgnore: browserIgnore,
       use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
     {
       name: 'Mobile Chrome',
-      testIgnore: browserlessSpecs,
+      testIgnore: browserIgnore,
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Mobile Safari',
-      testIgnore: browserlessSpecs,
+      testIgnore: browserIgnore,
       use: { ...devices['iPhone 12'] },
     },
   ],

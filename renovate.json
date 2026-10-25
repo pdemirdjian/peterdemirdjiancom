@@ -39,6 +39,11 @@
       "matchUpdateTypes": ["major"],
       "automerge": false,
       "minimumReleaseAge": "7d"
+    },
+    {
+      "description": "The visual job's Playwright image tag must match @playwright/test, so bump them together",
+      "matchPackageNames": ["@playwright/test", "mcr.microsoft.com/playwright"],
+      "groupName": "Playwright"
     }
   ],
   "vulnerabilityAlerts": {

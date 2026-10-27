@@ -13,6 +13,7 @@ pdf: true
 
 #### Principal DevOps Engineer <span class="dates">October 2024 – Present</span>
 
+* Won CarGurus’ Pioneering Award for enabling organization-wide adoption of Claude Code through Amazon Bedrock. Subsequently joined the AIDLC team to help build the company’s agentic development platform.
 * Built out staged infrastructure for an agentic engineering platform, improved CI-failure diagnosis for fix agents, and added OpenTelemetry instrumentation across serverless and container services.
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.

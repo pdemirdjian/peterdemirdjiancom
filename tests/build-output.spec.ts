@@ -21,6 +21,7 @@ const REQUIRED_FILES = [
   '/resume/index.html',
   '/resume.pdf',
   '/license/index.html',
+  '/2026/index.html',
   '/sitemap.xml',
   '/robots.txt',
   '/.well-known/security.txt',

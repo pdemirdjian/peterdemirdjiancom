@@ -16,7 +16,7 @@ pdf: true
 * Won CarGurus’ Pioneering Award for enabling organization-wide adoption of Claude Code through a governed Amazon Bedrock setup: per-user inference profiles, cost attribution, and model controls. Subsequently joined the AIDLC team to help build the company’s agentic development platform.
 * Built out staged infrastructure for an agentic engineering platform, improved CI-failure diagnosis for fix agents, and added OpenTelemetry instrumentation across serverless and container services.
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management; since launch, the platform has eliminated 262 Sentinel override requests team-wide.
-* Built a Semgrep MCP integration that brings Terraform IAM policy checks into the Claude Code workflow, shifting IAM checks earlier, before changes reach Sentinel.
+* Built a Semgrep MCP integration that shifts Terraform IAM checks earlier, into the Claude Code workflow, before changes reach Sentinel.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2025 roadmap.
 * Migrated AWS infrastructure from CDK to HCP Terraform, enabling GHES-connected workflows and tightening IAM scope.

@@ -15,7 +15,8 @@ pdf: true
 
 * Won CarGurus’ Pioneering Award for leading organization-wide adoption of Claude Code through Amazon Bedrock: a shared access model, infrastructure-managed per-user inference profiles, per-user cost visibility, and ongoing organization-wide model enablement. The work led to selection for the AIDLC tiger team in May 2026.
 * On the AIDLC team, help build the delivery infrastructure behind CarGurus’ agentic development platform: Terraform-managed delivery paths and approval-gated CI/CD.
-* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
+* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code; the platform cut active provisioning effort by about 80% (team result).
+* Presented Semgrep IAM checks at the CarGurus Science Fair that run as Claude Code writes Terraform, moving policy feedback ahead of late-stage failures and overrides.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform, including moving AWS infrastructure off CDK and connecting it to GitHub Enterprise Server, and established the 2025 roadmap.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
@@ -25,9 +26,7 @@ pdf: true
 * Rapidly re-architected site-homepage redirects to resolve critical time-sensitive dependencies for Product Engineering.
 * Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
 * Stepped up as interim lead during team transitions, ensuring critical Q2 objectives were met despite resourcing challenges.
-* Volunteered as Scrum Leader for the Kubernetes team to bootstrap agile processes, unblocking sprint goals and facilitating organizational success.
-* Acted as a technical mentor and "Coach" for the team, fostering a culture of knowledge sharing and elevating engineering standards.
-* Contributed to organizational growth by serving on interview panels for partner companies (e.g., CarOffer).
+* Served as Scrum Leader for the Kubernetes team and as a technical mentor and coach, raising engineering standards through knowledge sharing.
 
 #### Senior DevOps Engineer <span class="dates">January 2022 – October 2024</span>
 
@@ -52,29 +51,22 @@ pdf: true
 
 #### Senior Site Reliability Engineer <span class="dates">August 2017 – October 2020</span>
 
-* Migrated over 3000 Windows machines from Microsoft's Desired State Configuration to Puppet.
+* Migrated over 3000 Windows machines from Microsoft's Desired State Configuration to Puppet, building complete roles and profiles for Windows and Linux.
 * Optimized Windows license placement, saving $3M in annual spend.
-* Created complete configuration management roles and profiles within Puppet for Windows and Linux machines.
 * Enabled application teams to self-service Puppet and Terraform configurations after consultation and design meetings.
 * Designed and implemented a self-service Windows Update solution to enable developers to deploy updates on schedules that worked for them via Octopus Deploy.
 * Designed, deployed, and maintained Octopus Deploy infrastructure for all .NET deployments.
 * Built out Buildkite agent infrastructure, created Buildkite plugins, and contributed code to the open source Buildkite Agent.
-* Reviewed and created Terraform configurations for virtual machines in a private data center.
-* Monitored for and responded to critical events for over 3000 machines.
 * Empowered teammates to learn the latest technologies (Puppet, Terraform) with careful reviews, constructive feedback, and peer-coding sessions.
 
 #### IT Support Engineer <span class="dates">June 2016 – August 2017</span>
 
-* Created a self-service Jenkins pipeline that allowed users to request software via System Center Configuration Manager that employed internal change control APIs to require manager approval to keep software licensing costs down and reduce ticket load for frontline IT members.
-* Developed, maintained, and improved internal inventory system in PHP for tracking equipment in multiple locations.
-* Managed users and computers through Active Directory, Group Policy, and System Center Configuration Manager with 7000+ users.
-* Configured Linux virtual machines on various data center and office hypervisors to run the Casper Application to support Mac OS X in such a way that they conformed to company-maintained security policies.
+* Built a self-service Jenkins pipeline for SCCM software requests with manager approval through internal change-control APIs, cutting licensing costs and frontline ticket load.
+* Managed 7000+ users and computers through Active Directory, Group Policy, and SCCM, and maintained an internal PHP inventory system.
 
 #### IT Intern <span class="dates">January 2014 – June 2016</span>
 
-* Imaged and configured workstations using SCCM for weekly new hire cohorts of 25–150 people, and prepared equipment and conference rooms (including a rebrand rollout).
-* Wrote PowerShell scripts for automated IT, HR, and Facilities email reminders and automated routine IT functions for other IT staff, following code deployment processes.
-* Resolved helpdesk tickets and maintained, installed, and repaired computer and network hardware.
+* Imaged workstations with SCCM for weekly new-hire cohorts of 25–150, wrote PowerShell automation for IT, HR, and Facilities, and resolved helpdesk tickets.
 
 ## Skills
 

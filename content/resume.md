@@ -13,16 +13,17 @@ pdf: true
 
 #### Principal DevOps Engineer <span class="dates">October 2024 – Present</span>
 
-* Won CarGurus’ Pioneering Award for enabling organization-wide adoption of Claude Code through Amazon Bedrock. Subsequently joined the AIDLC team to help build the company’s agentic development platform.
+* Won CarGurus’ Pioneering Award for enabling organization-wide adoption of Claude Code through a governed Amazon Bedrock setup: per-user inference profiles, cost attribution, and model controls. Subsequently joined the AIDLC team to help build the company’s agentic development platform.
 * Built out staged infrastructure for an agentic engineering platform, improved CI-failure diagnosis for fix agents, and added OpenTelemetry instrumentation across serverless and container services.
-* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
+* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management; since launch, the platform has eliminated 262 Sentinel override requests team-wide.
+* Built a Semgrep MCP integration that brings Terraform IAM policy checks into the Claude Code workflow, shifting IAM checks earlier, before changes reach Sentinel.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2025 roadmap.
 * Migrated AWS infrastructure from CDK to HCP Terraform, enabling GHES-connected workflows and tightening IAM scope.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
-* Upgraded the Vault EKS clusters to Kubernetes 1.33 across lab and production regions, and moved service alert routing to Grafana IRM.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.
+* Upgraded the Vault EKS clusters to Kubernetes 1.33 across lab and production regions, and moved service alert routing to Grafana IRM.
 * Rapidly re-architected site-homepage redirects to resolve critical time-sensitive dependencies for Product Engineering.
 * Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
 * Stepped up as interim lead during team transitions, ensuring critical Q2 objectives were met despite resourcing challenges.

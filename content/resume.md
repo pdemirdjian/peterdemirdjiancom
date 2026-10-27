@@ -13,16 +13,17 @@ pdf: true
 
 #### Principal DevOps Engineer <span class="dates">October 2024 – Present</span>
 
-* Won CarGurus’ Pioneering Award for leading organization-wide adoption of Claude Code through Amazon Bedrock: a shared access model, infrastructure-managed per-user inference profiles, per-user cost visibility, and ongoing organization-wide model enablement. The work led to selection for the AIDLC tiger team in May 2026.
-* On the AIDLC team, help build the delivery infrastructure behind CarGurus’ agentic development platform: Terraform-managed delivery paths and approval-gated CI/CD.
-* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code; the platform cut active provisioning effort by about 80% (team result).
+* Won CarGurus’ Pioneering Award for leading organization-wide adoption of Claude Code through Amazon Bedrock (287 engineers onboarded by April): a shared access model, Terraform-managed per-user inference profiles, and usage-cost visibility in CloudZero. Continue to own organization-wide Bedrock model enablement, most recently shipping a new model three days after its public launch.
+* Selected for the AIDLC tiger team in May 2026 on the strength of the Claude Code initiative.
+* On the AIDLC team, help build delivery infrastructure for Mauve, CarGurus’ agentic development platform: Terraform-managed delivery paths and an approval-gated, CodeBuild-backed CircleCI production lane (cutover in progress).
+* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code; the platform cut active provisioning effort by about 80% and grew managed resources from about 92 to 197 in development and 73 to 204 in production over two months (team results).
 * Presented Semgrep IAM checks at the CarGurus Science Fair that run as Claude Code writes Terraform, moving policy feedback ahead of late-stage failures and overrides.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform and established the 2025 roadmap; now moving AWS infrastructure off CDK and connecting HCP Terraform to GitHub Enterprise Server.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.
-* Upgraded the Vault EKS clusters to Kubernetes 1.33 across lab and production regions, and moved service alert routing to Grafana IRM.
+* Upgraded the Vault EKS clusters to Kubernetes 1.33 across lab and production regions, moved Mauve alert routing to Grafana IRM, and improved ECS cost attribution.
 * Rapidly re-architected site-homepage redirects to resolve critical time-sensitive dependencies for Product Engineering.
 * Recognized as a primary troubleshooter for complex, cross-domain outages, rapidly orienting in unfamiliar systems to drive root cause resolution.
 * Stepped up as interim lead during team transitions, ensuring critical Q2 objectives were met despite resourcing challenges.

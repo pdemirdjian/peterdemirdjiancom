@@ -8,7 +8,7 @@
 
 [[project]]
   name = "Carport (CarGurus)"
-  summary = "Go CLI and portal designed to be driven by coding agents as well as people: structured JSON errors, stable exit codes, and an embedded skill guide that teaches an agent how to use it."
+  summary = "Agent-friendly CLI for Carport, CarGurus’ internal static-site platform: machine-readable results and errors, stable exit codes, command help, and an embedded Claude Code skill guide."
 
 [[project]]
   name = "Homelab"

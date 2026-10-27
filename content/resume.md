@@ -13,13 +13,11 @@ pdf: true
 
 #### Principal DevOps Engineer <span class="dates">October 2024 – Present</span>
 
-* Won CarGurus’ Pioneering Award for enabling organization-wide adoption of Claude Code through a governed Amazon Bedrock setup: per-user inference profiles, cost attribution, and model controls. Subsequently joined the AIDLC team to help build the company’s agentic development platform.
-* Built out staged infrastructure for an agentic engineering platform, improved CI-failure diagnosis for fix agents, and added OpenTelemetry instrumentation across serverless and container services.
-* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management; since launch, the platform has eliminated 262 Sentinel override requests team-wide.
-* Built a Semgrep MCP integration that shifts Terraform IAM checks earlier, into the Claude Code workflow, before changes reach Sentinel.
+* Won CarGurus’ Pioneering Award for leading organization-wide adoption of Claude Code through Amazon Bedrock: a shared access model, infrastructure-managed per-user inference profiles, per-user cost visibility, and ongoing organization-wide model enablement. The work led to selection for the AIDLC tiger team in May 2026.
+* On the AIDLC team, help build the delivery infrastructure behind CarGurus’ agentic development platform: Terraform-managed delivery paths and approval-gated CI/CD.
+* Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code to enable autonomous resource management.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
-* Led the migration and adoption of HCP Terraform, delivering on strategic objectives and establishing the 2025 roadmap.
-* Migrated AWS infrastructure from CDK to HCP Terraform, enabling GHES-connected workflows and tightening IAM scope.
+* Led the migration and adoption of HCP Terraform, including moving AWS infrastructure off CDK and connecting it to GitHub Enterprise Server, and established the 2025 roadmap.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.

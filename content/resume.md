@@ -18,7 +18,7 @@ pdf: true
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code; the platform cut active provisioning effort by about 80% (team result).
 * Presented Semgrep IAM checks at the CarGurus Science Fair that run as Claude Code writes Terraform, moving policy feedback ahead of late-stage failures and overrides.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
-* Led the migration and adoption of HCP Terraform, including moving AWS infrastructure off CDK and connecting it to GitHub Enterprise Server, and established the 2025 roadmap.
+* Led the migration and adoption of HCP Terraform and established the 2025 roadmap; now moving AWS infrastructure off CDK and connecting HCP Terraform to GitHub Enterprise Server.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.
 * Architected and executed the complete decommissioning of RabbitMQ from the environment.
 * Spearheaded the Amazon Linux 2 (AL2) migration for Redis, identifying critical risks and executing seamless production maintenance.

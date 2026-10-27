@@ -7,6 +7,10 @@
   summary = "Python MCP server that gives AI assistants volume-price analysis tools for stock market data (OBV, VWAP, Volume Profile, MFI, and more)."
 
 [[project]]
+  name = "Carport (CarGurus)"
+  summary = "Agent-friendly CLI for Carport, CarGurus’ internal static-site platform: machine-readable results and errors, stable exit codes, command help, and an embedded Claude Code skill guide."
+
+[[project]]
   name = "Homelab"
   summary = "Three-node k3s Kubernetes cluster managed entirely as code: Ansible host bootstrap, Kustomize and Helm workloads, GPU-scheduled local LLM serving, distributed storage, full monitoring stack, and a Flux CD GitOps pipeline."
 

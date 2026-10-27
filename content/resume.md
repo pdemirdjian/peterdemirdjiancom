@@ -17,7 +17,7 @@ pdf: true
 * Selected for the AIDLC tiger team in May 2026 on the strength of the Claude Code initiative.
 * On the AIDLC team, help build delivery infrastructure for Mauve, CarGurus’ agentic development platform: Terraform-managed delivery paths and an approval-gated, CodeBuild-backed CircleCI production lane (cutover in progress).
 * Architected a self-service infrastructure platform using HCP Terraform, AWS, and GitHub, governed by Sentinel Policy as Code; the platform cut active provisioning effort by about 80% and grew managed resources from about 92 to 197 in development and 73 to 204 in production over two months (team results).
-* Presented Semgrep IAM checks at the CarGurus Science Fair that run as Claude Code writes Terraform, moving policy feedback ahead of late-stage failures and overrides.
+* Originated Semgrep IAM checks that run as Claude Code writes Terraform, moving policy feedback ahead of late-stage failures and overrides; guided a teammate’s implementation and co-presented the work at the CarGurus Science Fair.
 * Championed AI-driven workflows to assist developers in generating compliant AWS code, removing centralized bottlenecks while ensuring safety and speed.
 * Led the migration and adoption of HCP Terraform and established the 2025 roadmap; now moving AWS infrastructure off CDK and connecting HCP Terraform to GitHub Enterprise Server.
 * Designed and implemented a scalable artifact expiration strategy for Artifactory, creating Architectural Decision Records (ADRs) and gaining cross-team buy-in.

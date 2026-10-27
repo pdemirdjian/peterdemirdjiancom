@@ -20,7 +20,7 @@ title: "Pete Demirdjian"
 * **AIDLC tiger team:** selected in May to build agentic development across planning, testing and deployment.
 * **Mauve:** delivery infrastructure for CarGurus’ agentic development platform, including an approval-gated production deployment lane.
 * **AWS self-service:** a platform that cut active provisioning effort by about 80% (team result).
-* **Shift-left guardrails:** Semgrep IAM checks that run as Claude Code writes Terraform.
+* **Shift-left guardrails:** originated Semgrep IAM checks that run as Claude Code writes Terraform, built with a teammate.
 * **Carport:** an agent-friendly CLI with machine-readable errors, stable exit codes and an embedded Claude Code skill guide.
 
 <p><a href="/2026/">Read the full 2026 write-up</a></p>

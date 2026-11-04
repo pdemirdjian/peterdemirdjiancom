@@ -20,7 +20,7 @@
     "@playwright/test": "1.64.1",
     "@types/node": "26.6.5",
     "htmlhint": "1.9.2",
-    "pdfjs-dist": "6.4.299",
+    "pdfjs-dist": "6.5.438",
     "smol-toml": "1.9.1",
     "typescript": "7.0.2"
   }

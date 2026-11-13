@@ -26,7 +26,6 @@ disableKinds = ["taxonomy", "term", "RSS"]
   phone = "(857) 895-2304"
   linkedin = "https://www.linkedin.com/in/peter-demirdjian/"
   github = "https://github.com/pdemirdjian"
-  image = "images/home.png"
   headshot = "images/headshot.jpg"
 
 [[params.heroActions]]

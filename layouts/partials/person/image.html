@@ -1,2 +1,18 @@
-{{- $master := resources.Get .image -}}
-{{- return (dict "social" ($master.Fill "1200x630 jpg Top")) -}}
+{{- /* Person images built from the headshot. "portrait" is the face alone (Person
+JSON-LD); "social" is the 1200x630 share card: headshot on the left, name, job
+title and employer on the right, in the light-theme palette of style.css. Hugo's
+images.Text can't read the self-hosted WOFF2 Archivo, so the card text uses
+Hugo's built-in Go font. */ -}}
+{{- $headshot := resources.Get .headshot -}}
+{{- $text := dict "x" 690 "alignx" "left" -}}
+{{- $card := $headshot.Fill "630x630 jpg" | images.Filter
+  (images.Padding 0 570 0 0 "#f7f9fc")
+  (images.Text .name (merge $text (dict "y" 220 "size" 54 "color" "#172a41")))
+  (images.Text .jobTitle (merge $text (dict "y" 310 "size" 34 "color" "#55677f")))
+  (images.Text .employer (merge $text (dict "y" 362 "size" 34 "color" "#0b7c6c")))
+-}}
+{{- return (dict
+  "portrait" ($headshot.Fill "600x600 jpg q85")
+  "social" $card
+  "alt" (printf "%s, %s at %s" .name .jobTitle .employer)
+) -}}

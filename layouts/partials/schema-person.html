@@ -14,7 +14,7 @@
     "worksFor": { "@type": "Organization", "name": "{{ $person.employer }}" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "{{ $person.school }}" },
     "url": "{{ .Site.BaseURL }}",
-    "image": "{{ $image.social.RelPermalink | absURL }}",
+    "image": "{{ $image.portrait.RelPermalink | absURL }}",
     "email": "mailto:{{ $person.email }}",
     "sameAs": ["{{ $person.linkedin }}", "{{ $person.github }}"]
   }

@@ -133,7 +133,9 @@ jobs:
   integration-tests:
     name: Integration Tests (${{ matrix.browser }})
     needs: lint-and-build
-    runs-on: ubuntu-latest
+    # ubuntu-latest moved to 26.04 (libicu78); Playwright's WebKit build still
+    # links libicu74 and won't launch there. Pin until Playwright ships a 26.04 build.
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     strategy:

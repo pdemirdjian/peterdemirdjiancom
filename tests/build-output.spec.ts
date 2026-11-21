@@ -126,30 +126,51 @@ test('home HTML and all portrait candidates weigh less than 300 KB', async () =>
   expect(bytes).toBeLessThan(300_000)
 })
 
-test('Person metadata shares an absolute 1200×630 JPEG in the build output', async () => {
-  const html = buildOutput.get('/index.html') ?? ''
-  const og = html.match(/property="og:image" content="([^"]+)"/)?.[1]
-  const twitter = html.match(/name="twitter:image" content="([^"]+)"/)?.[1]
-  const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]
-  expect(og).toMatch(/^https:\/\/peterdemirdjian\.com\/images\/.+\.jpg$/)
-  expect(twitter).toBe(og)
-  expect(JSON.parse(json ?? '{}').mainEntity.image).toBe(og)
-
-  const jpeg = await readFile(join(publishDir, new URL(og!).pathname))
+/** Width and height of a JPEG, read from its SOF0/SOF2 frame header. */
+async function jpegDimensions(url: string): Promise<number[] | undefined> {
+  const jpeg = await readFile(join(publishDir, new URL(url).pathname))
   expect(jpeg.readUInt16BE(0)).toBe(0xffd8)
   // JPEG segments carry their own lengths; SOF0/SOF2 hold the frame dimensions.
-  let dimensions: number[] | undefined
   for (let offset = 2; offset < jpeg.length;) {
     expect(jpeg[offset]).toBe(0xff)
     const marker = jpeg[offset + 1]
     if (marker === 0xc0 || marker === 0xc2) {
-      dimensions = [jpeg.readUInt16BE(offset + 7), jpeg.readUInt16BE(offset + 5)]
-      break
+      return [jpeg.readUInt16BE(offset + 7), jpeg.readUInt16BE(offset + 5)]
     }
     if (marker === 0xda || marker === 0xd9) break
     offset += 2 + jpeg.readUInt16BE(offset + 2)
   }
-  expect(dimensions).toEqual([1200, 630])
+  return undefined
+}
+
+// Hugo names a processed image after its source file: headshot_hu_<hash>.jpg.
+const HEADSHOT_RENDITION = /^https:\/\/peterdemirdjian\.com\/images\/headshot_hu_[^/]+\.jpg$/
+
+test('Person share card is an absolute 1200×630 JPEG built from the headshot', async () => {
+  const html = buildOutput.get('/index.html') ?? ''
+  const meta = (attr: string, key: string) =>
+    html.match(new RegExp(`${attr}="${key}" content="([^"]+)"`))?.[1]
+  const og = meta('property', 'og:image')
+  expect(og).toMatch(HEADSHOT_RENDITION)
+  expect(meta('name', 'twitter:image')).toBe(og)
+  expect(meta('name', 'twitter:card')).toBe('summary_large_image')
+  expect(meta('property', 'og:image:width')).toBe('1200')
+  expect(meta('property', 'og:image:height')).toBe('630')
+  expect(meta('property', 'og:image:alt')).toContain(person.name)
+  expect(meta('name', 'twitter:image:alt')).toBe(meta('property', 'og:image:alt'))
+  expect(await jpegDimensions(og!)).toEqual([1200, 630])
+  expect([...buildOutput.keys()].filter((path) => path.startsWith('/images/home'))).toEqual([])
+})
+
+test('Person JSON-LD image is a square headshot rendition, not the share card', async () => {
+  const html = buildOutput.get('/index.html') ?? ''
+  const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]
+  const image: string = JSON.parse(json ?? '{}').mainEntity.image
+  expect(image).toMatch(HEADSHOT_RENDITION)
+  expect(image).not.toBe(html.match(/property="og:image" content="([^"]+)"/)?.[1])
+  const [width, height] = (await jpegDimensions(image)) ?? []
+  expect(width).toBe(height)
+  expect(width).toBeGreaterThanOrEqual(400)
 })
 
 test('security.txt publishes Person contact and a UTC expiry about a year after build time', async () => {
